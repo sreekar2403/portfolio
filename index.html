@@ -1,314 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Sreekar P V S M</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="assets/img/wind.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sreekar PVSM — Portfolio</title>
+    <meta name="description" content="Portfolio of P V S M Sreekar: experience, projects, skills, and contact.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:,">
+    <meta property="og:title" content="Sreekar PVSM — Portfolio">
+    <meta property="og:description" content="Experience, projects, skills, and contact.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#0f172a">
 </head>
+<body>
+    <canvas id="bg-net"></canvas>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" role="banner">
+        <nav class="nav" aria-label="Primary">
+            <a class="logo" href="#home"> </a>
+            <button class="nav__toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
+            <ul id="nav-menu" class="nav__menu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <!-- <li><a href="#achievements">Achievements</a></li> -->
+                <li><a href="#publications">Publications</a></li>
+                <!-- <li><a href="#certifications">Certifications</a></li> -->
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <!-- <li><a href="#contact">Contact</a></li> -->
+            </ul>
+        </nav>
+    </header>
 
-<body class="index-page">
-
-  <header id="header" class="header d-flex flex-column justify-content-center">
-
-    <i class="header-toggle d-xl-none bi bi-list"></i>
-
-    <nav id="navmenu" class="navmenu">
-      <ul>
-        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i><span>Home</span></a></li>
-        <li><a href="#about"><i class="bi bi-person navicon"></i><span>About</span></a></li>
-        <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i><span>Resume</span></a></li>
-        <li><a href="#portfolio"><i class="bi bi-images navicon"></i><span>Portfolio</span></a></li>
-        <!-- <li><a href="#services"><i class="bi bi-hdd-stack navicon"></i><span>Services</span></a></li> -->
-        <!-- <li><a href="#contact"><i class="bi bi-envelope navicon"></i><span>Contact</span></a></li> -->
-      </ul>
-    </nav>
-
-  </header>
-
-  <main class="main">
-
-    <!-- Hero Section -->
-    <section id="hero" class="hero section light-background">
-
-      <img src="assets/img/hero-bg.jpg" alt="">
-
-      <div class="container" data-aos="zoom-out">
-        <div class="row justify-content-center">
-          <div class="col-lg-9">
-            <h2>Sreekar P V S M</h2>
-            <p>I'm <span class="typed" data-typed-items="Data Scientist, MLEngineer, Developer, Freelancer, Biker">Data Scientist</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
-            <div class="social-links">
-              <a href="#"><i class="bi bi-twitter-x"></i></a>
-              <a href="#"><i class="bi bi-facebook"></i></a>
-              <a href="#"><i class="bi bi-instagram"></i></a>
-              <a href="#"><i class="bi bi-linkedin"></i></a>
+    <main id="main" tabindex="-1">
+        <section id="home" class="hero reveal">
+            <canvas id="particles"></canvas>
+            <div class="container">
+                <h1 class="hero__title">P V S M Sreekar</h1>
+                <p class="hero__subtitle">Data Scientist • Machine Learning Engineer · <span id="typing"></span></p>
+                <div class="hero__actions">
+                    <a class="btn btn--primary" href="#projects">View Projects</a>
+                    <a class="btn" href="Resume_Sreekar_pvsm.pdf" target="_blank" rel="noopener">Download Resume</a>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
+        </section>
 
-    </section><!-- /Hero Section -->
-
-    <!-- About Section -->
-    <section id="about" class="about section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>About</h2>
-        <p>As a passionate machine learning enthusiast, I thrive on exploring the fascinating intersection of data and algorithms. My curiosity drives me to dive deep into various machine learning models, experimenting with diverse datasets to uncover insights, patterns, and innovative solutions. Whether it's fine-tuning complex models or understanding the nuances of different approaches, I love the hands-on experience that comes with experimenting and pushing boundaries.</br></br>Beyond the world of data, I am also an avid traveler and biker. My love for traveling and bike rides fuels my adventurous spirit, providing fresh perspectives and inspiration. This balance between technology and exploration helps me stay creative and energized, enriching both my professional and personal life. Through my portfolio, I invite you to explore my projects, where technical rigor meets a love for discovery.</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4 justify-content-center">
-          <div class="col-lg-4">
-            <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-8 content">
-            <h2> Data Scientist &amp; Freelancer.</h2></br>
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>24 March 1999</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Banglore & Hyderabad</span></li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Bachelors of Technology</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>padarthi24sreekar2@gmail.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
-                </ul>
-              </div>
+        <section id="about" class="section reveal">
+            <div class="container">
+                <h2>About</h2>
+                <p id="about-text">I build data products that move business metrics using end‑to‑end ML.</p>
             </div>
-          </div>
+        </section>
+
+        <section id="experience" class="section reveal">
+            <div class="container">
+                <h2>Experience</h2>
+                <div id="experience-list" class="timeline stagger"></div>
+            </div>
+        </section>
+
+        <section id="projects" class="section reveal">
+            <div class="container">
+                <h2>Projects</h2>
+                <div id="projects-grid" class="grid stagger"></div>
+            </div>
+        </section>
+
+        <section id="achievements" class="section reveal">
+            <div class="container">
+                <h2>Achievements</h2>
+                <div id="achievements-list" class="cards"></div>
+            </div>
+        </section>
+
+        <section id="publications" class="section reveal">
+            <div class="container">
+                <h2>Publications</h2>
+                <div id="publications-list" class="cards"></div>
+            </div>
+        </section>
+
+        <section id="certifications" class="section reveal">
+            <div class="container">
+                <h2>Certifications</h2>
+                <ul id="certifications-list" class="tags"></ul>
+            </div>
+        </section>
+
+        <section id="skills" class="section reveal">
+            <div class="container">
+                <h2>Skills</h2>
+                <ul id="skills-list" class="tags"></ul>
+            </div>
+        </section>
+
+        <section id="education" class="section reveal">
+            <div class="container">
+                <h2>Education</h2>
+                <div id="education-list" class="cards"></div>
+            </div>
+        </section>
+
+        <!-- <section id="contact" class="section reveal">
+            <div class="container">
+                <h2>Contact</h2>
+            </div>
+        </section> -->
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© <span id="year"></span> P V S M Sreekar</p>
+            
         </div>
+    </footer>
 
-      </div>
-
-    </section><!-- /About Section -->
-
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Skills</h2>
-        <!-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> -->
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row skills-content skills-animation">
-
-
-
-          <div class="col-lg-6">
-
-            <div class="progress">
-              <span class="skill"><span>PYTHON</span> <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
-            <div class="progress">
-              <span class="skill"><span>PyTorch</span> <i class="val">80%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
-            <div class="progress">
-              <span class="skill"><span>Fastapi</span> <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
-            <div class="progress">
-              <span class="skill"><span>Prompt Engineering</span> <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
-            <div class="progress">
-              <span class="skill"><span>SQL</span> <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
-            <div class="progress">
-              <span class="skill"><span>Jenkins</span> <i class="val">80%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
-            <div class="progress">
-              <span class="skill"><span>MLops</span> <i class="val">85%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section><!-- /Skills Section -->
-
-    <!-- Resume Section -->
-    <section id="resume" class="resume section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Resume</h2>
-        </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row">
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Professional Experience</h3>
-
-            <div class="resume-item">
-              <h4>Senior Machine learning Engineer</h4>
-              <h5>Oct 2022 - present</h5>
-            </br>
-              <h5>Freshworks, Banglore</h5>
-              <p><em></em></p>
-              <ul>
-                <li>Project 1</li>
-                <li>Project 2</li>
-              </ul>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>Data Scientist</h4>
-              <h5>Oct 2020 - Oct 2022</h5>
-            </br>
-              <h5>Freshworks, Banglore</h5>
-              <p><em></em></p>
-              <ul>
-                <li>Project 1</li>
-                <li>Project 2</li>
-              </ul>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>Data Scientist Intern</h4>
-              <h5>Jan 2020 - Oct 2020</h5>
-            </br>
-              <h5>Freshworks, Chennai</h5>
-              <p><em></em></p>
-              <ul>
-                <li>Project 1</li>
-              </ul>
-            </div><!-- Edn Resume Item -->
-
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item pb-0">
-              <h4>Bachelors of Technology - Computer Science</h4>
-              <h5>2016 - 2020</h5>
-              <p><em>BML University, Gurgaon, New Delhi</em></p>
-              <!-- <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend</p> -->
-            </div><!-- Edn Resume Item -->
-
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-    </section><!-- /Resume Section -->
-
-    <section id="portfolio", class="portfolio section">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Portfolio</h2>
-		<h3>In Progress</h3>
-
-      </div>
-      
-    </section>
-
-
-  </main>
-
-  <!-- <footer id="footer" class="footer position-relative light-background">
-    <div class="container">
-      <h3 class="sitename">Brandon Johnson</h3>
-      <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
-      <div class="social-links d-flex justify-content-center">
-        <a href=""><i class="bi bi-twitter-x"></i></a>
-        <a href=""><i class="bi bi-facebook"></i></a>
-        <a href=""><i class="bi bi-instagram"></i></a>
-        <a href=""><i class="bi bi-skype"></i></a>
-        <a href=""><i class="bi bi-linkedin"></i></a>
-      </div>
-      <div class="container">
-        <div class="copyright">
-          <span>Copyright</span> <strong class="px-1 sitename">Alex Smith</strong> <span>All Rights Reserved</span>
-        </div>
-        <div class="credits">
-          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distribuited by <a href="https://themewagon.com">ThemeWagon</a>
-        </div>
-      </div>
+    <!-- Floating contact icons -->
+    <div class="contact-fab" aria-label="Quick contacts">
+        <a id="email-fab" href="#" class="fab" title="Email" aria-label="Email">📧</a>
+        <a id="linkedin-fab" href="https://www.linkedin.com/in/p-v-s-m-sreekar-21b888149/" class="fab" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener">in</a>
+        <a id="github-fab" href="#" class="fab" title="GitHub" aria-label="GitHub" target="_blank" rel="noopener">🐙</a>
     </div>
-  </footer> -->
 
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
-  <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
-
+    <script src="script.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "P V S M Sreekar",
+      "jobTitle": "Machine Learning Engineer",
+      "sameAs": [
+        "https://www.linkedin.com/in/p-v-s-m-sreekar-21b888149/"
+      ]
+    }
+    </script>
 </body>
-
 </html>
+
