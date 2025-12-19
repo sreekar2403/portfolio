@@ -93,7 +93,7 @@ const Section = ({ children, className, id }) => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-100px" }}
     transition={{ duration: 0.8, ease: "easeOut" }}
-    className={`py-24 px-6 max-w-6xl mx-auto relative z-10 ${className}`}
+    className={`py-16 md:py-24 px-4 md:px-6 max-w-6xl mx-auto relative z-10 ${className}`}
   >
     {children}
   </motion.section>
@@ -119,19 +119,19 @@ export default function App() {
 
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 backdrop-blur-3xl border-b border-white/5 bg-[#050810]/40">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center text-sm">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center text-sm">
           <motion.span 
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            className="text-xl font-black bg-gradient-to-r from-blue-400 via-indigo-400 to-emerald-400 bg-clip-text text-transparent tracking-tighter"
+            className="text-lg md:text-xl font-black bg-gradient-to-r from-blue-400 via-indigo-400 to-emerald-400 bg-clip-text text-transparent tracking-tighter"
           >
             PVSM SREEKAR
           </motion.span>
-          <div className="flex gap-8 items-center font-medium tracking-widest text-xs uppercase text-slate-400">
-             <a href="#experience" className="hover:text-white transition-colors">Experience</a>
-             <a href="#publications" className="hover:text-white transition-colors">Research</a>
-             <div className="h-4 w-px bg-white/10 mx-2" />
-             <div className="flex gap-4">
+          <div className="flex gap-4 md:gap-8 items-center font-medium tracking-widest text-[10px] md:text-xs uppercase text-slate-400">
+             <a href="#experience" className="hover:text-white transition-colors hidden sm:block">Experience</a>
+             <a href="#publications" className="hover:text-white transition-colors hidden sm:block">Research</a>
+             <div className="h-4 w-px bg-white/10 mx-1 md:mx-2 hidden sm:block" />
+             <div className="flex gap-3 md:gap-4">
               <a href="mailto:padarthi24sreekar2@gmail.com" className="hover:text-blue-400 transition-all hover:scale-110"><Mail size={16}/></a>
               <a href="https://www.linkedin.com/in/p-v-s-m-sreekar-21b888149/" target="_blank" rel="noopener" className="hover:text-blue-400 transition-all hover:scale-110"><Linkedin size={16}/></a>
               <a href="https://github.com/sreekar2403" target="_blank" rel="noopener" className="hover:text-blue-400 transition-all hover:scale-110"><Github size={16}/></a>
@@ -154,18 +154,18 @@ export default function App() {
             </span>
             Lead Machine Learning Engineer @ Freshworks
           </div>
-          <h1 className="text-7xl md:text-9xl font-black mb-10 tracking-tighter text-white leading-[0.85]">
+          <h1 className="text-5xl md:text-9xl font-black mb-8 md:mb-10 tracking-tighter text-white leading-[0.9] md:leading-[0.85]">
             Engineering <br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-br from-blue-400 via-indigo-400 to-emerald-400">
               Future AI
             </span>
           </h1>
-          <p className="max-w-2xl mx-auto text-slate-500 text-xl leading-relaxed font-light">
+          <p className="max-w-2xl mx-auto text-slate-500 text-lg md:text-xl leading-relaxed font-light px-4">
             Building end-to-end MLOps architectures and fine-tuning disruptive LLMs 
             that redefine scalable SaaS intelligence.
           </p>
           
-          <div className="mt-16 flex justify-center gap-6">
+          <div className="mt-12 md:mt-16 flex flex-col md:flex-row justify-center gap-4 md:gap-6 px-6">
             <motion.button 
               whileTap={{ scale: 0.95 }}
               onClick={() => {
@@ -177,7 +177,7 @@ export default function App() {
                   console.log('Fired scroll to experience');
                 }
               }}
-              className="px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-black transition-all shadow-[0_0_30px_rgba(59,130,246,0.25)] hover:shadow-[0_0_40px_rgba(59,130,246,0.4)] cursor-pointer relative z-[20]"
+              className="px-8 md:10 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-black transition-all shadow-[0_0_30px_rgba(59,130,246,0.25)] hover:shadow-[0_0_40px_rgba(59,130,246,0.4)] cursor-pointer relative z-[20] w-full md:w-auto"
             >
               DECODE PORTFOLIO
             </motion.button>
@@ -192,7 +192,7 @@ export default function App() {
                   console.log('Fired scroll to research');
                 }
               }}
-              className="px-10 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-2xl font-black transition-all backdrop-blur-md cursor-pointer relative z-[20]"
+              className="px-8 md:10 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-2xl font-black transition-all backdrop-blur-md cursor-pointer relative z-[20] w-full md:w-auto"
             >
               SYSTEM LOGS
             </motion.button>
@@ -213,10 +213,10 @@ export default function App() {
             <motion.div 
               whileHover={{ y: -10, scale: 1.02 }}
               key={i} 
-              className={`p-10 rounded-[2.5rem] bg-gradient-to-br ${stat.color} to-white/[0.02] border border-white/5 flex flex-col items-center text-center backdrop-blur-md shadow-2xl group transition-all duration-500`}
+              className={`p-8 md:p-10 rounded-[2rem] md:rounded-[2.5rem] bg-gradient-to-br ${stat.color} to-white/[0.02] border border-white/5 flex flex-col items-center text-center backdrop-blur-md shadow-2xl group transition-all duration-500`}
             >
-              <div className="mb-8 p-5 bg-white/5 rounded-[2rem] group-hover:bg-white/10 transition-colors shadow-inner">{stat.icon}</div>
-              <h3 className="text-5xl font-black text-white mb-3 tracking-tighter">{stat.val}</h3>
+              <div className="mb-6 md:mb-8 p-4 md:p-5 bg-white/5 rounded-[1.5rem] md:rounded-[2rem] group-hover:bg-white/10 transition-colors shadow-inner">{stat.icon}</div>
+              <h3 className="text-4xl md:text-5xl font-black text-white mb-3 tracking-tighter">{stat.val}</h3>
               <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.3em]">{stat.label}</p>
             </motion.div>
           ))}
@@ -225,17 +225,17 @@ export default function App() {
 
       {/* Experience Timeline */}
       <Section id="experience">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-4">
-          <div>
-            <h2 className="text-5xl font-black text-white flex items-center gap-6 tracking-tighter uppercase">
-              <Network size={40} className="text-blue-500" /> Career Log
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-24 gap-6">
+          <div className="w-full">
+            <h2 className="text-3xl md:text-5xl font-black text-white flex items-center gap-4 md:gap-6 tracking-tighter uppercase">
+              <Network size={32} className="text-blue-500" /> Career Log
             </h2>
-            <p className="text-slate-600 mt-4 font-bold tracking-[0.2em] uppercase text-xs border-l-2 border-blue-500 pl-4 ml-1">Sequence of high-impact iterations</p>
+            <p className="text-slate-600 mt-4 font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs border-l-2 border-blue-500 pl-4 ml-1">Sequence of high-impact iterations</p>
           </div>
         </div>
 
-        <div className="relative space-y-0">
-          <div className="absolute left-[7px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-blue-500 via-white/5 to-transparent md:left-1/2 md:-ml-[1px]" />
+        <div className="relative space-y-0 px-2 md:px-0">
+          <div className="absolute left-[23px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-blue-500 via-white/5 to-transparent md:left-1/2 md:-ml-[1px]" />
 
           {[
             {
@@ -296,7 +296,7 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="relative z-10 flex flex-col items-center">
+              <div className="relative z-10 flex flex-col items-center ml-2 md:ml-0">
                 <div className={`w-4 h-4 rounded-full border-4 border-[#050810] ${item.current ? 'bg-blue-500 shadow-[0_0_25px_#3b82f6]' : 'bg-slate-800'}`} />
               </div>
 
@@ -319,52 +319,51 @@ export default function App() {
       </Section>
 
       {/* Publications Section */}
-      <Section id="publications" className="grid md:grid-cols-5 gap-16">
+      <Section id="publications" className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-16">
         <div className="md:col-span-3">
-          <h2 className="text-4xl font-black text-white mb-12 flex items-center gap-4 tracking-tighter uppercase">
-            <BookOpen size={32} className="text-emerald-500" /> Technical Paper
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-8 md:mb-12 flex items-center gap-4 tracking-tighter uppercase">
+            <BookOpen size={28} className="text-emerald-500" /> Technical Paper
           </h2>
           <motion.div 
             whileHover={{ y: -5 }}
-            className="p-12 rounded-[3rem] bg-gradient-to-br from-emerald-500/5 to-white/[0.01] border border-white/5 hover:border-emerald-500/20 transition-all shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative group"
+            className="p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] bg-gradient-to-br from-emerald-500/5 to-white/[0.01] border border-white/5 hover:border-emerald-500/20 transition-all shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative group overflow-hidden"
           >
-            <Zap className="absolute top-8 right-8 text-emerald-500/10 group-hover:text-emerald-500/30 transition-colors" size={64} />
-            <h3 className="text-3xl font-black text-white mb-4 tracking-tight leading-tight">A Multi-Model Adaptation of Speculative Decoding for Classification</h3>
-            <p className="text-slate-500 text-base mb-10 leading-relaxed font-medium">
+            <Zap className="absolute -top-4 -right-4 md:top-8 md:right-8 text-emerald-500/10 group-hover:text-emerald-500/30 transition-colors" size={100} />
+            <h3 className="text-2xl md:text-3xl font-black text-white mb-4 tracking-tight leading-tight relative z-10">A Multi-Model Adaptation of Speculative Decoding for Classification</h3>
+            <p className="text-slate-500 text-sm md:text-base mb-10 leading-relaxed font-medium relative z-10">
               Groundbreaking research published on <span className="text-emerald-500/80 font-black">arXiv (2025)</span> analyzing efficiency gains in speculative decoding architectures for production classification engines.
             </p>
-            <a href="https://arxiv.org/abs/2503.18076" target="_blank" rel="noopener" className="inline-flex items-center gap-3 px-8 py-3 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-emerald-500/20 transition-all">
+            <a href="https://arxiv.org/abs/2503.18076" target="_blank" rel="noopener" className="inline-flex items-center justify-center gap-3 px-6 md:px-8 py-3 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-2xl text-[10px] md:text-xs font-black uppercase tracking-widest hover:bg-emerald-500/20 transition-all w-full md:w-auto relative z-10">
               Access Full Repository <ExternalLink size={16}/>
             </a>
           </motion.div>
         </div>
         
         <div className="md:col-span-2">
-          <h2 className="text-4xl font-black text-white mb-12 tracking-tighter uppercase">Education</h2>
-          <div className="p-12 rounded-[3rem] bg-white/[0.02] border border-white/5 backdrop-blur-md shadow-2xl relative overflow-hidden group">
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-8 md:mb-12 tracking-tighter uppercase">Education</h2>
+          <div className="p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] bg-white/[0.02] border border-white/5 backdrop-blur-md shadow-2xl relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 blur-[50px] group-hover:bg-blue-500/10 transition-colors" />
-            <h3 className="font-black text-white text-2xl tracking-tighter uppercase">B.Tech <br/> Computer Science</h3>
+            <h3 className="font-black text-white text-xl md:text-2xl tracking-tighter uppercase">B.Tech <br/> Computer Science</h3>
             <p className="text-blue-500 font-bold mt-2 uppercase tracking-widest text-[10px]">BML Munjal University, Haryana</p>
-            <p className="text-sm text-slate-500 mt-10 leading-relaxed font-medium">
-              Specialized focus on Distributed ML Systems and Transformer Architectures. <br/>
-              Class of 2020.
+            <p className="text-sm text-slate-500 mt-8 md:mt-10 leading-relaxed font-medium">
+              Focused on core computational theory and software engineering principles. <br/>
+              Class of 2016.
             </p>
-            <div className="mt-12 flex gap-2">
-              <SkillBadge name="C.S.E" /> <SkillBadge name="GPA 8.4" />
+            <div className="mt-8 md:mt-12 flex gap-2 flex-wrap">
+              <SkillBadge name="C.S.C" />
             </div>
           </div>
         </div>
       </Section>
 
       {/* Footer */}
-      <footer className="py-32 border-t border-white/5 text-center relative z-10 bg-[#050810]/50 backdrop-blur-lg">
-        <div className="flex justify-center gap-12 mb-12">
-          <a href="https://github.com/sreekar2403" className="text-slate-600 hover:text-white transition-all hover:scale-125"><Github size={28}/></a>
-          <a href="https://www.linkedin.com/in/p-v-s-m-sreekar-21b888149/" className="text-slate-600 hover:text-white transition-all hover:scale-125"><Linkedin size={28}/></a>
-          <a href="mailto:padarthi24sreekar2@gmail.com" className="text-slate-600 hover:text-white transition-all hover:scale-125"><Mail size={28}/></a>
+      <footer className="py-16 md:py-32 border-t border-white/5 text-center relative z-10 bg-[#050810]/50 backdrop-blur-lg px-6">
+        <div className="flex justify-center gap-8 md:gap-12 mb-8 md:mb-12">
+          <a href="https://github.com/sreekar2403" className="text-slate-600 hover:text-white transition-all hover:scale-125"><Github size={24}/></a>
+          <a href="https://www.linkedin.com/in/p-v-s-m-sreekar-21b888149/" className="text-slate-600 hover:text-white transition-all hover:scale-125"><Linkedin size={24}/></a>
+          <a href="mailto:padarthi24sreekar2@gmail.com" className="text-slate-600 hover:text-white transition-all hover:scale-125"><Mail size={24}/></a>
         </div>
-        <p className="text-slate-600 text-[10px] font-black uppercase tracking-[0.5em]">P V S M SREEKAR — 2025</p>
-        <p className="text-[9px] text-slate-700 mt-4 uppercase tracking-[0.2em] font-mono">Build ID: SG-24-03A | Protocol: React-Three-Fiber</p>
+        <p className="text-slate-600 text-[10px] font-black uppercase tracking-[0.3em] md:tracking-[0.5em]">P V S M SREEKAR — 2025</p>
       </footer>
     </div>
   );
