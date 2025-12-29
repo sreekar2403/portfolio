@@ -3,6 +3,16 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --space-2: 0.5rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --radius-card: 1.5rem;
+    --shadow-card: 0 20px 50px rgba(0,0,0,0.5);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-[#0b0f1a] text-slate-200;
   }

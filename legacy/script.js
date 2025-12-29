@@ -230,7 +230,7 @@ function setupInteractions() {
   }
 
   // Theme toggle
-  const themeToggle = document.getElementById("theme-toggle");
+  const THEME_TOGGLE = document.getElementById("theme-toggle");
   const root = document.documentElement;
   // Force light theme only
   root.classList.add('light');
