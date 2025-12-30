@@ -4,7 +4,7 @@ import { Github, CalendarDays, Tag, ArrowDownAZ } from 'lucide-react'
 import { PROJECTS, TAG_COLORS } from '../data/projects'
 
 function TechBadge({ label }) {
-  const color = TAG_COLORS[label] || 'text-slate-300 bg-white/5 border-white/10'
+  const color = TAG_COLORS[label] || 'text-slate-600 bg-slate-50 border-slate-200'
   return (
     <span
       className={`inline-flex items-center gap-1 px-3 py-1 rounded-full border text-[10px] font-black uppercase tracking-widest ${color}`}
@@ -18,7 +18,7 @@ function TechBadge({ label }) {
 
 function MetaBadge({ children }) {
   return (
-    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-slate-200">
+    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-50 border border-slate-200 text-[10px] font-bold uppercase tracking-widest text-slate-700">
       {children}
     </span>
   )
@@ -26,7 +26,7 @@ function MetaBadge({ children }) {
 
 export default function Projects() {
   const [selectedTags, setSelectedTags] = useState([])
-  const [sortBy, setSortBy] = useState('date')
+  const [sortBy] = useState('date')
 
   const allTags = useMemo(() => {
     const s = new Set()
@@ -69,7 +69,7 @@ export default function Projects() {
     >
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-12 gap-6">
         <div>
-          <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase flex items-center gap-3">
+          <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase flex items-center gap-3">
             <Tag size={28} className="text-blue-500" />
             Personal Projects
           </h2>
@@ -91,8 +91,8 @@ export default function Projects() {
                 aria-pressed={selectedTags.includes(t)}
                 className={`px-3 py-1 rounded-full border text-[10px] font-black uppercase tracking-widest transition-all ${
                   selectedTags.includes(t)
-                    ? 'bg-blue-500/20 border-blue-500/30 text-blue-300'
-                    : 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10'
+                    ? 'bg-blue-500/20 border-blue-500/30 text-blue-700'
+                    : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100'
                 }`}
               >
                 {t}
@@ -114,7 +114,7 @@ export default function Projects() {
             variants={variants.item}
             whileHover={{ y: -8, scale: 1.02 }}
             transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-            className="group p-6 rounded-[1.5rem] bg-white/[0.02] border border-white/5 backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden"
+            className="group p-6 rounded-[1.5rem] bg-white border border-slate-200 backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.06)] relative overflow-hidden"
             aria-labelledby={`project-${p.id}-title`}
           >
             {p.media?.src && (
@@ -122,13 +122,13 @@ export default function Projects() {
                 src={p.media.src}
                 alt={p.media.alt || `${p.title} media`}
                 loading="lazy"
-                className="rounded-2xl border border-white/10 w-full h-36 object-cover mb-4 transition-all group-hover:brightness-110"
+                className="rounded-2xl border border-slate-200 w-full h-36 object-cover mb-4 transition-all group-hover:brightness-110"
               />
             )}
 
             <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 blur-[40px] group-hover:bg-blue-500/10 transition-colors" />
 
-            <h3 id={`project-${p.id}-title`} className="text-xl md:text-2xl font-black text-white tracking-tight">
+            <h3 id={`project-${p.id}-title`} className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">
               {p.title}
             </h3>
 
@@ -157,7 +157,7 @@ export default function Projects() {
                 href={p.githubUrl}
                 target="_blank"
                 rel="noopener"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-300 text-[10px] font-black uppercase tracking-widest hover:bg-blue-500/20 transition-all"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-700 text-[10px] font-black uppercase tracking-widest hover:bg-blue-500/20 transition-all"
                 aria-label={`View on GitHub: ${p.title}`}
               >
                 <Github size={16} />

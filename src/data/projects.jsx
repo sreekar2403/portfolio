@@ -3,13 +3,13 @@ import React from 'react'
 export const PROJECTS = [
   {
     id: 'multi-agentic-platform',
-    title: <italic>FRIDAY (Local Multi-Agentic Platform)</italic>,
+    title: 'FRIDAY (Local Multi-Agentic Platform)',
     description: (
       <>
-        <p className="text-slate-200 text-sm leading-relaxed">
-          Multi-agentic platform for <strong className="text-white">local LLM inference</strong>.
+        <p className="text-slate-700 text-sm leading-relaxed">
+          Multi-agentic platform for <strong className="text-slate-900">local LLM inference</strong>.
         </p>
-        <ul className="list-disc list-inside text-slate-200 text-sm mt-3 space-y-1">
+        <ul className="list-disc list-inside text-slate-700 text-sm mt-3 space-y-1">
           <li>Helps you with your day-to-day tasks using local LLMs.</li>
           <li>Supports in tracking your short & long term goals</li>
           <li>Can create workflows to automate your tasks</li>
