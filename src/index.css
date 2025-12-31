@@ -17,3 +17,17 @@
     @apply bg-[#f7f9fc] text-slate-800;
   }
 }
+
+@layer components {
+  .bg-overlay {
+    background-color: #ffffff;
+    opacity: .55;
+    transition: opacity .3s ease, background-color .3s ease;
+  }
+  @supports (background-color: hsla(0,0%,100%,0.55)) {
+    .bg-overlay {
+      background-color: hsla(210,20%,96%,0.55);
+      opacity: 1;
+    }
+  }
+}

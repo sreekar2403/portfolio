@@ -184,6 +184,7 @@ export default function App() {
       <div className="fixed inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.04] pointer-events-none contrast-100 brightness-100 z-[2]" />
       <div className="fixed inset-0 z-0 opacity-[0.01] pointer-events-none" 
            style={{ backgroundImage: 'linear-gradient(#dbeafe 1px, transparent 1px), linear-gradient(90deg, #dbeafe 1px, transparent 1px)', backgroundSize: '100px 100px' }} />
+      <div className="fixed inset-0 pointer-events-none z-[3] bg-overlay" aria-hidden="true" />
 
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 backdrop-blur-3xl border-b border-slate-200 bg-white/70">
