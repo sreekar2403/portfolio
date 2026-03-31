@@ -106,35 +106,84 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  perspective: 1000px;
 }
 
 .hero-figurine {
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
   height: auto;
-  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.15));
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  animation: figurine-float 5s ease-in-out infinite;
+  filter: drop-shadow(0 20px 40px rgba(15, 23, 42, 0.1));
+  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: figurine-float 6s ease-in-out infinite;
+  z-index: 2;
+  transform-style: preserve-3d;
 }
 
 .hero-figurine:hover {
-  transform: scale(1.03) rotateY(-5deg);
+  transform: scale(1.05) translateY(-10px) rotateY(-10deg) rotateX(5deg);
+  filter: drop-shadow(0 30px 60px rgba(15, 23, 42, 0.15));
 }
 
 @keyframes figurine-float {
-  0%, 100% { transform: translateY(0px) rotateY(0deg); }
-  50% { transform: translateY(-15px) rotateY(3deg); }
+  0%, 100% { 
+    transform: translateY(0px) rotateY(0deg) rotateX(0deg); 
+  }
+  33% { 
+    transform: translateY(-20px) rotateY(5deg) rotateX(-2deg); 
+  }
+  66% { 
+    transform: translateY(-10px) rotateY(-3deg) rotateX(3deg); 
+  }
 }
 
 .hero-figurine-glow {
   position: absolute;
-  width: 80%;
-  height: 40%;
-  bottom: -10%;
-  left: 10%;
-  background: radial-gradient(ellipse, rgba(59, 130, 246, 0.12), transparent 70%);
-  filter: blur(30px);
+  width: 120%;
+  height: 60%;
+  bottom: -5%;
+  left: -10%;
+  background: radial-gradient(
+    circle at center,
+    rgba(56, 189, 248, 0.15) 0%,
+    rgba(168, 85, 247, 0.1) 35%,
+    rgba(16, 185, 129, 0.05) 70%,
+    transparent 100%
+  );
+  filter: blur(50px);
   z-index: -1;
+  animation: glow-pulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes glow-pulse {
+  0% { opacity: 0.5; transform: scale(1); }
+  100% { opacity: 0.8; transform: scale(1.15); }
+}
+
+.hero-figurine-base {
+  position: absolute;
+  width: 280px;
+  height: 60px;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%) rotateX(75deg);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.05),
+    inset 0 0 20px rgba(255, 255, 255, 0.2);
+  z-index: 1;
+  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.hero-figurine-container:hover .hero-figurine-base {
+  width: 320px;
+  opacity: 0.6;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
 }
 
 /* About Section */

@@ -72,8 +72,8 @@ export default function HeroSection({ isLoaded }) {
       // Figurine
       tl.fromTo(
         figurineRef.current,
-        { scale: 0.8, opacity: 0, y: 40 },
-        { scale: 1, opacity: 1, y: 0, duration: 1, ease: 'power3.out' },
+        { scale: 0.8, opacity: 0, y: 60, rotateY: 30, rotateX: -10 },
+        { scale: 1, opacity: 1, y: 0, rotateY: 0, rotateX: 0, duration: 1.2, ease: 'back.out(1.7)' },
         '-=0.8'
       )
 
@@ -201,6 +201,7 @@ export default function HeroSection({ isLoaded }) {
                 loading="eager"
               />
               <div className="hero-figurine-glow" />
+              <div className="hero-figurine-base" />
             </div>
           </div>
         </div>
