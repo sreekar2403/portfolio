@@ -10,6 +10,11 @@ export default function AboutSection() {
   const textRef = useRef(null)
 
   useEffect(() => {
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    
+    if (prefersReducedMotion) return
+
     const ctx = gsap.context(() => {
       // Heading animation
       gsap.fromTo(

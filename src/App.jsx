@@ -9,6 +9,8 @@ import AboutSection from './components/AboutSection'
 import WhatIDoSection from './components/WhatIDoSection'
 import CareerSection from './components/CareerSection'
 import WorkSection from './components/WorkSection'
+import ResearchSection from './components/ResearchSection'
+import EducationSection from './components/EducationSection'
 import ContactSection from './components/ContactSection'
 
 export default function App() {
@@ -38,6 +40,8 @@ export default function App() {
         <WhatIDoSection />
         <CareerSection />
         <WorkSection />
+        <ResearchSection />
+        <EducationSection />
         <ContactSection />
       </main>
     </div>

@@ -3,8 +3,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa6'
 import { HiOutlineMail } from 'react-icons/hi'
-import { HiArrowUpRight } from 'react-icons/hi2'
-import { PERSONAL, PUBLICATION, EDUCATION } from '../data/constants'
+import { PERSONAL } from '../data/constants'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -12,6 +11,9 @@ export default function ContactSection() {
   const sectionRef = useRef(null)
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReducedMotion) return
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         '.contact-heading',
@@ -37,9 +39,8 @@ export default function ContactSection() {
           opacity: 1,
           duration: 0.7,
           ease: 'power3.out',
-          stagger: 0.1,
           scrollTrigger: {
-            trigger: '.contact-grid',
+            trigger: '.contact-content',
             start: 'top 80%',
             toggleActions: 'play none none reverse',
           },
@@ -62,48 +63,10 @@ export default function ContactSection() {
           </h2>
         </div>
 
-        <div className="contact-grid grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Publication Card */}
-          <div className="contact-card md:col-span-2 glass-card p-8 md:p-10" style={{ opacity: 0 }}>
-            <p className="section-subheading">Research</p>
-            <h3 className="text-xl md:text-2xl font-bold font-display tracking-tight text-slate-900 mb-3">
-              {PUBLICATION.title}
-            </h3>
-            <p className="text-sm text-slate-600 leading-relaxed mb-6">
-              {PUBLICATION.description}
-              <span className="inline-block ml-1 text-emerald-500 font-semibold">{PUBLICATION.venue}</span>
-            </p>
-            <a
-              href={PUBLICATION.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-50 border border-emerald-100 text-emerald-600 rounded-lg text-xs font-semibold uppercase tracking-wider hover:bg-emerald-100 transition-all"
-              data-cursor="hover"
-            >
-              Read on arXiv
-              <HiArrowUpRight />
-            </a>
-          </div>
-
-          {/* Education Card */}
+        <div className="contact-content">
           <div className="contact-card glass-card p-8 md:p-10" style={{ opacity: 0 }}>
-            <p className="section-subheading">Education</p>
-            <h3 className="text-xl font-bold font-display tracking-tight text-slate-900 mb-2">
-              {EDUCATION.degree}
-            </h3>
-            <p className="text-xs font-mono text-blue-500 uppercase tracking-widest mb-4">
-              {EDUCATION.institution}
-            </p>
-            <p className="text-sm text-slate-600">
-              {EDUCATION.year}
-            </p>
-          </div>
-
-          {/* Connect Card */}
-          <div className="contact-card md:col-span-3 glass-card p-8 md:p-10" style={{ opacity: 0 }}>
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
               <div>
-                <p className="section-subheading">Connect</p>
                 <h3 className="text-xl font-bold font-display tracking-tight text-slate-900">
                   Ready to collaborate?
                 </h3>

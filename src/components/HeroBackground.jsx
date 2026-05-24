@@ -1,24 +1,15 @@
+import { GravityStarsBackground } from './GravityStarsBackground';
+
+export const GravityStarsBackgroundDemo = () => {
+  return (
+    <GravityStarsBackground className="absolute inset-0 flex items-center justify-center rounded-xl" />
+  );
+};
+
 export default function HeroBackground() {
   return (
     <div className="absolute inset-0 z-0 overflow-hidden bg-[#fafcff] pointer-events-none">
-      {/* Animated Mesh Blobs */}
-      <div className="absolute w-full h-full opacity-[0.65]">
-        <div 
-          className="absolute top-[-15%] left-[-10%] w-[60%] h-[60%] bg-blue-200 rounded-full mix-blend-multiply filter blur-[100px] animate-blob" 
-        />
-        <div 
-          className="absolute top-[10%] right-[-15%] w-[55%] h-[55%] bg-purple-200 rounded-full mix-blend-multiply filter blur-[100px] animate-blob" 
-          style={{ animationDelay: '2s' }}
-        />
-        <div 
-          className="absolute bottom-[-20%] left-[10%] w-[65%] h-[65%] bg-emerald-100 rounded-full mix-blend-multiply filter blur-[100px] animate-blob" 
-          style={{ animationDelay: '4s' }}
-        />
-        <div 
-          className="absolute bottom-[10%] right-[20%] w-[50%] h-[50%] bg-pink-100 rounded-full mix-blend-multiply filter blur-[100px] animate-blob" 
-          style={{ animationDelay: '6s' }}
-        />
-      </div>
+      <GravityStarsBackground className="absolute inset-0 flex items-center justify-center" />
       
       {/* Subtle Noise Texture overlay to give it a premium matte look */}
       <div 

@@ -25,6 +25,16 @@
     box-sizing: border-box;
   }
 
+  /* Visible focus indicators for keyboard users only */
+  :focus {
+    outline: none;
+  }
+  :focus-visible {
+    outline: 2.5px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
@@ -36,13 +46,21 @@
     background-color: var(--color-bg);
     color: var(--color-text);
     overflow-x: hidden;
-    cursor: none;
   }
 
   @media (max-width: 1024px) {
     body {
       cursor: auto;
     }
+  }
+
+  /* Only hide native cursor when custom cursor is active (desktop) */
+  body.has-custom-cursor {
+    cursor: none;
+  }
+  body.has-custom-cursor a,
+  body.has-custom-cursor button {
+    cursor: none;
   }
 
   ::selection {
@@ -197,6 +215,9 @@
     box-shadow: 0 20px 60px rgba(59, 130, 246, 0.08), 0 0 0 1px rgba(59, 130, 246, 0.05);
     transform: translateY(-4px);
   }
+  .glass-card:active {
+    transform: translateY(-1px) scale(0.99);
+  }
 
   /* Glow Card */
   .glow-card {
@@ -343,7 +364,6 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    cursor: none;
   }
 
   /* Noise Overlay */

@@ -15,8 +15,42 @@ export default function Navbar() {
   const navRef = useRef(null)
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
+
+  // IntersectionObserver for active nav section tracking
+  useEffect(() => {
+    const sectionIds = NAV_LINKS.map(l => l.href.replace('#', ''))
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      { rootMargin: '-50% 0px -50% 0px', threshold: 0 }
+    )
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReducedMotion) {
+      // Still set up scroll listener but skip animations
+      const handleScroll = () => {
+        setScrolled(window.scrollY > 50)
+      }
+      window.addEventListener('scroll', handleScroll)
+      return () => window.removeEventListener('scroll', handleScroll)
+    }
+
     const nav = navRef.current
 
     // Entrance animation
@@ -54,17 +88,20 @@ export default function Navbar() {
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="nav-link"
-              data-cursor="hover"
-              onClick={(e) => handleNavClick(e, link.href)}
-            >
-              {link.label}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const sectionId = link.href.replace('#', '')
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                className={`nav-link ${activeSection === sectionId ? 'nav-link-active' : ''}`}
+                data-cursor="hover"
+                onClick={(e) => handleNavClick(e, link.href)}
+              >
+                {link.label}
+              </a>
+            )
+          })}
           <div className="h-4 w-px bg-slate-200 mx-2" />
           <a
             href={PERSONAL.linkedin}

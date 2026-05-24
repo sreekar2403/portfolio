@@ -2,7 +2,7 @@
 
 /* Hero Section */
 .hero-section {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   position: relative;
@@ -250,6 +250,9 @@
   transform: translateY(-8px);
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
 }
+.work-card:active {
+  transform: translateY(-2px) scale(0.98);
+}
 .work-card-number {
   font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(4rem, 8vw, 8rem);
@@ -295,17 +298,19 @@
 }
 .nav-link {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
+  font-size: clamp(0.7rem, 1.5vw, 0.8rem);
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #64748b;
   text-decoration: none;
   transition: color 0.3s ease;
-  cursor: none;
 }
 .nav-link:hover {
   color: var(--color-primary);
+}
+.nav-link-active {
+  color: var(--color-primary) !important;
 }
 .nav-logo {
   font-family: 'Space Grotesk', sans-serif;
@@ -314,5 +319,4 @@
   letter-spacing: -0.02em;
   color: var(--color-text);
   text-decoration: none;
-  cursor: none;
 }

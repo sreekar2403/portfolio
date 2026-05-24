@@ -20,6 +20,11 @@ export default function HeroSection({ isLoaded }) {
   useEffect(() => {
     if (!isLoaded) return
 
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    
+    if (prefersReducedMotion) return
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.5 })
 
