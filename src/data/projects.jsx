@@ -9,4 +9,14 @@ export const PROJECTS = [
     complexity: 'Production',
     completionDate: '2025-12-29',
   },
+  {
+    id: 'local-image-gen',
+    title: 'LocalImageGen',
+    subtitle: 'Local AI Image Generation Pipeline',
+    description: 'Local AI image generation pipeline that uses Ollama to convert simple ideas into optimized prompts for local diffusion models like FLUX and Stable Diffusion. Runs fully offline, privacy-focused, with memory-optimized CPU/GPU offloading for consumer hardware.',
+    githubUrl: 'https://github.com/sreekar2403/LocalImageGen',
+    tags: ['Python', 'Ollama', 'Diffusers', 'FLUX', 'Stable Diffusion'],
+    complexity: 'Production',
+    completionDate: '2026-04-29',
+  },
 ]

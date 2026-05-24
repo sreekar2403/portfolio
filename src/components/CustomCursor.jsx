@@ -9,6 +9,9 @@ export default function CustomCursor() {
     if (!cursor) return
     if (window.innerWidth <= 1024) return
 
+    // Add body class to hide native cursor on desktop
+    document.body.classList.add('has-custom-cursor')
+
     const mousePos = { x: 0, y: 0 }
     const cursorPos = { x: 0, y: 0 }
     let hovering = false
@@ -62,6 +65,7 @@ export default function CustomCursor() {
     observer.observe(document.body, { childList: true, subtree: true })
 
     return () => {
+      document.body.classList.remove('has-custom-cursor')
       document.removeEventListener('mousemove', onMouseMove)
       document.removeEventListener('mousedown', onMouseDown)
       document.removeEventListener('mouseup', onMouseUp)
