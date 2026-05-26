@@ -10,13 +10,17 @@ export const PERSONAL = {
   github: 'https://github.com/sreekar2403',
   linkedin: 'https://www.linkedin.com/in/p-v-s-m-sreekar-21b888149/',
   resumeUrl: '/portfolio/resume.pdf',
+  medium: 'https://medium.com/@padarthi24sreekar2',
 }
+
+export const MEDIUM_URL = 'https://medium.com/@padarthi24sreekar2'
 
 export const NAV_LINKS = [
   { label: 'About', href: '#about' },
   { label: 'Work', href: '#what-i-do' },
   { label: 'Career', href: '#career' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Blogs', href: '#blogs' },
   { label: 'Research', href: '#research' },
   { label: 'Education', href: '#education' },
   { label: 'Contact', href: '#contact' },

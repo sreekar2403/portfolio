@@ -9,6 +9,7 @@ import AboutSection from './components/AboutSection'
 import WhatIDoSection from './components/WhatIDoSection'
 import CareerSection from './components/CareerSection'
 import WorkSection from './components/WorkSection'
+import BlogSection from './components/BlogSection'
 import ResearchSection from './components/ResearchSection'
 import EducationSection from './components/EducationSection'
 import ContactSection from './components/ContactSection'
@@ -40,6 +41,7 @@ export default function App() {
         <WhatIDoSection />
         <CareerSection />
         <WorkSection />
+        <BlogSection />
         <ResearchSection />
         <EducationSection />
         <ContactSection />
