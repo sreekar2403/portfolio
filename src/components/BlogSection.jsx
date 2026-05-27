@@ -6,12 +6,41 @@ import { MEDIUM_URL } from '../data/constants'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const RSS2JSON_URL =
-  'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@padarthi24sreekar2'
+const MEDIUM_FEED_URL = 'https://medium.com/feed/@padarthi24sreekar2'
+const RSS2JSON_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(MEDIUM_FEED_URL)}`
+const CORS_PROXY_URL = `https://api.allorigins.win/get?url=${encodeURIComponent(MEDIUM_FEED_URL)}&json`
 
 function formatDate(dateStr) {
   const date = new Date(dateStr)
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+}
+
+function parseXMLFeed(xmlString) {
+  const parser = new DOMParser()
+  const xmlDoc = parser.parseFromString(xmlString, 'text/xml')
+  
+  if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
+    return null
+  }
+
+  const items = xmlDoc.getElementsByTagName('item')
+  const posts = []
+
+  for (let i = 0; i < items.length && i < 10; i++) {
+    const item = items[i]
+    const getTextContent = (tagName) => item.getElementsByTagName(tagName)[0]?.textContent || ''
+    
+    posts.push({
+      title: getTextContent('title'),
+      pubDate: getTextContent('pubDate'),
+      link: getTextContent('link'),
+      guid: getTextContent('guid'),
+      description: getTextContent('description'),
+      categories: Array.from(item.getElementsByTagName('category')).map(cat => cat.textContent)
+    })
+  }
+
+  return posts.length > 0 ? posts : null
 }
 
 export default function BlogSection() {
@@ -22,27 +51,59 @@ export default function BlogSection() {
 
   useEffect(() => {
     let cancelled = false
+    let timeoutId = null
 
     const fetchPosts = async () => {
       try {
-        const res = await fetch(RSS2JSON_URL)
+        // Try RSS2JSON first
+        const controller = new AbortController()
+        timeoutId = setTimeout(() => controller.abort(), 8000)
+        
+        const res = await fetch(RSS2JSON_URL, { signal: controller.signal })
+        clearTimeout(timeoutId)
         const data = await res.json()
         if (cancelled) return
 
         if (data.status === 'ok' && Array.isArray(data.items)) {
           setPosts(data.items)
-        } else {
-          setError('Unable to retrieve blog posts at this time.')
+          setLoading(false)
+          return
         }
-      } catch {
-        if (!cancelled) setError('Could not load blog posts.')
-      } finally {
-        if (!cancelled) setLoading(false)
+      } catch (err) {
+        // If RSS2JSON fails, try CORS proxy
+        if (cancelled) return
+        
+        try {
+          const controller = new AbortController()
+          timeoutId = setTimeout(() => controller.abort(), 8000)
+          
+          const corsRes = await fetch(CORS_PROXY_URL, { signal: controller.signal })
+          clearTimeout(timeoutId)
+          const corsData = await corsRes.json()
+          if (cancelled) return
+
+          const parsedPosts = parseXMLFeed(corsData.contents)
+          if (parsedPosts) {
+            setPosts(parsedPosts)
+            setLoading(false)
+            return
+          }
+        } catch {
+          // Both methods failed
+        }
+      }
+
+      if (!cancelled) {
+        setError('Unable to retrieve blog posts at this time.')
+        setLoading(false)
       }
     }
 
     fetchPosts()
-    return () => { cancelled = true }
+    return () => { 
+      cancelled = true
+      if (timeoutId) clearTimeout(timeoutId)
+    }
   }, [])
 
   useEffect(() => {
