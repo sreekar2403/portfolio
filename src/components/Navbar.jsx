@@ -15,6 +15,7 @@ export default function Navbar() {
   const navRef = useRef(null)
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [navVisible, setNavVisible] = useState(false)
   const [activeSection, setActiveSection] = useState('')
 
   // IntersectionObserver for active nav section tracking
@@ -43,6 +44,7 @@ export default function Navbar() {
     // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReducedMotion) {
+      setNavVisible(true)
       // Still set up scroll listener but skip animations
       const handleScroll = () => {
         setScrolled(window.scrollY > 50)
@@ -57,7 +59,7 @@ export default function Navbar() {
     gsap.fromTo(
       nav,
       { y: -80, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 2.5 }
+      { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 2.5, onComplete: () => setNavVisible(true) }
     )
 
     const handleScroll = () => {
@@ -79,15 +81,15 @@ export default function Navbar() {
   }
 
   return (
-    <nav ref={navRef} className={`navbar ${scrolled ? 'scrolled' : ''}`} style={{ opacity: 0 }}>
+    <nav ref={navRef} className={`navbar ${scrolled ? 'scrolled' : ''}`} style={{ opacity: navVisible ? 1 : 0 }}>
       <div className="section-container flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="nav-logo" data-cursor="hover">
+        <a href="#" className="nav-logo shrink-0" data-cursor="hover">
           {PERSONAL.firstName.toUpperCase()}
         </a>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-6">
           {NAV_LINKS.map((link) => {
             const sectionId = link.href.replace('#', '')
             return (
@@ -116,19 +118,19 @@ export default function Navbar() {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
+          className="lg:hidden flex flex-col gap-1.5 p-2"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
-          <span className={`block w-5 h-0.5 bg-slate-800 transition-transform ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`block w-5 h-0.5 bg-slate-800 transition-opacity ${menuOpen ? 'opacity-0' : ''}`} />
-          <span className={`block w-5 h-0.5 bg-slate-800 transition-transform ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          <span className={`block w-5 h-0.5 bg-slate-800 transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+          <span className={`block w-5 h-0.5 bg-slate-800 transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} />
+          <span className={`block w-5 h-0.5 bg-slate-800 transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
         </button>
       </div>
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-slate-200 py-6 px-6">
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-slate-200 py-6 px-6 z-[999]">
           <div className="flex flex-col gap-4">
             {NAV_LINKS.map((link) => (
               <a
