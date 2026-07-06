@@ -112,6 +112,13 @@ export const EDUCATION = {
   year: 'Class of 2016',
 }
 
+export const INTERESTS = [
+  { label: 'Open Source', icon: 'code', color: 'blue' },
+  { label: 'AI Research', icon: 'lightbulb', color: 'purple' },
+  { label: 'Music', icon: 'music', color: 'emerald' },
+  { label: 'Travel', icon: 'globe', color: 'amber' },
+]
+
 export const STATS = [
   { label: 'Latency Reduction', value: '40%', color: 'emerald' },
   { label: 'Time Saved Annually', value: '500+ Hrs', color: 'blue' },
