@@ -3,6 +3,7 @@ import gsap from 'gsap'
 import { PERSONAL, STATS } from '../data/constants'
 import HeroBackground from './HeroBackground'
 import ErrorBoundary from './ErrorBoundary'
+import MagneticButton from './MagneticButton'
 
 const STAT_COLORS = {
   emerald: { bg: 'bg-emerald-50', text: 'text-emerald-600', border: 'border-emerald-100' },
@@ -89,12 +90,18 @@ export default function HeroSection({ isLoaded }) {
         { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out', stagger: 0.1 },
         '-=0.4'
       )
+
+      // Scroll indicator
+      tl.fromTo(
+        '.hero-scroll-indicator',
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
+        '-=0.2'
+      )
     }, sectionRef)
 
     return () => ctx.revert()
   }, [isLoaded])
-
-  const nameChars = PERSONAL.name.split('')
 
   return (
     <section ref={sectionRef} className="hero-section" id="hero">
@@ -146,9 +153,8 @@ export default function HeroSection({ isLoaded }) {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
-              <a
-                href="#career"
-                className="hero-cta inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-slate-900 text-white rounded-xl font-semibold text-sm tracking-wide hover:bg-slate-800 transition-all shadow-lg hover:shadow-xl"
+              <MagneticButton
+                className="hero-cta px-7 py-3.5 bg-slate-900 text-white rounded-xl font-semibold text-sm tracking-wide hover:bg-slate-800 transition-all shadow-lg hover:shadow-xl"
                 data-cursor="hover"
                 style={{ opacity: 0 }}
                 onClick={(e) => {
@@ -162,18 +168,16 @@ export default function HeroSection({ isLoaded }) {
               >
                 Explore Journey
                 <span className="text-lg">→</span>
-              </a>
-              <a
-                href={PERSONAL.resumeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hero-cta inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white border border-slate-200 text-slate-800 rounded-xl font-semibold text-sm tracking-wide hover:bg-slate-50 hover:border-slate-300 transition-all"
+              </MagneticButton>
+              <MagneticButton
+                className="hero-cta px-7 py-3.5 bg-white border border-slate-200 text-slate-800 rounded-xl font-semibold text-sm tracking-wide hover:bg-slate-50 hover:border-slate-300 transition-all"
                 data-cursor="hover"
                 style={{ opacity: 0 }}
+                onClick={() => window.open(PERSONAL.resumeUrl, '_blank')}
               >
                 View Resume
                 <span className="text-xs">↗</span>
-              </a>
+              </MagneticButton>
             </div>
 
             {/* Stats Row */}
@@ -209,6 +213,14 @@ export default function HeroSection({ isLoaded }) {
               <div className="hero-figurine-base" />
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 hero-scroll-indicator" style={{ opacity: 0 }}>
+        <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-slate-400">Scroll</span>
+        <div className="w-5 h-8 rounded-full border-2 border-slate-300 flex items-start justify-center p-1">
+          <div className="w-1 h-2 rounded-full bg-slate-400 scroll-dot" />
         </div>
       </div>
     </section>

@@ -7,9 +7,11 @@ import SocialIcons from './components/SocialIcons'
 import HeroSection from './components/HeroSection'
 import AboutSection from './components/AboutSection'
 import WhatIDoSection from './components/WhatIDoSection'
+import TechStackSection from './components/TechStackSection'
 import CareerSection from './components/CareerSection'
 import WorkSection from './components/WorkSection'
 import BlogSection from './components/BlogSection'
+import TestimonialsSection from './components/TestimonialsSection'
 import ResearchSection from './components/ResearchSection'
 import EducationSection from './components/EducationSection'
 import ContactSection from './components/ContactSection'
@@ -39,9 +41,11 @@ export default function App() {
         <HeroSection isLoaded={loaded} />
         <AboutSection />
         <WhatIDoSection />
+        <TechStackSection />
         <CareerSection />
         <WorkSection />
         <BlogSection />
+        <TestimonialsSection />
         <ResearchSection />
         <EducationSection />
         <ContactSection />

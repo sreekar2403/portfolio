@@ -8,6 +8,8 @@ export const PROJECTS = [
     tags: ['Python', 'Ollama', 'Langchain', 'Google AI'],
     complexity: 'Production',
     completionDate: '2025-12-29',
+    screenshot: '/portfolio/projects/friday-multi-agentic.png',
+    featured: true,
   },
   {
     id: 'local-image-gen',
@@ -18,5 +20,7 @@ export const PROJECTS = [
     tags: ['Python', 'Ollama', 'Diffusers', 'FLUX', 'Stable Diffusion'],
     complexity: 'Production',
     completionDate: '2026-04-29',
+    screenshot: '/portfolio/projects/local-image-gen.png',
+    featured: false,
   },
 ]

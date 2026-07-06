@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { FaGithub } from 'react-icons/fa6'
 import { HiArrowUpRight } from 'react-icons/hi2'
 import { PROJECTS } from '../data/projects'
+import MagneticButton from './MagneticButton'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -54,6 +55,9 @@ export default function WorkSection() {
     return () => ctx.revert()
   }, [])
 
+  const featuredProject = PROJECTS.find(p => p.featured)
+  const otherProjects = PROJECTS.filter(p => !p.featured)
+
   return (
     <section ref={sectionRef} id="projects" className="py-24 md:py-32">
       <div className="section-container">
@@ -64,14 +68,91 @@ export default function WorkSection() {
           </h2>
         </div>
 
+        {/* Featured Project - Full Width */}
+        {featuredProject && (
+          <div className="work-item work-card work-card-featured group mb-8 md:mb-12" style={{ opacity: 0 }}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+              {/* Screenshot */}
+              <div className="relative overflow-hidden bg-slate-100 aspect-[16/10] lg:aspect-auto">
+                {featuredProject.screenshot ? (
+                  <img
+                    src={featuredProject.screenshot}
+                    alt={`${featuredProject.title} screenshot`}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50">
+                    <span className="text-6xl font-display font-bold text-slate-200">{featuredProject.title[0]}</span>
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 pointer-events-none" />
+              </div>
+
+              {/* Content */}
+              <div className="p-8 md:p-12 relative z-10 flex flex-col justify-center">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="inline-block w-2 h-2 rounded-full bg-emerald-500" />
+                  <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">
+                    Featured • {featuredProject.complexity}
+                  </span>
+                </div>
+
+                <h3 className="text-3xl md:text-4xl font-bold font-display tracking-tight text-slate-900 mb-4 group-hover:text-blue-600 transition-colors">
+                  {featuredProject.title}
+                </h3>
+
+                <p className="text-lg text-slate-600 mb-4 font-medium">
+                  {featuredProject.subtitle}
+                </p>
+
+                <p className="text-slate-600 text-sm leading-relaxed mb-8">
+                  {featuredProject.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {featuredProject.tags.map((tag) => (
+                    <span key={tag} className="skill-badge">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <MagneticButton
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-xl text-xs font-semibold uppercase tracking-wider hover:bg-slate-800 transition-all shadow-lg self-start"
+                  onClick={() => window.open(featuredProject.githubUrl, '_blank')}
+                >
+                  <FaGithub className="text-sm" />
+                  View Project
+                  <HiArrowUpRight className="text-xs" />
+                </MagneticButton>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Other Projects Grid */}
         <div className="work-grid grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {PROJECTS.map((project, idx) => (
+          {otherProjects.map((project, idx) => (
             <div
               key={project.id}
               className="work-item work-card group"
               style={{ opacity: 0 }}
             >
-              <div className="work-card-number">{`0${idx + 1}`}</div>
+              <div className="work-card-number">{`0${idx + (featuredProject ? 2 : 1)}`}</div>
+
+              {/* Screenshot Preview */}
+              {project.screenshot && (
+                <div className="relative overflow-hidden bg-slate-100 aspect-[16/9] m-4 rounded-xl">
+                  <img
+                    src={project.screenshot}
+                    alt={`${project.title} screenshot`}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/40 to-transparent pointer-events-none" />
+                </div>
+              )}
 
               <div className="p-8 md:p-10 relative z-10">
                 {/* Category */}
@@ -83,9 +164,11 @@ export default function WorkSection() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl md:text-3xl font-bold font-display tracking-tight text-slate-900 mb-4 group-hover:text-blue-600 transition-colors">
+                <h3 className="text-2xl md:text-3xl font-bold font-display tracking-tight text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
                   {project.title}
                 </h3>
+
+                <p className="text-sm text-slate-500 mb-4">{project.subtitle}</p>
 
                 {/* Description */}
                 <div className="text-slate-600 text-sm leading-relaxed mb-6">
@@ -103,17 +186,14 @@ export default function WorkSection() {
 
                 {/* Actions */}
                 <div className="flex gap-3">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <MagneticButton
                     className="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 text-white rounded-lg text-xs font-semibold uppercase tracking-wider hover:bg-slate-800 transition-all"
-                    data-cursor="hover"
+                    onClick={() => window.open(project.githubUrl, '_blank')}
                   >
                     <FaGithub className="text-sm" />
                     GitHub
                     <HiArrowUpRight className="text-xs" />
-                  </a>
+                  </MagneticButton>
                 </div>
               </div>
 
