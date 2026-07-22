@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { HiXMark } from 'react-icons/hi2'
-import { BLOG_IMAGES } from '../data/localBlogs'
+import { BLOG_IMAGES, BLOG_VIDEO } from '../data/localBlogs'
 
 // ponytail: blog content rendered as JSX, not markdown parser
 // avoids adding remark/unified dependency for a single post
@@ -20,6 +20,37 @@ function QwenVsNemotronContent() {
       <p className="text-slate-500 italic text-lg leading-relaxed mb-8">
         A field report from someone who runs these models to actually ship code, not just to run a benchmark suite.
       </p>
+
+      {/* ── Video showdown ── */}
+      <div className="not-prose my-8 md:my-10">
+        <div className="flex items-center gap-4 mb-5">
+          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-rose-500/25">
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
+            </svg>
+          </div>
+          <h2 className="text-2xl md:text-3xl font-bold font-display tracking-tight text-slate-900 m-0">
+            Watch the showdown
+          </h2>
+          <div className="flex-1 h-px bg-gradient-to-r from-slate-200 to-transparent" />
+        </div>
+        <div className="relative rounded-xl overflow-hidden border border-slate-200 bg-black shadow-xl">
+          <video
+            controls
+            preload="metadata"
+            playsInline
+            className="w-full max-h-[70vh]"
+            style={{ aspectRatio: '16 / 9' }}
+            poster={BLOG_IMAGES['nemotron_3_nano']}
+          >
+            <source src={BLOG_VIDEO['local_llm_showdown']} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p className="text-sm text-slate-400 mt-3 text-center font-mono">
+          Screen recording — Qwen3.6:35B-A3B-MTP vs Nemotron-3-Nano:30B-A3B running head-to-head
+        </p>
+      </div>
 
       <h2>Why this comparison exists</h2>
       <p>

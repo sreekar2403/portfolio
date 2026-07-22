@@ -25,3 +25,8 @@ export const BLOG_IMAGES = {
   'nemotron_3_nano_ans': `${BASE}blog/Nemotron_VS_Qwen/nemotron 3 nano ans.png`,
   'qwen_ollama_ans': `${BASE}blog/Nemotron_VS_Qwen/qwen ollama ans.png`,
 }
+
+/** Video recording of the local models running head-to-head */
+export const BLOG_VIDEO = {
+  'local_llm_showdown': `${BASE}blog/Nemotron_VS_Qwen/Local_LLM_Showdown.mp4`,
+}
