@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { HiArrowUpRight } from 'react-icons/hi2'
 import { MEDIUM_URL } from '../data/constants'
+import { LOCAL_BLOG_POSTS } from '../data/localBlogs'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -201,9 +203,58 @@ export default function BlogSection() {
         )}
 
         {/* Blog grid */}
-        {!loading && !error && posts.length > 0 && (
+        {!loading && !error && (posts.length > 0 || LOCAL_BLOG_POSTS.length > 0) && (
           <>
             <div className="blog-grid grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              {/* Local blog posts first */}
+              {LOCAL_BLOG_POSTS.map((post) => (
+                <Link
+                  key={post.id}
+                  to={`/blog/${post.id}`}
+                  className="blog-card glass-card p-8 md:p-10 block group text-left"
+                  style={{ opacity: 0 }}
+                >
+                  <div className="flex flex-col h-full">
+                    {/* Date */}
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="inline-block w-2 h-2 rounded-full bg-emerald-500" />
+                      <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">
+                        {post.date} · {post.readTime}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-xl md:text-2xl font-bold font-display tracking-tight text-slate-900 mb-4 group-hover:text-primary-600 transition-colors">
+                      {post.title}
+                    </h3>
+
+                    {/* Tags */}
+                    {post.tags?.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {post.tags.slice(0, 4).map((tag) => (
+                          <span
+                            key={tag}
+                            className="skill-badge text-[0.55rem]"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Spacer */}
+                    <div className="flex-1" />
+
+                    {/* Read link */}
+                    <div className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 group-hover:text-primary-500 transition-colors">
+                      Read Article
+                      <HiArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    </div>
+                  </div>
+                </Link>
+              ))}
+
+              {/* Medium blog posts */}
               {posts.map((post) => (
                 <a
                   key={post.guid}

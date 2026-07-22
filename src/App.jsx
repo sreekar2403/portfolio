@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import LoadingScreen from './components/LoadingScreen'
 import CustomCursor from './components/CustomCursor'
@@ -15,8 +16,9 @@ import TestimonialsSection from './components/TestimonialsSection'
 import ResearchSection from './components/ResearchSection'
 import EducationSection from './components/EducationSection'
 import ContactSection from './components/ContactSection'
+import BlogPostPage from './pages/BlogPostPage'
 
-export default function App() {
+function HomePage() {
   const [loaded, setLoaded] = useState(false)
 
   return (
@@ -51,5 +53,16 @@ export default function App() {
         <ContactSection />
       </main>
     </div>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter basename="/portfolio">
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/blog/:slug" element={<BlogPostPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
