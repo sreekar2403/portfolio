@@ -42,7 +42,7 @@ function Stat({ label, value, tone = 'slate' }) {
 
 function ProofBlock({ title, file, excerpt }) {
   return (
-    <div className="rounded-xl border border-slate-200 bg-slate-50 p-5 not-prose">
+    <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 md:p-7 not-prose">
       <div className="flex items-start justify-between gap-4 mb-3">
         <div>
           <p className="text-xs font-mono uppercase tracking-[0.18em] text-slate-500 mb-1">Proof file</p>
@@ -50,7 +50,7 @@ function ProofBlock({ title, file, excerpt }) {
         </div>
         <span className="text-xs font-mono text-slate-400 shrink-0">{file}</span>
       </div>
-      <pre className="bg-slate-900 text-slate-100 rounded-xl p-4 text-xs overflow-x-auto font-mono leading-relaxed whitespace-pre-wrap">
+      <pre className="mt-4 bg-slate-900 text-slate-100 rounded-xl p-4 text-xs overflow-x-auto font-mono leading-relaxed whitespace-pre-wrap">
 {excerpt}
       </pre>
     </div>
@@ -59,7 +59,7 @@ function ProofBlock({ title, file, excerpt }) {
 
 function H2({ children }) {
   return (
-    <h2 className="!font-bold !text-slate-900">
+    <h2 className="!mt-12 !mb-4 !text-2xl md:!text-3xl !font-bold !text-slate-900">
       <strong>{children}</strong>
     </h2>
   )
@@ -67,7 +67,7 @@ function H2({ children }) {
 
 export default function OrnithBlogContent() {
   return (
-    <article className="prose prose-slate prose-lg max-w-none">
+    <article className="prose prose-slate prose-lg max-w-none prose-headings:scroll-mt-24 prose-p:leading-7 prose-li:leading-7 space-y-10">
       <p className="text-slate-500 italic text-lg leading-relaxed mb-8 border-l-2 border-primary-300 pl-4">
         Instrumenting Ornith, an open-source agentic coding assistant run locally through Ollama, by auditing the
         deliverable code instead of trusting the reasoning trace.
@@ -198,7 +198,28 @@ export default function OrnithBlogContent() {
         record instead of just a narrative summary.
       </p>
 
-      <div className="space-y-4 not-prose my-8">
+      <div className="space-y-6 not-prose my-10">
+        <ProofBlock
+          title=".gitignore"
+          file="langchain_research_agent/.gitignore"
+          excerpt={`# Python & IDE
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.venv/
+env/
+.env
+.idea/
+.vscode/
+
+# Project specific
+report_data/
+generated_reports/*.md`}
+        />
         <ProofBlock
           title="agent.py"
           file="langchain_research_agent/agent.py"
@@ -355,5 +376,7 @@ I'll write this to the current folder.`}
     </article>
   )
 }
+
+
 
 
