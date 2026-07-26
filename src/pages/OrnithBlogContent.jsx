@@ -1,4 +1,4 @@
-import { BLOG_IMAGES } from '../data/localBlogs'
+import { BLOG_IMAGES, BLOG_VIDEO } from '../data/localBlogs'
 
 function Figure({ src, alt, caption, wide = false }) {
   return (
@@ -53,6 +53,36 @@ export default function OrnithBlogContent() {
         <Stat label="Tokens sent" value="504k" tone="emerald" />
         <Stat label="Tokens received" value="24k" tone="amber" />
         <Stat label="Outcome" value="Aborted" />
+      </div>
+
+      <div className="not-prose my-10">
+        <div className="flex items-center gap-4 mb-5">
+          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-rose-500/25">
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
+            </svg>
+          </div>
+          <h2 className="text-2xl md:text-3xl font-bold font-display tracking-tight text-slate-900 m-0">
+            Watch the audit
+          </h2>
+          <div className="flex-1 h-px bg-gradient-to-r from-slate-200 to-transparent" />
+        </div>
+        <div className="relative rounded-xl overflow-hidden border border-slate-200 bg-black shadow-xl">
+          <video
+            controls
+            preload="metadata"
+            playsInline
+            className="w-full max-h-[70vh]"
+            style={{ aspectRatio: '16 / 9' }}
+            poster={BLOG_IMAGES.ornith_reasoning_failure_poster}
+          >
+            <source src={BLOG_VIDEO.ornith_reasoning_failure} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p className="text-sm text-slate-400 mt-3 text-center font-mono">
+          Screen recording — Ornith in the wild, showing the reasoning spiral and failure pattern.
+        </p>
       </div>
 
       <h2>The ask</h2>
@@ -192,3 +222,4 @@ export default function OrnithBlogContent() {
     </article>
   )
 }
+
