@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { HiArrowLeft, HiXMark, HiChevronLeft, HiChevronRight } from 'react-icons/hi2'
 import { LOCAL_BLOG_POSTS, BLOG_IMAGES, BLOG_VIDEO } from '../data/localBlogs'
+import OrnithBlogContent from './OrnithBlogContent'
 
 /* ─── Lightbox ─── */
 function Lightbox({ images, currentIndex, onClose, onPrev, onNext }) {
@@ -615,6 +616,7 @@ export default function BlogPostPage() {
   const [lightbox, setLightbox] = useState({ open: false, index: 0 })
 
   const post = LOCAL_BLOG_POSTS.find((p) => p.id === slug)
+  const isOrnithPost = slug === 'ornith-broken-agent-blog'
 
   // All clickable images for lightbox
   const allImages = [
@@ -725,14 +727,14 @@ export default function BlogPostPage() {
             <span className="w-1 h-1 rounded-full bg-white/30" />
             <span>{post.readTime}</span>
             <span className="w-1 h-1 rounded-full bg-white/30" />
-            <span>Local LLM comparison</span>
+            <span>{post.category || 'Local LLM comparison'}</span>
           </div>
         </div>
       </header>
 
       {/* ─── Article Body ─── */}
       <main className="max-w-4xl mx-auto px-4 py-12 md:py-16">
-        <QwenVsNemotronContent onImageClick={openLightbox} />
+        {isOrnithPost ? <OrnithBlogContent /> : <QwenVsNemotronContent onImageClick={openLightbox} />}
       </main>
 
       {/* ─── Footer ─── */}
@@ -761,3 +763,5 @@ export default function BlogPostPage() {
     </div>
   )
 }
+
+
