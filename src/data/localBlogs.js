@@ -1,8 +1,16 @@
-// ponytail: local blog posts stored as JSX to avoid markdown parser dependency
-// Add more posts by appending to the array
 const BASE = import.meta.env.BASE_URL || '/'
 
 export const LOCAL_BLOG_POSTS = [
+  {
+    id: 'ornith-broken-agent-blog',
+    title: 'Ornith Under the Microscope: 30 Rewrites, 504,000 Tokens, and Code That Still Does Not Run',
+    subtitle: 'Instrumenting Ornith, an open-source agentic coding assistant run locally through Ollama, by auditing the deliverable code instead of the reasoning trace.',
+    date: '2026-07-26',
+    tags: ['Agentic Coding', 'Ollama', 'Local Models', 'Debugging', 'Evaluation'],
+    coverImage: `${BASE}blog/Ornith/ornith_eval_speed.png`,
+    readTime: '10 min',
+    category: 'Agentic coding audit',
+  },
   {
     id: 'qwen-vs-nemotron',
     title: 'Qwen3.6:35B-A3B-MTP vs Nemotron-3-Nano:30B-A3B — A Detailed Local Inference Comparison',
@@ -11,11 +19,16 @@ export const LOCAL_BLOG_POSTS = [
     tags: ['Local LLM', 'Ollama', 'Qwen', 'Nemotron', 'Inference'],
     coverImage: `${BASE}blog/Nemotron_VS_Qwen/qwen ollama ps.png`,
     readTime: '12 min',
+    category: 'Local LLM comparison',
   },
 ]
 
-// Image path mapping for the Qwen vs Nemotron post
 export const BLOG_IMAGES = {
+  ornith_big_task_details: `${BASE}blog/Ornith/big_task_details.png`,
+  ornith_big_task_context_details: `${BASE}blog/Ornith/big_task_context_details.png`,
+  ornith_eval_speed: `${BASE}blog/Ornith/ornith_eval_speed.png`,
+  ornith_prompt_eval: `${BASE}blog/Ornith/ornith_prompt_eval.png`,
+  ornith_usage_details: `${BASE}blog/Ornith/usage_details.png`,
   'nemotron_3_nano': `${BASE}blog/Nemotron_VS_Qwen/nemotron 3 nano.png`,
   'qwen_ollama_ps': `${BASE}blog/Nemotron_VS_Qwen/qwen ollama ps.png`,
   'nemotron_3_nano_project': `${BASE}blog/Nemotron_VS_Qwen/nemotron 3 nano project.png`,

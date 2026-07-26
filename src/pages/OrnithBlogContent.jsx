@@ -1,0 +1,194 @@
+import { BLOG_IMAGES } from '../data/localBlogs'
+
+function Figure({ src, alt, caption, wide = false }) {
+  return (
+    <figure className={wide ? 'my-8' : 'my-0'}>
+      <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+        <img src={src} alt={alt} className="block w-full h-auto" loading="lazy" />
+      </div>
+      {caption && (
+        <figcaption className="mt-3 text-center text-sm text-slate-500 font-mono leading-relaxed">
+          {caption}
+        </figcaption>
+      )}
+    </figure>
+  )
+}
+
+function Stat({ label, value, tone = 'slate' }) {
+  const toneClass = tone === 'emerald'
+    ? 'border-emerald-200 bg-emerald-50/60'
+    : tone === 'amber'
+      ? 'border-amber-200 bg-amber-50/60'
+      : tone === 'blue'
+        ? 'border-primary-200 bg-primary-50/60'
+        : 'border-slate-200 bg-slate-50'
+
+  const valueClass = tone === 'emerald'
+    ? 'text-emerald-700'
+    : tone === 'amber'
+      ? 'text-amber-700'
+      : tone === 'blue'
+        ? 'text-primary-700'
+        : 'text-slate-900'
+
+  return (
+    <div className={`rounded-xl border p-4 ${toneClass}`}>
+      <div className="text-xs font-mono uppercase tracking-[0.18em] text-slate-500">{label}</div>
+      <div className={`mt-2 text-2xl font-bold ${valueClass}`}>{value}</div>
+    </div>
+  )
+}
+
+export default function OrnithBlogContent() {
+  return (
+    <article className="prose prose-slate prose-lg max-w-none">
+      <p className="text-slate-500 italic text-lg leading-relaxed mb-8 border-l-2 border-primary-300 pl-4">
+        Instrumenting Ornith, an open-source agentic coding assistant run locally through Ollama, by auditing the
+        deliverable code instead of trusting the reasoning trace.
+      </p>
+
+      <div className="not-prose grid grid-cols-1 md:grid-cols-4 gap-4 my-8">
+        <Stat label="Rewrites" value="30+" tone="blue" />
+        <Stat label="Tokens sent" value="504k" tone="emerald" />
+        <Stat label="Tokens received" value="24k" tone="amber" />
+        <Stat label="Outcome" value="Aborted" />
+      </div>
+
+      <h2>The ask</h2>
+      <p>
+        The prompt was simple on paper: build a small agentic project in LangChain that can analyze a user request,
+        research the topic, write a report, and return the result. The intended shape was a four-file deliverable plus a
+        short README. The important part is that the plan was reasonable from the start.
+      </p>
+      <blockquote>
+        Can you build a simple agentic project using LangChain which can analyze user request, research, write a report
+        and give it to user.
+      </blockquote>
+
+      <h2>What the log actually shows</h2>
+      <p>
+        The `.gitignore` landed cleanly and stayed done. Everything else drifted. `agent.py` was rewritten roughly 30
+        times with the same plan and the same broken structure. The session eventually hit a real syntax error, then
+        kept looping instead of fixing the line that actually failed.
+      </p>
+
+      <div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
+        <Figure
+          src={BLOG_IMAGES.ornith_big_task_details}
+          alt="Ollama transcript showing the Ornith task details"
+          caption="Task setup and orchestration context captured from the local run."
+        />
+        <Figure
+          src={BLOG_IMAGES.ornith_big_task_context_details}
+          alt="Ollama transcript showing the Ornith context details"
+          caption="Context window and token usage details from the same session."
+        />
+      </div>
+
+      <div className="rounded-xl border border-rose-200 bg-rose-50/60 p-5 my-8 not-prose">
+        <p className="text-rose-800 font-medium mb-2">The failure mode</p>
+        <p className="text-rose-700 mb-0">
+          The agent kept restating the same plan while the implementation underneath it stayed broken. That is the
+          expensive version of being wrong: lots of motion, no correction.
+        </p>
+      </div>
+
+      <h2>Auditing the delivered code</h2>
+      <p>
+        The broken file was not subtly off. It had several load-bearing problems that would stop it from running at all.
+        The shared mistake was treating `ChatOllama` like a context manager, then layering additional undefined names and
+        invalid syntax on top of that misunderstanding.
+      </p>
+
+      <ul>
+        <li>`with ChatOllama(...) as llm:` was used everywhere, but the model object is not a context manager.</li>
+        <li>`research()` referenced `ai_message`, which was never defined.</li>
+        <li>`return await llm.apredict([python]).content` mixed a missing variable, a deprecated call, and the wrong result shape.</li>
+        <li>`compile_report()` stopped mid-function and returned nothing.</li>
+        <li>`run_agent()` used malformed syntax and referenced the wrong variable names.</li>
+      </ul>
+
+      <pre className="bg-slate-900 text-slate-100 rounded-xl p-5 text-sm overflow-x-auto my-6 font-mono leading-relaxed">
+{"return await llm.apredict([python]).content"}
+      </pre>
+
+      <p>
+        The point is not the single bad line. It is that the same misconception survived repeated rewrites and never got
+        replaced by a working mental model of the API.
+      </p>
+
+      <h2>Runtime signals</h2>
+      <p>
+        The screenshots also show that the machine was not the bottleneck. The run had enough CPU and GPU headroom to
+        keep moving; the bottleneck was the agent itself, not the hardware.
+      </p>
+
+      <div className="not-prose my-8">
+        <Figure
+          src={BLOG_IMAGES.ornith_usage_details}
+          alt="Windows Task Manager showing the machine under load during the Ornith run"
+          caption="Task Manager showed moderate GPU usage while the model was running."
+          wide
+        />
+      </div>
+
+      <div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
+        <Figure
+          src={BLOG_IMAGES.ornith_prompt_eval}
+          alt="Prompt evaluation log for Ornith"
+          caption="Prompt processing output from the same local session."
+        />
+        <Figure
+          src={BLOG_IMAGES.ornith_eval_speed}
+          alt="Token generation speed log for Ornith"
+          caption="Generation speed stayed visible and measurable even as the implementation stayed broken."
+        />
+      </div>
+
+      <h2>Putting it together</h2>
+      <div className="overflow-x-auto my-8 not-prose">
+        <table className="min-w-full text-sm border border-slate-200 rounded-xl overflow-hidden">
+          <thead className="bg-slate-50">
+            <tr>
+              <th className="text-left py-3 px-4 font-semibold text-slate-700">Observation</th>
+              <th className="text-left py-3 px-4 font-semibold text-slate-700">What the evidence says</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-t border-slate-200">
+              <td className="py-3 px-4 font-medium text-slate-700">Task scope</td>
+              <td className="py-3 px-4 text-slate-600">Small, multi-file LangChain agent with report generation.</td>
+            </tr>
+            <tr className="border-t border-slate-200">
+              <td className="py-3 px-4 font-medium text-slate-700">Rewrite count</td>
+              <td className="py-3 px-4 text-slate-600">About 30 passes on the same broken implementation.</td>
+            </tr>
+            <tr className="border-t border-slate-200">
+              <td className="py-3 px-4 font-medium text-slate-700">Confirmed result</td>
+              <td className="py-3 px-4 text-slate-600">A real SyntaxError from the delivered file, not a hypothetical concern.</td>
+            </tr>
+            <tr className="border-t border-slate-200">
+              <td className="py-3 px-4 font-medium text-slate-700">Root cause</td>
+              <td className="py-3 px-4 text-slate-600">A repeated misunderstanding of how the LangChain Ollama client actually works.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Caveats</h2>
+      <ul>
+        <li>This is a single task, not a broad benchmark suite.</li>
+        <li>LangChain and Ollama APIs change often, so details can shift across versions.</li>
+        <li>The session behavior is the useful signal here: repeated rewrites without a real fix.</li>
+      </ul>
+
+      <h2>Where this leaves me</h2>
+      <p>
+        The practical lesson is blunt. When a model keeps repeating its own plan almost verbatim and the code does not
+        materially change, treat that as a stop signal. The cost of letting it keep going is measured in time, tokens,
+        and false confidence.
+      </p>
+    </article>
+  )
+}
