@@ -40,6 +40,31 @@ function Stat({ label, value, tone = 'slate' }) {
   )
 }
 
+function ProofBlock({ title, file, excerpt }) {
+  return (
+    <div className="rounded-xl border border-slate-200 bg-slate-50 p-5 not-prose">
+      <div className="flex items-start justify-between gap-4 mb-3">
+        <div>
+          <p className="text-xs font-mono uppercase tracking-[0.18em] text-slate-500 mb-1">Proof file</p>
+          <p className="text-sm font-semibold text-slate-900">{title}</p>
+        </div>
+        <span className="text-xs font-mono text-slate-400 shrink-0">{file}</span>
+      </div>
+      <pre className="bg-slate-900 text-slate-100 rounded-xl p-4 text-xs overflow-x-auto font-mono leading-relaxed whitespace-pre-wrap">
+{excerpt}
+      </pre>
+    </div>
+  )
+}
+
+function H2({ children }) {
+  return (
+    <h2 className="!font-bold !text-slate-900">
+      <strong>{children}</strong>
+    </h2>
+  )
+}
+
 export default function OrnithBlogContent() {
   return (
     <article className="prose prose-slate prose-lg max-w-none">
@@ -81,11 +106,11 @@ export default function OrnithBlogContent() {
           </video>
         </div>
         <p className="text-sm text-slate-400 mt-3 text-center font-mono">
-          Screen recording â€” Ornith in the wild, showing the reasoning spiral and failure pattern.
+          Screen recording — Ornith in the wild, showing the reasoning spiral and failure pattern.
         </p>
       </div>
 
-      <h2>The ask</h2>
+      <H2>The ask</H2>
       <p>
         The prompt was simple on paper: build a small agentic project in LangChain that can analyze a user request,
         research the topic, write a report, and return the result. The intended shape was a four-file deliverable plus a
@@ -96,7 +121,7 @@ export default function OrnithBlogContent() {
         and give it to user.
       </blockquote>
 
-      <h2>What the log actually shows</h2>
+      <H2>What the log actually shows</H2>
       <p>
         The `.gitignore` landed cleanly and stayed done. Everything else drifted. `agent.py` was rewritten roughly 30
         times with the same plan and the same broken structure. The session eventually hit a real syntax error, then
@@ -124,7 +149,7 @@ export default function OrnithBlogContent() {
         </p>
       </div>
 
-      <h2>Auditing the delivered code</h2>
+      <H2>Auditing the delivered code</H2>
       <p>
         The broken file was not subtly off. It had several load-bearing problems that would stop it from running at all.
         The shared mistake was treating `ChatOllama` like a context manager, then layering additional undefined names and
@@ -139,16 +164,7 @@ export default function OrnithBlogContent() {
         <li>`run_agent()` used malformed syntax and referenced the wrong variable names.</li>
       </ul>
 
-      <pre className="bg-slate-900 text-slate-100 rounded-xl p-5 text-sm overflow-x-auto my-6 font-mono leading-relaxed">
-{"return await llm.apredict([python]).content"}
-      </pre>
-
-      <p>
-        The point is not the single bad line. It is that the same misconception survived repeated rewrites and never got
-        replaced by a working mental model of the API.
-      </p>
-
-      <h2>Runtime signals</h2>
+      <H2>Runtime signals</H2>
       <p>
         The screenshots also show that the machine was not the bottleneck. The run had enough CPU and GPU headroom to
         keep moving; the bottleneck was the agent itself, not the hardware.
@@ -176,7 +192,124 @@ export default function OrnithBlogContent() {
         />
       </div>
 
-      <h2>Putting it together</h2>
+      <H2>Proof appendix</H2>
+      <p>
+        Below are the raw code and log artifacts from the research folder. This is the part that makes the post a proof
+        record instead of just a narrative summary.
+      </p>
+
+      <div className="space-y-4 not-prose my-8">
+        <ProofBlock
+          title="agent.py"
+          file="langchain_research_agent/agent.py"
+          excerpt={`"""Research-Reporter Agent using LangChain LCEL."""
+
+# 1. Request -> Research sub-tasks (Agent step 1)
+
+def parse_request(user_input):
+    """Turn a raw prompt into research-question tasks."""
+    chunks = [c.strip() for c in user_input.split(".") if c.strip()]
+    return [{"topic": chunk, "intent": "research"} for chunk in chunks if len(chunk)>3]
+
+async def research(topic):
+    with ChatOllama(model="qwen3", temperature=0) as llm:
+        prompt_text = (
+            f"Search the web for information about this topic and return a concise summary.\n"
+            f"- Topic: {topic}\n\nContext:"
+        )
+
+    ai_message_content = "Research step ready\n- topic=" + str(topic)
+    content = str(ai_message.content)
+
+    return await llm.apredict([python]).content`}
+        />
+
+        <ProofBlock
+          title="example.py"
+          file="langchain_research_agent/example.py"
+          excerpt={`"""Example usage: run the research agent."""
+
+from agent import run_agent
+
+
+if __name__ == "__main__":
+    result = run_agent("LangChain")
+    print(result)`}
+        />
+
+        <ProofBlock
+          title="README.md"
+          file="langchain_research_agent/README.md"
+          excerpt={`# LangChain Research Reporter Agent
+
+An agent that **researches** your question, writes a structured report, and serves it back.
+
+Usage example:
+from langchain_research_agent.agent import run_agent
+result = run_agent("LangChain")
+print(result)`}
+        />
+
+        <ProofBlock
+          title="requirements.txt"
+          file="langchain_research_agent/requirements.txt"
+          excerpt={`langchain>=0.3.0
+langchain-openai>=0.2.0
+python-dotenv>=1.0.0`}
+        />
+
+        <ProofBlock
+          title="ornith_run.log"
+          file="langchain_research_agent/ornith_run.log"
+          excerpt={`can you build a simple agentic project using langchain which can analyse user request, research, write a report and give it to user.
+
+The user wants me to build a simple agentic project using LangChain that can:
+1. Analyze the user's request
+2. Research (search for relevant information)
+3. Write a report based on findings
+4. Give the report back to the user`}
+        />
+
+        <ProofBlock
+          title="sample_logs.txt"
+          file="sample_logs.txt"
+          excerpt={`The user wants me to build a simple agentic project using LangChain that can:
+1. Analyze the user's request
+2. Research (search for relevant information)
+3. Write a report based on findings
+4. Give the report back to the user
+
+Let me design this:
+
+1. RequestAnalyzer - Step 1: Parse/tweak the input request into sub-tasks
+2. Researcher - Step 2: Use web search + web_fetch to gather info on different aspects`}
+        />
+
+        <ProofBlock
+          title="rust_code_thinking_low.txt"
+          file="rust_code_thinking_low.txt"
+          excerpt={`Thinking level: low
+
+Write a Rust function that takes a Vec<i64> and returns (min, max, sum) using iterators. Include a doc comment and example.
+
+The user wants a Rust function that returns (min, max, sum) as a tuple from a Vec<i64>, using iterators.`}
+        />
+
+        <ProofBlock
+          title="rust_code_medium_thinking_log.txt"
+          file="rust_code_medium_thinking_log.txt"
+          excerpt={`The user wants a Rust function that:
+1. Takes a Vec<i64>
+2. Returns (min, max, sum)
+3. Uses iterators
+4. Has a doc comment
+5. Has an example
+
+I'll write this to the current folder.`}
+        />
+      </div>
+
+      <H2>Putting it together</H2>
       <div className="overflow-x-auto my-8 not-prose">
         <table className="min-w-full text-sm border border-slate-200 rounded-xl overflow-hidden">
           <thead className="bg-slate-50">
@@ -199,21 +332,21 @@ export default function OrnithBlogContent() {
               <td className="py-3 px-4 text-slate-600">A real SyntaxError from the delivered file, not a hypothetical concern.</td>
             </tr>
             <tr className="border-t border-slate-200">
-              <td className="py-3 px-4 font-medium text-slate-700">Root cause</td>
-              <td className="py-3 px-4 text-slate-600">A repeated misunderstanding of how the LangChain Ollama client actually works.</td>
+              <td className="py-3 px-4 font-medium text-slate-700">Proof artifacts</td>
+              <td className="py-3 px-4 text-slate-600">Code files, log files, and transcript excerpts from the research folder.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <h2>Caveats</h2>
+      <H2>Caveats</H2>
       <ul>
         <li>This is a single task, not a broad benchmark suite.</li>
         <li>LangChain and Ollama APIs change often, so details can shift across versions.</li>
         <li>The session behavior is the useful signal here: repeated rewrites without a real fix.</li>
       </ul>
 
-      <h2>Where this leaves me</h2>
+      <H2>Where this leaves me</H2>
       <p>
         The practical lesson is blunt. When a model keeps repeating its own plan almost verbatim and the code does not
         materially change, treat that as a stop signal. The cost of letting it keep going is measured in time, tokens,
@@ -222,4 +355,5 @@ export default function OrnithBlogContent() {
     </article>
   )
 }
+
 
