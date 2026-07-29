@@ -15,7 +15,7 @@ export default function Navbar() {
   const navRef = useRef(null)
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [navVisible, setNavVisible] = useState(false)
+  const [navVisible, setNavVisible] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
   const [activeSection, setActiveSection] = useState('')
 
   // IntersectionObserver for active nav section tracking
@@ -44,7 +44,6 @@ export default function Navbar() {
     // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReducedMotion) {
-      setNavVisible(true)
       // Still set up scroll listener but skip animations
       const handleScroll = () => {
         setScrolled(window.scrollY > 50)

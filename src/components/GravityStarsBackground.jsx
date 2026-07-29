@@ -30,71 +30,65 @@ export const GravityStarsBackground = ({ className = "" }) => {
       initParticles();
     };
 
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 0.3;
-        this.vy = (Math.random() - 0.5) * 0.3;
-        this.baseX = this.x;
-        this.baseY = this.y;
-        this.size = Math.random() * 1.5 + 0.5;
-      }
-      
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(15, 23, 42, 0.5)'; // slate-900 with opacity
-        ctx.fill();
-      }
-      
-      update() {
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
-        let forceDirectionX = dx / distance;
-        let forceDirectionY = dy / distance;
-        
-        // gravity distance
-        const maxDistance = 150;
-        let force = (maxDistance - distance) / maxDistance;
-        if (force < 0) force = 0;
-        
-        // Repel from cursor to create a cool interaction
-        let directionX = (forceDirectionX * force * 3);
-        let directionY = (forceDirectionY * force * 3);
+    const createParticle = () => {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height;
+      return {
+        x,
+        y,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        baseX: x,
+        baseY: y,
+        size: Math.random() * 1.5 + 0.5,
+      };
+    };
 
-        if (distance < maxDistance) {
-          this.x -= directionX;
-          this.y -= directionY;
-        } else {
-          if (this.x !== this.baseX) {
-            let dx = this.x - this.baseX;
-            this.x -= dx / 20;
-          }
-          if (this.y !== this.baseY) {
-            let dy = this.y - this.baseY;
-            this.y -= dy / 20;
-          }
+    const drawParticle = (particle) => {
+      ctx.beginPath();
+      ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(15, 23, 42, 0.5)'; // slate-900 with opacity
+      ctx.fill();
+    };
+
+    const updateParticle = (particle) => {
+      const maxDistance = 150;
+      let dx = mouse.x - particle.x;
+      let dy = mouse.y - particle.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      const forceDirectionX = dx / distance;
+      const forceDirectionY = dy / distance;
+      let force = (maxDistance - distance) / maxDistance;
+      if (force < 0) force = 0;
+
+      if (distance < maxDistance) {
+        particle.x -= forceDirectionX * force * 3;
+        particle.y -= forceDirectionY * force * 3;
+      } else {
+        if (particle.x !== particle.baseX) {
+          dx = particle.x - particle.baseX;
+          particle.x -= dx / 20;
         }
-
-        // float around slowly
-        this.baseX += this.vx;
-        this.baseY += this.vy;
-
-        // bounce off edges for base coordinates
-        if (this.baseX < 0 || this.baseX > canvas.width) this.vx = -this.vx;
-        if (this.baseY < 0 || this.baseY > canvas.height) this.vy = -this.vy;
-
-        this.draw();
+        if (particle.y !== particle.baseY) {
+          dy = particle.y - particle.baseY;
+          particle.y -= dy / 20;
+        }
       }
-    }
+
+      particle.baseX += particle.vx;
+      particle.baseY += particle.vy;
+
+      if (particle.baseX < 0 || particle.baseX > canvas.width) particle.vx = -particle.vx;
+      if (particle.baseY < 0 || particle.baseY > canvas.height) particle.vy = -particle.vy;
+
+      drawParticle(particle);
+    };
 
     const initParticles = () => {
       particles = [];
       const numberOfParticles = (canvas.width * canvas.height) / 12000; // density
       for (let i = 0; i < numberOfParticles; i++) {
-        particles.push(new Particle());
+        particles.push(createParticle());
       }
     };
 
@@ -103,7 +97,7 @@ export const GravityStarsBackground = ({ className = "" }) => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
         for (let i = 0; i < particles.length; i++) {
-          particles[i].update();
+          updateParticle(particles[i]);
         }
         
         // Connect particles
