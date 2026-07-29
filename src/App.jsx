@@ -17,6 +17,7 @@ import ResearchSection from './components/ResearchSection'
 import EducationSection from './components/EducationSection'
 import ContactSection from './components/ContactSection'
 import BlogPostPage from './pages/BlogPostPage'
+import BlogsIndexPage from './pages/BlogsIndexPage'
 
 function HomePage() {
   const [loaded, setLoaded] = useState(false)
@@ -61,6 +62,7 @@ export default function App() {
     <BrowserRouter basename="/portfolio">
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/blogs" element={<BlogsIndexPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
       </Routes>
     </BrowserRouter>

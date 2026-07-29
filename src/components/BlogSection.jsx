@@ -71,7 +71,7 @@ export default function BlogSection() {
           setLoading(false)
           return
         }
-      } catch (err) {
+      } catch {
         // If RSS2JSON fails, try CORS proxy
         if (cancelled) return
         
@@ -307,15 +307,13 @@ export default function BlogSection() {
 
             {/* View all CTA */}
             <div className="text-center mt-12">
-              <a
-                href={MEDIUM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/blogs"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-xl text-sm font-semibold hover:bg-slate-800 transition-colors group"
               >
-                View All on Medium
+                View All Articles
                 <HiArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </a>
+              </Link>
             </div>
           </>
         )}
