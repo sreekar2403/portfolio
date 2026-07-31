@@ -171,7 +171,7 @@ export default function BlogSection() {
         )}
 
         {/* Error state */}
-        {error && (
+        {!loading && error && posts.length === 0 && LOCAL_BLOG_POSTS.length === 0 && (
           <div className="text-center py-20">
             <p className="text-slate-500 mb-6">{error}</p>
             <a
@@ -187,7 +187,7 @@ export default function BlogSection() {
         )}
 
         {/* Empty state */}
-        {!loading && !error && posts.length === 0 && (
+        {!loading && posts.length === 0 && LOCAL_BLOG_POSTS.length === 0 && (
           <div className="text-center py-20">
             <p className="text-slate-500 mb-6">No articles published yet.</p>
             <a
@@ -203,7 +203,7 @@ export default function BlogSection() {
         )}
 
         {/* Blog grid */}
-        {!loading && !error && (posts.length > 0 || LOCAL_BLOG_POSTS.length > 0) && (
+        {(posts.length > 0 || LOCAL_BLOG_POSTS.length > 0) && (
           <>
             <div className="blog-grid grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {/* Local blog posts first */}
@@ -321,3 +321,4 @@ export default function BlogSection() {
     </section>
   )
 }
+
