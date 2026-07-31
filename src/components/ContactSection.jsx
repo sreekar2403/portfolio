@@ -88,7 +88,16 @@ export default function ContactSection() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // In production, this would send to a backend
+
+    const subject = encodeURIComponent(`Portfolio message from ${formState.name}`)
+    const body = encodeURIComponent([
+      formState.message,
+      '',
+      `Name: ${formState.name}`,
+      `Email: ${formState.email}`,
+    ].join('\n'))
+
+    window.location.href = `mailto:${PERSONAL.email}?subject=${subject}&body=${body}`
     setSubmitted(true)
     setTimeout(() => setSubmitted(false), 3000)
     setFormState({ name: '', email: '', message: '' })
@@ -273,3 +282,4 @@ export default function ContactSection() {
     </section>
   )
 }
+
