@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { HiXMark } from 'react-icons/hi2'
 import { BLOG_IMAGES, BLOG_VIDEO } from '../data/localBlogs'
@@ -451,17 +451,17 @@ export default function BlogPostModal({ post, onClose }) {
     return () => { document.body.style.overflow = '' }
   }, [])
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     gsap.to(overlayRef.current, { opacity: 0, duration: 0.2 })
     gsap.to(contentRef.current, { y: 20, opacity: 0, duration: 0.2, onComplete: onClose })
-  }
+  }, [onClose])
 
   // Close on escape
   useEffect(() => {
     const handleKey = (e) => { if (e.key === 'Escape') handleClose() }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
-  }, [])
+  }, [handleClose])
 
   return (
     <div

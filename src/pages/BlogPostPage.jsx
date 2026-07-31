@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { HiArrowLeft, HiXMark, HiChevronLeft, HiChevronRight } from 'react-icons/hi2'
@@ -614,12 +614,13 @@ export default function BlogPostPage() {
   const pageRef = useRef(null)
   const coverRef = useRef(null)
   const [lightbox, setLightbox] = useState({ open: false, index: 0 })
+  const resolvedSlug = slug === 'Ornith' ? 'ornith-broken-agent-blog' : slug
 
-  const post = LOCAL_BLOG_POSTS.find((p) => p.id === slug)
-  const isOrnithPost = slug === 'ornith-broken-agent-blog'
+  const post = LOCAL_BLOG_POSTS.find((p) => p.id === resolvedSlug)
+  const isOrnithPost = resolvedSlug === 'ornith-broken-agent-blog'
 
   // All clickable images for lightbox
-  const allImages = [
+  const allImages = useMemo(() => [
     { src: BLOG_IMAGES['nemotron_3_nano'], alt: 'ollama ps — Nemotron-3-Nano', caption: 'Nemotron-3-Nano: ollama ps output' },
     { src: BLOG_IMAGES['qwen_ollama_ps'], alt: 'ollama ps — Qwen3.6', caption: 'Qwen3.6: ollama ps output' },
     { src: BLOG_IMAGES['nemotron_3_nano_project'], alt: 'Nemotron prompt processing', caption: 'Nemotron-3-Nano: prompt eval log' },
@@ -628,22 +629,22 @@ export default function BlogPostPage() {
     { src: BLOG_IMAGES['qwen_ollama_t_s'], alt: 'Qwen prompt processing (2nd)', caption: 'Qwen3.6: prompt eval — later run' },
     { src: BLOG_IMAGES['nemotron_3_nano_ans'], alt: 'Nemotron reasoning trace', caption: 'Nemotron-3-Nano: self-looping reasoning trace' },
     { src: BLOG_IMAGES['qwen_ollama_ans'], alt: 'Qwen answer', caption: 'Qwen3.6: direct answer — no relitigating' },
-  ]
+  ], [])
 
   const openLightbox = useCallback((image) => {
     const idx = allImages.findIndex((i) => i.src === image.src)
     setLightbox({ open: true, index: idx >= 0 ? idx : 0 })
-  }, [])
+  }, [allImages])
 
   const closeLightbox = useCallback(() => setLightbox((s) => ({ ...s, open: false })), [])
   const prevImage = useCallback(() => setLightbox((s) => ({
     ...s,
     index: s.index > 0 ? s.index - 1 : allImages.length - 1,
-  })), [])
+  })), [allImages.length])
   const nextImage = useCallback(() => setLightbox((s) => ({
     ...s,
     index: s.index < allImages.length - 1 ? s.index + 1 : 0,
-  })), [])
+  })), [allImages.length])
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -657,7 +658,7 @@ export default function BlogPostPage() {
         { y: 0, opacity: 1, duration: 0.7, stagger: 0.12, ease: 'power3.out', delay: 0.2 }
       )
     }
-  }, [slug])
+  }, [resolvedSlug])
 
   if (!post) {
     return (
@@ -665,7 +666,7 @@ export default function BlogPostPage() {
         <div className="text-center">
           <h1 className="text-2xl font-bold text-slate-900 mb-4">Blog post not found</h1>
           <Link
-            to="/#blogs"
+            to="/blogs"
             className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 transition-colors"
           >
             <HiArrowLeft className="w-4 h-4" />
@@ -692,7 +693,7 @@ export default function BlogPostPage() {
         <div className="relative max-w-4xl mx-auto px-4 pt-8 pb-16 md:pt-12 md:pb-24">
           {/* Back link */}
           <Link
-            to="/#blogs"
+            to="/blogs"
             className="cover-animate inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm font-medium mb-8"
           >
             <HiArrowLeft className="w-4 h-4" />
@@ -741,7 +742,7 @@ export default function BlogPostPage() {
       <footer className="border-t border-slate-200 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 py-8 flex items-center justify-between">
           <Link
-            to="/#blogs"
+            to="/blogs"
             className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium"
           >
             <HiArrowLeft className="w-4 h-4" />
