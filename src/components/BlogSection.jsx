@@ -211,11 +211,21 @@ export default function BlogSection() {
                 <Link
                   key={post.id}
                   to={`/blog/${post.id}`}
-                  className="blog-card glass-card p-8 md:p-10 block group text-left"
+                  className="blog-card glass-card overflow-hidden block group text-left"
                   style={{ opacity: 0 }}
                 >
-                  <div className="flex flex-col h-full">
-                    {/* Date */}
+                  {post.coverImage && (
+                    <div className="aspect-[16/9] overflow-hidden bg-slate-100 border-b border-slate-200">
+                      <img
+                        src={post.coverImage}
+                        alt=""
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+
+                  <div className="p-8 md:p-10 flex flex-col min-h-[22rem]">
                     <div className="flex items-center gap-2 mb-4">
                       <span className="inline-block w-2 h-2 rounded-full bg-emerald-500" />
                       <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">
@@ -223,29 +233,26 @@ export default function BlogSection() {
                       </span>
                     </div>
 
-                    {/* Title */}
+                    <p className="text-xs font-mono uppercase tracking-[0.18em] text-primary-500 mb-3">
+                      {post.category}
+                    </p>
+
                     <h3 className="text-xl md:text-2xl font-bold font-display tracking-tight text-slate-900 mb-4 group-hover:text-primary-600 transition-colors">
                       {post.title}
                     </h3>
 
-                    {/* Tags */}
                     {post.tags?.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mb-6">
+                      <div className="flex flex-wrap gap-2 mb-8">
                         {post.tags.slice(0, 4).map((tag) => (
-                          <span
-                            key={tag}
-                            className="skill-badge text-[0.55rem]"
-                          >
+                          <span key={tag} className="skill-badge text-[0.55rem]">
                             {tag}
                           </span>
                         ))}
                       </div>
                     )}
 
-                    {/* Spacer */}
                     <div className="flex-1" />
 
-                    {/* Read link */}
                     <div className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 group-hover:text-primary-500 transition-colors">
                       Read Article
                       <HiArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -254,18 +261,17 @@ export default function BlogSection() {
                 </Link>
               ))}
 
-              {/* Medium blog posts */}
-              {posts.map((post) => (
+              {/* Medium blog posts - show up to (3 - local count) */}
+              {posts.slice(0, Math.max(0, 3 - LOCAL_BLOG_POSTS.length)).map((post) => (
                 <a
                   key={post.guid}
                   href={post.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="blog-card glass-card p-8 md:p-10 block group"
+                  className="blog-card glass-card overflow-hidden block group"
                   style={{ opacity: 0 }}
                 >
-                  <div className="flex flex-col h-full">
-                    {/* Date */}
+                  <div className="p-8 md:p-10 flex flex-col min-h-[22rem]">
                     <div className="flex items-center gap-2 mb-4">
                       <span className="inline-block w-2 h-2 rounded-full bg-primary-500" />
                       <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">
@@ -273,29 +279,22 @@ export default function BlogSection() {
                       </span>
                     </div>
 
-                    {/* Title */}
                     <h3 className="text-xl md:text-2xl font-bold font-display tracking-tight text-slate-900 mb-4 group-hover:text-primary-600 transition-colors">
                       {post.title}
                     </h3>
 
-                    {/* Categories / tags */}
                     {post.categories?.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mb-6">
+                      <div className="flex flex-wrap gap-2 mb-8">
                         {post.categories.slice(0, 4).map((cat) => (
-                          <span
-                            key={cat}
-                            className="skill-badge text-[0.55rem]"
-                          >
+                          <span key={cat} className="skill-badge text-[0.55rem]">
                             {cat}
                           </span>
                         ))}
                       </div>
                     )}
 
-                    {/* Spacer */}
                     <div className="flex-1" />
 
-                    {/* Read link */}
                     <div className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 group-hover:text-primary-500 transition-colors">
                       Read on Medium
                       <HiArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
