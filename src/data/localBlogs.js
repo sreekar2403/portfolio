@@ -40,6 +40,7 @@ export const BLOG_IMAGES = {
   ornith_eval_speed: `${BASE}blog/Ornith/ornith_eval_speed.png`,
   ornith_prompt_eval: `${BASE}blog/Ornith/ornith_prompt_eval.png`,
   ornith_usage_details: `${BASE}blog/Ornith/usage_details.png`,
+
   'nemotron_3_nano': `${BASE}blog/Nemotron_VS_Qwen/nemotron 3 nano.png`,
   'qwen_ollama_ps': `${BASE}blog/Nemotron_VS_Qwen/qwen ollama ps.png`,
   'nemotron_3_nano_project': `${BASE}blog/Nemotron_VS_Qwen/nemotron 3 nano project.png`,
@@ -47,7 +48,8 @@ export const BLOG_IMAGES = {
   'qwen_ollama_project': `${BASE}blog/Nemotron_VS_Qwen/qwen ollama project.png`,
   'qwen_ollama_t_s': `${BASE}blog/Nemotron_VS_Qwen/qwen ollama t_s.png`,
   'nemotron_3_nano_ans': `${BASE}blog/Nemotron_VS_Qwen/nemotron 3 nano ans.png`,
-  qwen_ollama_ans: `${BASE}blog/Nemotron_VS_Qwen/qwen ollama ans.png`,
+  'qwen_ollama_ans': `${BASE}blog/Nemotron_VS_Qwen/qwen ollama ans.png`,
+
   bonsai_lmstudio_config: `${BASE}blog/bonsai_27b/lmstudio_config.png`,
   bonsai_benchmark_infographic: `${BASE}blog/bonsai_27b/Local_LLM_Laptop_Performance_Report.png`,
 }
