@@ -13,13 +13,23 @@ export const LOCAL_BLOG_POSTS = [
   },
   {
     id: 'qwen-vs-nemotron',
-    title: 'Qwen3.6:35B-A3B-MTP vs Nemotron-3-Nano:30B-A3B — A Detailed Local Inference Comparison',
+    title: 'Qwen3.6:35B-A3B-MTP vs Nemotron-3-Nano:30B-A3B A Detailed Local Inference Comparison',
     subtitle: 'A field report from someone who runs these models to actually ship code, not just to run a benchmark suite.',
     date: '2026-07-20',
     tags: ['Local LLM', 'Ollama', 'Qwen', 'Nemotron', 'Inference'],
     coverImage: `${BASE}blog/Nemotron_VS_Qwen/qwen ollama ps.png`,
     readTime: '12 min',
     category: 'Local LLM comparison',
+  },
+  {
+    id: 'bonsai-27b-laptop',
+    title: 'Bonsai 27B on an 8GB Laptop: Fast, Architecturally Sound, and Loosely Bound to Its Own Instructions',
+    subtitle: 'Three tasks, one local model, one RTX 4060 laptop pushed to its thermal ceiling â€” a field report on running prism-ml/bonsai-27b through LM Studio.',
+    date: '2026-' + new Date().getFullYear(),
+    tags: ['Local Models', 'PrismML', 'Qwen3.6', 'Compressed LLMs', 'GPU Inference'],
+    coverImage: `${BASE}blog/bonsai_27b/What_Bonsai_27B_Can_Actually_Do_Locally.mp4`,
+    readTime: '15 min',
+    category: 'Compressed LLM evaluation',
   },
 ]
 
@@ -37,10 +47,13 @@ export const BLOG_IMAGES = {
   'qwen_ollama_project': `${BASE}blog/Nemotron_VS_Qwen/qwen ollama project.png`,
   'qwen_ollama_t_s': `${BASE}blog/Nemotron_VS_Qwen/qwen ollama t_s.png`,
   'nemotron_3_nano_ans': `${BASE}blog/Nemotron_VS_Qwen/nemotron 3 nano ans.png`,
-  'qwen_ollama_ans': `${BASE}blog/Nemotron_VS_Qwen/qwen ollama ans.png`,
+  qwen_ollama_ans: `${BASE}blog/Nemotron_VS_Qwen/qwen ollama ans.png`,
+  bonsai_lmstudio_config: `${BASE}blog/bonsai_27b/lmstudio_config.png`,
+  bonsai_benchmark_infographic: `${BASE}blog/bonsai_27b/Local_LLM_Laptop_Performance_Report.png`,
 }
 
 export const BLOG_VIDEO = {
   ornith_reasoning_failure: `${BASE}blog/Ornith/When_Agents_Overthink.mp4`,
   'local_llm_showdown': `${BASE}blog/Nemotron_VS_Qwen/Local_LLM_Showdown.mp4`,
+  bonsai_laptop_analysis: `${BASE}blog/bonsai_27b/What_Bonsai_27B_Can_Actually_Do_Locally.mp4`,
 }
