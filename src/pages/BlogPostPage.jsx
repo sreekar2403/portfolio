@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { HiArrowLeft, HiXMark, HiChevronLeft, HiChevronRight } from 'react-icons/hi2'
 import { LOCAL_BLOG_POSTS, BLOG_IMAGES, BLOG_VIDEO } from '../data/localBlogs'
+import BonsaiBlogContent from './BonsaiBlogContent'
 import OrnithBlogContent from './OrnithBlogContent'
 
 /* ─── Lightbox ─── */
@@ -614,10 +615,15 @@ export default function BlogPostPage() {
   const pageRef = useRef(null)
   const coverRef = useRef(null)
   const [lightbox, setLightbox] = useState({ open: false, index: 0 })
-  const resolvedSlug = slug === 'Ornith' ? 'ornith-broken-agent-blog' : slug
+  const blogMap = {
+    'Ornith': 'ornith-broken-agent-blog',
+    'bonsai': 'bonsai-27b-laptop'
+  };
+  const resolvedSlug = slug === 'Ornith' ? blogMap['Ornith'] : slug;
 
   const post = LOCAL_BLOG_POSTS.find((p) => p.id === resolvedSlug)
   const isOrnithPost = resolvedSlug === 'ornith-broken-agent-blog'
+  const isBonsaiPost = resolvedSlug === 'bonsai-27b-laptop'
 
   // All clickable images for lightbox
   const allImages = useMemo(() => [
@@ -735,7 +741,7 @@ export default function BlogPostPage() {
 
       {/* ─── Article Body ─── */}
       <main className="max-w-4xl mx-auto px-4 py-12 md:py-16">
-        {isOrnithPost ? <OrnithBlogContent /> : <QwenVsNemotronContent onImageClick={openLightbox} />}
+        {isOrnithPost ? <OrnithBlogContent /> : isBonsaiPost ? <BonsaiBlogContent /> : <QwenVsNemotronContent onImageClick={openLightbox} />}
       </main>
 
       {/* ─── Footer ─── */}
