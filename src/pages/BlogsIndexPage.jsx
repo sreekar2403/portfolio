@@ -67,7 +67,9 @@ export default function BlogsIndexPage() {
             setLoading(false)
             return
           }
-        } catch {}
+        } catch {
+          // CORS proxy failed — fall through to the loading state below
+        }
       }
       if (!cancelled) setLoading(false)
     }
