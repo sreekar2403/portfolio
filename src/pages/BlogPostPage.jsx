@@ -5,6 +5,7 @@ import { HiArrowLeft, HiXMark, HiChevronLeft, HiChevronRight } from 'react-icons
 import { LOCAL_BLOG_POSTS, BLOG_IMAGES, BLOG_VIDEO } from '../data/localBlogs'
 import BonsaiBlogContent from './BonsaiBlogContent'
 import OrnithBlogContent from './OrnithBlogContent'
+import NemotronBlogContent from './NemotronBlogContent'
 
 /* ─── Lightbox ─── */
 function Lightbox({ images, currentIndex, onClose, onPrev, onNext }) {
@@ -624,6 +625,7 @@ export default function BlogPostPage() {
   const post = LOCAL_BLOG_POSTS.find((p) => p.id === resolvedSlug)
   const isOrnithPost = resolvedSlug === 'ornith-broken-agent-blog'
   const isBonsaiPost = resolvedSlug === 'bonsai-27b-laptop'
+  const isNemotronPost = resolvedSlug === 'nemotron-3.5-lightning'
 
   // All clickable images for lightbox
   const allImages = useMemo(() => [
@@ -635,6 +637,7 @@ export default function BlogPostPage() {
     { src: BLOG_IMAGES['qwen_ollama_t_s'], alt: 'Qwen prompt processing (2nd)', caption: 'Qwen3.6: prompt eval — later run' },
     { src: BLOG_IMAGES['nemotron_3_nano_ans'], alt: 'Nemotron reasoning trace', caption: 'Nemotron-3-Nano: self-looping reasoning trace' },
     { src: BLOG_IMAGES['qwen_ollama_ans'], alt: 'Qwen answer', caption: 'Qwen3.6: direct answer — no relitigating' },
+    { src: BLOG_IMAGES['nemotron_35_lightning_metrics'], alt: 'Windows Task Manager showing the RTX 4060 Laptop GPU during the Nemotron-3.5-Lightning run', caption: 'Task Manager during the run: RTX 4060 Laptop GPU at 49% utilization, 6.7/8.0 GB dedicated VRAM, 50°C' },
   ], [])
 
   const openLightbox = useCallback((image) => {
@@ -741,7 +744,7 @@ export default function BlogPostPage() {
 
       {/* ─── Article Body ─── */}
       <main className="max-w-4xl mx-auto px-4 py-12 md:py-16">
-        {isOrnithPost ? <OrnithBlogContent /> : isBonsaiPost ? <BonsaiBlogContent /> : <QwenVsNemotronContent onImageClick={openLightbox} />}
+        {isOrnithPost ? <OrnithBlogContent /> : isBonsaiPost ? <BonsaiBlogContent /> : isNemotronPost ? <NemotronBlogContent /> : <QwenVsNemotronContent onImageClick={openLightbox} />}
       </main>
 
       {/* ─── Footer ─── */}
