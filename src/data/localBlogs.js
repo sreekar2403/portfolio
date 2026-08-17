@@ -45,6 +45,7 @@ export const LOCAL_BLOG_POSTS = [
 
 export const BLOG_IMAGES = {
   nemotron_35_lightning_metrics: `${BASE}blog/nemotron_35_lightning/system_metrics.png`,
+  nemotron_35_lightning_poster: `${BASE}blog/nemotron_35_lightning/blog-poster.png`,
   ornith_reasoning_failure_poster: `${BASE}blog/Ornith/Agentic_Assistant_Reasoning_Failure_Audit.png`,
   ornith_big_task_details: `${BASE}blog/Ornith/big_task_details.png`,
   ornith_big_task_context_details: `${BASE}blog/Ornith/big_task_context_details.png`,
@@ -72,4 +73,5 @@ export const BLOG_VIDEO = {
   ornith_reasoning_failure: `${BASE}blog/Ornith/When_Agents_Overthink.mp4`,
   'local_llm_showdown': `${BASE}blog/Nemotron_VS_Qwen/Local_LLM_Showdown.mp4`,
   bonsai_laptop_analysis: `${BASE}blog/bonsai_27b/Bonsai_27B_on_8GB_Laptop.mp4`,
+  nemotron_benchmark: `${BASE}blog/Nemotron/nemotron_benchmark.mp4`,
 }

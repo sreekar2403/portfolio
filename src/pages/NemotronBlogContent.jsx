@@ -1,4 +1,4 @@
-import { BLOG_IMAGES } from '../data/localBlogs'
+import { BLOG_IMAGES, BLOG_VIDEO } from '../data/localBlogs'
 
 function Figure({ src, alt, caption, wide = false }) {
   return (
@@ -95,6 +95,35 @@ export default function NemotronBlogContent() {
             ['<strong>License</strong>', 'OpenMDW License Agreement v1.1'],
           ]}
         />
+      </div>
+
+      <div className="not-prose my-8">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="flex-1 h-px bg-gradient-to-l from-slate-200 to-transparent" />
+          <svg className="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+          </svg>
+          <h2 className="text-2xl md:text-3xl font-bold font-display tracking-tight text-slate-900 m-0">
+            Watch the benchmark run
+          </h2>
+          <div className="flex-1 h-px bg-gradient-to-r from-slate-200 to-transparent" />
+        </div>
+        <div className="relative rounded-xl overflow-hidden border border-slate-200 bg-black shadow-xl">
+          <video
+            controls
+            preload="metadata"
+            playsInline
+            className="w-full max-h-[70vh]"
+            style={{ aspectRatio: '16 / 9' }}
+            poster={BLOG_IMAGES.nemotron_35_lightning_poster}
+          >
+            <source src={BLOG_VIDEO.nemotron_benchmark} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p className="text-sm text-slate-400 mt-3 text-center font-mono">
+          Full benchmark run: three tasks, MTP speculative decoding, and real-time performance on the RTX 4060 laptop.
+        </p>
       </div>
 
       <p>
