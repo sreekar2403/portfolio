@@ -1,16 +1,43 @@
-# React + Vite
+# PVSM Sreekar — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio and blog, deployed on GitHub Pages.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 19** + **Vite 7** (JavaScript)
+- **Tailwind CSS 3** with custom theme
+- **GSAP** + **Framer Motion** for animations
+- **Lenis** for smooth scrolling
+- **react-router-dom 7** with basename `/portfolio`
 
-## React Compiler
+## Sections
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Hero · About · What I Do · Tech Stack · Work · Research · Career · Education · Blog · Testimonials · Contact
 
-## Expanding the ESLint configuration
+## Blog Posts
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Long-form write-ups on running local LLMs on consumer hardware:
+
+- **Bonsai 27B** — 27B Qwen3.6 model on an 8 GB RTX 4060 laptop
+- **Nemotron 3.5 Lightning** — 30B hybrid Mamba-2 model via Ollama
+- **Ornith 27B** — reasoning failure analysis
+
+## Getting Started
+
+```bash
+npm install
+npm run dev
+```
+
+## Commands
+
+```bash
+npm run dev        # Vite dev server
+npm run build      # Production build (also copies dist/index.html → dist/404.html for SPA routing)
+npm run lint       # ESLint
+npm run preview    # Preview production build
+```
+
+## Deployment
+
+GitHub Pages — the `build` script copies `dist/index.html` to `dist/404.html` for SPA client-side routing under the `/portfolio/` base path.
