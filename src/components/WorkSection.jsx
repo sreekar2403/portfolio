@@ -28,8 +28,9 @@ export default function WorkSection() {
           ease: 'power3.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
+            start: 'top 65%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none none',
           },
         }
       )
@@ -45,8 +46,9 @@ export default function WorkSection() {
           stagger: 0.15,
           scrollTrigger: {
             trigger: '.work-grid',
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
+            start: 'top 65%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none none',
           },
         }
       )
@@ -54,9 +56,6 @@ export default function WorkSection() {
 
     return () => ctx.revert()
   }, [])
-
-  const featuredProject = PROJECTS.find(p => p.featured)
-  const otherProjects = PROJECTS.filter(p => !p.featured)
 
   return (
     <section ref={sectionRef} id="projects" className="py-24 md:py-32">
@@ -68,78 +67,25 @@ export default function WorkSection() {
           </h2>
         </div>
 
-        {/* Featured Project - Full Width */}
-        {featuredProject && (
-          <div className="work-item work-card work-card-featured group mb-8 md:mb-12" style={{ opacity: 0 }}>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-              {/* Screenshot */}
-              <div className="relative overflow-hidden bg-slate-100 aspect-[16/10] lg:aspect-auto">
-                {featuredProject.screenshot ? (
-                  <img
-                    src={featuredProject.screenshot}
-                    alt={`${featuredProject.title} screenshot`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50">
-                    <span className="text-6xl font-display font-bold text-slate-200">{featuredProject.title[0]}</span>
-                  </div>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 pointer-events-none" />
-              </div>
-
-              {/* Content */}
-              <div className="p-8 md:p-12 relative z-10 flex flex-col justify-center">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="inline-block w-2 h-2 rounded-full bg-emerald-500" />
-                  <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">
-                    Featured • {featuredProject.complexity}
-                  </span>
-                </div>
-
-                <h3 className="text-3xl md:text-4xl font-bold font-display tracking-tight text-slate-900 mb-4 group-hover:text-blue-600 transition-colors">
-                  {featuredProject.title}
-                </h3>
-
-                <p className="text-lg text-slate-600 mb-4 font-medium">
-                  {featuredProject.subtitle}
-                </p>
-
-                <p className="text-slate-600 text-sm leading-relaxed mb-8">
-                  {featuredProject.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {featuredProject.tags.map((tag) => (
-                    <span key={tag} className="skill-badge">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <MagneticButton
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-xl text-xs font-semibold uppercase tracking-wider hover:bg-slate-800 transition-all shadow-lg self-start"
-                  onClick={() => window.open(featuredProject.githubUrl, '_blank')}
-                >
-                  <FaGithub className="text-sm" />
-                  View Project
-                  <HiArrowUpRight className="text-xs" />
-                </MagneticButton>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Other Projects Grid */}
+        {/* Projects Grid - Equal Footing */}
         <div className="work-grid grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {otherProjects.map((project, idx) => (
+          {PROJECTS.map((project, idx) => (
             <div
               key={project.id}
               className="work-item work-card group"
               style={{ opacity: 0 }}
             >
-              <div className="work-card-number">{`0${idx + (featuredProject ? 2 : 1)}`}</div>
+              {/* Featured badge */}
+              {project.featured && (
+                <div className="absolute top-4 right-4 z-20">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500/10 text-emerald-600 text-xs font-semibold uppercase tracking-wider rounded-full border border-emerald-500/20">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Featured
+                  </span>
+                </div>
+              )}
+
+              <div className="work-card-number">{`0${idx + 1}`}</div>
 
               {/* Screenshot Preview */}
               {project.screenshot && (
@@ -157,7 +103,7 @@ export default function WorkSection() {
               <div className="p-8 md:p-10 relative z-10">
                 {/* Category */}
                 <div className="flex items-center gap-2 mb-4">
-                  <span className="inline-block w-2 h-2 rounded-full bg-blue-500" />
+                  <span className={`inline-block w-2 h-2 rounded-full ${project.featured ? 'bg-emerald-500' : 'bg-blue-500'}`} />
                   <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">
                     {project.complexity}
                   </span>
