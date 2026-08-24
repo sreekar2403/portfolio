@@ -2,6 +2,16 @@ const BASE = import.meta.env.BASE_URL || '/'
 
 export const LOCAL_BLOG_POSTS = [
   {
+    id: 'ornith-1.5-local-audit',
+    title: 'Ornith 1.5 on an 8 GB Laptop: Six Deliverables, Six Clean Syntax Checks, Zero Working Projects',
+    subtitle: 'A 35B hybrid-MoE model, an RTX 4060, and an audit of the code it hands back instead of the reasoning trace that produced it.',
+    date: '2026-08-24',
+    tags: ['Local Models', 'Ornith', 'Hybrid MoE', 'Ollama', 'Agentic Coding', 'Evaluation'],
+    coverImage: `${BASE}blog/ornith_1_5/poster.svg`,
+    readTime: '22 min',
+    category: 'Local model evaluation',
+  },
+  {
     id: 'nemotron-3.5-lightning',
     title: 'Nemotron-3.5-Lightning: Clean Rust, Honest Self-Verification, and One Sneaky Typo',
     subtitle: 'Three tasks, one local model, one RTX 4060 laptop — a field report on running NVIDIA Nemotron-3.5-Lightning through Ollama.',
@@ -44,6 +54,13 @@ export const LOCAL_BLOG_POSTS = [
 ]
 
 export const BLOG_IMAGES = {
+  ornith15_poster: `${BASE}blog/ornith_1_5/poster.svg`,
+  ornith15_architecture: `${BASE}blog/ornith_1_5/architecture.svg`,
+  ornith15_benchmarks: `${BASE}blog/ornith_1_5/benchmarks.svg`,
+  ornith15_throughput: `${BASE}blog/ornith_1_5/throughput.svg`,
+  ornith15_memory: `${BASE}blog/ornith_1_5/memory.svg`,
+  ornith15_system_metrics: `${BASE}blog/ornith_1_5/system_metrics.png`,
+
   nemotron_35_lightning_metrics: `${BASE}blog/nemotron_35_lightning/system_metrics.png`,
   nemotron_35_lightning_poster: `${BASE}blog/nemotron_35_lightning/blog-poster.png`,
   ornith_reasoning_failure_poster: `${BASE}blog/Ornith/Agentic_Assistant_Reasoning_Failure_Audit.png`,

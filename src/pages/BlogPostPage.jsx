@@ -6,6 +6,7 @@ import { LOCAL_BLOG_POSTS, BLOG_IMAGES, BLOG_VIDEO } from '../data/localBlogs'
 import BonsaiBlogContent from './BonsaiBlogContent'
 import OrnithBlogContent from './OrnithBlogContent'
 import NemotronBlogContent from './NemotronBlogContent'
+import Ornith15BlogContent from './Ornith15BlogContent'
 
 /* ─── Lightbox ─── */
 function Lightbox({ images, currentIndex, onClose, onPrev, onNext }) {
@@ -626,6 +627,7 @@ export default function BlogPostPage() {
   const isOrnithPost = resolvedSlug === 'ornith-broken-agent-blog'
   const isBonsaiPost = resolvedSlug === 'bonsai-27b-laptop'
   const isNemotronPost = resolvedSlug === 'nemotron-3.5-lightning'
+  const isOrnith15Post = resolvedSlug === 'ornith-1.5-local-audit'
 
   // All clickable images for lightbox
   const allImages = useMemo(() => [
@@ -744,7 +746,7 @@ export default function BlogPostPage() {
 
       {/* ─── Article Body ─── */}
       <main className="max-w-4xl mx-auto px-4 py-12 md:py-16">
-        {isOrnithPost ? <OrnithBlogContent /> : isBonsaiPost ? <BonsaiBlogContent /> : isNemotronPost ? <NemotronBlogContent /> : <QwenVsNemotronContent onImageClick={openLightbox} />}
+        {isOrnith15Post ? <Ornith15BlogContent /> : isOrnithPost ? <OrnithBlogContent /> : isBonsaiPost ? <BonsaiBlogContent /> : isNemotronPost ? <NemotronBlogContent /> : <QwenVsNemotronContent onImageClick={openLightbox} />}
       </main>
 
       {/* ─── Footer ─── */}
