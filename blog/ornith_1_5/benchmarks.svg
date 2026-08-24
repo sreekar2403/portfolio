@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1010" width="1200" height="1010" role="img" aria-label="Ornith-1.5-35B-A3B benchmark scores compared with Qwen3.6-35B, Muse-Glimmer-30B and Gemma-4-31B">
+<rect width="1200" height="1010" fill="#ffffff"/>
+<g font-family="Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif">
+<text x="40" y="50" font-size="25" font-weight="700" fill="#0f172a">Ornith-1.5-35B-A3B against its size class</text>
+<text x="40" y="80" font-size="16" fill="#64748b">Published model-card scores, averaged over 5 runs. Higher is better; all axes are percent.</text>
+<g transform="translate(0,106)" font-size="14">
+<rect x="40" y="-11" width="12" height="12" rx="3" fill="#2a78d6"/>
+<text x="59" y="0" fill="#334155">Ornith-1.5-35B-A3B</text>
+<rect x="221.79999999999998" y="-11" width="12" height="12" rx="3" fill="#eb6834"/>
+<text x="240.79999999999998" y="0" fill="#334155">Qwen3.6-35B</text>
+<rect x="350.4" y="-11" width="12" height="12" rx="3" fill="#4a3aa7"/>
+<text x="369.4" y="0" fill="#334155">Muse-Glimmer-30B</text>
+<rect x="517.0" y="-11" width="12" height="12" rx="3" fill="#1baf7a"/>
+<text x="536.0" y="0" fill="#334155">Gemma-4-31B</text>
+</g>
+<line x1="336.0" y1="116" x2="336.0" y2="896" stroke="#cbd5e1" stroke-width="1"/>
+<text x="336.0" y="918" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12" fill="#94a3b8" text-anchor="middle">0</text>
+<line x1="492.8" y1="116" x2="492.8" y2="896" stroke="#e9eef5" stroke-width="1"/>
+<text x="492.8" y="918" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12" fill="#94a3b8" text-anchor="middle">20</text>
+<line x1="649.6" y1="116" x2="649.6" y2="896" stroke="#e9eef5" stroke-width="1"/>
+<text x="649.6" y="918" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12" fill="#94a3b8" text-anchor="middle">40</text>
+<line x1="806.4" y1="116" x2="806.4" y2="896" stroke="#e9eef5" stroke-width="1"/>
+<text x="806.4" y="918" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12" fill="#94a3b8" text-anchor="middle">60</text>
+<line x1="963.2" y1="116" x2="963.2" y2="896" stroke="#e9eef5" stroke-width="1"/>
+<text x="963.2" y="918" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12" fill="#94a3b8" text-anchor="middle">80</text>
+<line x1="1120.0" y1="116" x2="1120.0" y2="896" stroke="#e9eef5" stroke-width="1"/>
+<text x="1120.0" y="918" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12" fill="#94a3b8" text-anchor="middle">100</text>
+<text x="318" y="195.0" font-size="15" font-weight="600" fill="#0f172a" text-anchor="end">Terminal-Bench 2.1 (Terminus-2)</text>
+<path d="M336 132 H863.5519999999999 A4 4 0 0 1 867.5519999999999 136 V154 A4 4 0 0 1 863.5519999999999 158 H336 Z" fill="#2a78d6"/>
+<text x="877.6" y="150" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">67.8</text>
+<path d="M336 162 H743.6 A4 4 0 0 1 747.6 166 V184 A4 4 0 0 1 743.6 188 H336 Z" fill="#eb6834"/>
+<text x="757.6" y="180" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="500" fill="#0f172a">52.5</text>
+<path d="M336 192 H737.328 A4 4 0 0 1 741.328 196 V214 A4 4 0 0 1 737.328 218 H336 Z" fill="#4a3aa7"/>
+<text x="751.3" y="210" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="500" fill="#0f172a">51.7</text>
+<path d="M336 222 H662.0640000000001 A4 4 0 0 1 666.0640000000001 226 V244 A4 4 0 0 1 662.0640000000001 248 H336 Z" fill="#1baf7a"/>
+<text x="676.1" y="240" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="500" fill="#0f172a">42.1</text>
+<text x="318" y="355.0" font-size="15" font-weight="600" fill="#0f172a" text-anchor="end">SWE-bench Verified</text>
+<path d="M336 292 H951.36 A4 4 0 0 1 955.36 296 V314 A4 4 0 0 1 951.36 318 H336 Z" fill="#2a78d6"/>
+<text x="965.4" y="310" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">79</text>
+<path d="M336 322 H907.4560000000001 A4 4 0 0 1 911.4560000000001 326 V344 A4 4 0 0 1 907.4560000000001 348 H336 Z" fill="#eb6834"/>
+<text x="921.5" y="340" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="500" fill="#0f172a">73.4</text>
+<path d="M336 352 H927.84 A4 4 0 0 1 931.84 356 V374 A4 4 0 0 1 927.84 378 H336 Z" fill="#4a3aa7"/>
+<text x="941.8" y="370" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="500" fill="#0f172a">76</text>
+<path d="M336 382 H739.6800000000001 A4 4 0 0 1 743.6800000000001 386 V404 A4 4 0 0 1 739.6800000000001 408 H336 Z" fill="#1baf7a"/>
+<text x="753.7" y="400" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="500" fill="#0f172a">52</text>
+<text x="318" y="515.0" font-size="15" font-weight="600" fill="#0f172a" text-anchor="end">SWE-bench Pro</text>
+<path d="M336 452 H799.2639999999999 A4 4 0 0 1 803.2639999999999 456 V474 A4 4 0 0 1 799.2639999999999 478 H336 Z" fill="#2a78d6"/>
+<text x="813.3" y="470" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">59.6</text>
+<path d="M336 482 H720.0799999999999 A4 4 0 0 1 724.0799999999999 486 V504 A4 4 0 0 1 720.0799999999999 508 H336 Z" fill="#eb6834"/>
+<text x="734.1" y="500" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="500" fill="#0f172a">49.5</text>
+<path d="M336 512 H733.408 A4 4 0 0 1 737.408 516 V534 A4 4 0 0 1 733.408 538 H336 Z" fill="#4a3aa7"/>
+<text x="747.4" y="530" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="500" fill="#0f172a">51.2</text>
+<path d="M336 542 H611.888 A4 4 0 0 1 615.888 546 V564 A4 4 0 0 1 611.888 568 H336 Z" fill="#1baf7a"/>
+<text x="625.9" y="560" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="500" fill="#0f172a">35.7</text>
+<text x="318" y="675.0" font-size="15" font-weight="600" fill="#0f172a" text-anchor="end">MCP-Atlas</text>
+<path d="M336 612 H882.368 A4 4 0 0 1 886.368 616 V634 A4 4 0 0 1 882.368 638 H336 Z" fill="#2a78d6"/>
+<text x="896.4" y="630" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="500" fill="#0f172a">70.2</text>
+<path d="M336 642 H824.352 A4 4 0 0 1 828.352 646 V664 A4 4 0 0 1 824.352 668 H336 Z" fill="#eb6834"/>
+<text x="838.4" y="660" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="500" fill="#0f172a">62.8</text>
+<path d="M336 672 H923.92 A4 4 0 0 1 927.92 676 V694 A4 4 0 0 1 923.92 698 H336 Z" fill="#4a3aa7"/>
+<text x="937.9" y="690" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">75.5</text>
+<path d="M336 702 H763.2 A4 4 0 0 1 767.2 706 V724 A4 4 0 0 1 763.2 728 H336 Z" fill="#1baf7a"/>
+<text x="777.2" y="720" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="500" fill="#0f172a">55</text>
+<text x="318" y="835.0" font-size="15" font-weight="600" fill="#0f172a" text-anchor="end">GPQA Diamond</text>
+<path d="M336 772 H1031.328 A4 4 0 0 1 1035.328 776 V794 A4 4 0 0 1 1031.328 798 H336 Z" fill="#2a78d6"/>
+<text x="1045.3" y="790" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">89.2</text>
+<path d="M336 802 H1006.24 A4 4 0 0 1 1010.24 806 V824 A4 4 0 0 1 1006.24 828 H336 Z" fill="#eb6834"/>
+<text x="1020.2" y="820" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="500" fill="#0f172a">86</text>
+<path d="M336 832 H986.64 A4 4 0 0 1 990.64 836 V854 A4 4 0 0 1 986.64 858 H336 Z" fill="#4a3aa7"/>
+<text x="1000.6" y="850" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="500" fill="#0f172a">83.5</text>
+<path d="M336 862 H992.912 A4 4 0 0 1 996.912 866 V884 A4 4 0 0 1 992.912 888 H336 Z" fill="#1baf7a"/>
+<text x="1006.9" y="880" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="500" fill="#0f172a">84.3</text>
+<text x="40" y="988" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12" fill="#94a3b8">source: ornith-ai/Ornith-1.5-35B-A3B model card &#183; huggingface.co</text>
+</g></svg>

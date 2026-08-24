@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Ornith 1.5 field report poster">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="52%" stop-color="#182234"/>
+      <stop offset="100%" stop-color="#1a3070"/>
+    </linearGradient>
+    <linearGradient id="titleFill" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#cfe0ff"/>
+      <stop offset="100%" stop-color="#8fb6ff"/>
+    </linearGradient>
+    <filter id="soft" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="110"/>
+    </filter>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M60 0H0V60" fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+  <circle cx="180" cy="180" r="230" fill="#3b82f6" opacity="0.30" filter="url(#soft)"/>
+  <circle cx="1480" cy="820" r="210" fill="#10b981" opacity="0.20" filter="url(#soft)"/>
+
+  <g font-family="Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif">
+    <text x="110" y="146" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="20" letter-spacing="5.5" fill="#7f9dc9">LOCAL MODEL FIELD REPORT &#183; AUGUST 2026</text>
+
+    <text x="106" y="330" font-size="164" font-weight="700" letter-spacing="-5" fill="url(#titleFill)">ORNITH 1.5</text>
+
+    <text x="110" y="392" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="25" letter-spacing="1.2" fill="#68a4f5">35B-A3B &#183; qwen35moe &#183; Q4_K_M &#183; 20.2 GiB</text>
+
+    <rect x="110" y="436" width="132" height="3" rx="1.5" fill="#3b82f6"/>
+
+    <text x="110" y="512" font-size="35" fill="#dbe4f2">Six deliverables on one 8&#160;GB RTX&#160;4060 laptop.</text>
+    <text x="110" y="562" font-size="35" fill="#dbe4f2">Every file passed its <tspan fill="#93c5fd">syntax check</tspan>.</text>
+    <text x="110" y="612" font-size="35" fill="#dbe4f2">Not one project ran clean.</text>
+
+    <g transform="translate(110,690)">
+      <rect x="0" y="0" width="256" height="88" rx="16" fill="#ffffff" opacity="0.06"/>
+      <rect x="0.5" y="0.5" width="255" height="87" rx="15.5" fill="none" stroke="#ffffff" stroke-opacity="0.14"/>
+      <text x="22" y="35" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" letter-spacing="2.4" fill="#7f9dc9">GENERATION</text>
+      <text x="22" y="70" font-size="30" font-weight="700" fill="#ffffff">0.75 &#8211; 33 tok/s</text>
+
+      <rect x="284" y="0" width="256" height="88" rx="16" fill="#ffffff" opacity="0.06"/>
+      <rect x="284.5" y="0.5" width="255" height="87" rx="15.5" fill="none" stroke="#ffffff" stroke-opacity="0.14"/>
+      <text x="306" y="35" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" letter-spacing="2.4" fill="#7f9dc9">PEAK SESSION</text>
+      <text x="306" y="70" font-size="30" font-weight="700" fill="#ffffff">6.1M tokens up</text>
+
+      <rect x="568" y="0" width="256" height="88" rx="16" fill="#ffffff" opacity="0.06"/>
+      <rect x="568.5" y="0.5" width="255" height="87" rx="15.5" fill="none" stroke="#ffffff" stroke-opacity="0.14"/>
+      <text x="590" y="35" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="14" letter-spacing="2.4" fill="#7f9dc9">RAN CLEAN</text>
+      <text x="590" y="70" font-size="30" font-weight="700" fill="#ffffff">0 of 6</text>
+    </g>
+
+    <g transform="translate(1090,196)">
+      <text x="0" y="0" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="15" letter-spacing="3.2" fill="#7f9dc9">40 DECODER BLOCKS</text>
+      <g transform="translate(0,28)">
+      <rect x="0" y="0" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="34" y="0" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="68" y="0" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="102" y="0" width="26" height="26" rx="7" fill="#3b82f6" opacity="0.95"/>
+      <rect x="136" y="0" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="170" y="0" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="204" y="0" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="238" y="0" width="26" height="26" rx="7" fill="#3b82f6" opacity="0.95"/>
+      <rect x="272" y="0" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="306" y="0" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="0" y="34" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="34" y="34" width="26" height="26" rx="7" fill="#3b82f6" opacity="0.95"/>
+      <rect x="68" y="34" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="102" y="34" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="136" y="34" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="170" y="34" width="26" height="26" rx="7" fill="#3b82f6" opacity="0.95"/>
+      <rect x="204" y="34" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="238" y="34" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="272" y="34" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="306" y="34" width="26" height="26" rx="7" fill="#3b82f6" opacity="0.95"/>
+      <rect x="0" y="68" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="34" y="68" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="68" y="68" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="102" y="68" width="26" height="26" rx="7" fill="#3b82f6" opacity="0.95"/>
+      <rect x="136" y="68" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="170" y="68" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="204" y="68" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="238" y="68" width="26" height="26" rx="7" fill="#3b82f6" opacity="0.95"/>
+      <rect x="272" y="68" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="306" y="68" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="0" y="102" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="34" y="102" width="26" height="26" rx="7" fill="#3b82f6" opacity="0.95"/>
+      <rect x="68" y="102" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="102" y="102" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="136" y="102" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="170" y="102" width="26" height="26" rx="7" fill="#3b82f6" opacity="0.95"/>
+      <rect x="204" y="102" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="238" y="102" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="272" y="102" width="26" height="26" rx="7" fill="#44566f" opacity="0.85"/>
+      <rect x="306" y="102" width="26" height="26" rx="7" fill="#3b82f6" opacity="0.95"/>
+      </g>
+      <g transform="translate(0,196)" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="16">
+        <rect x="0" y="0" width="14" height="14" rx="4" fill="#44566f" opacity="0.85"/>
+        <text x="26" y="12" fill="#98adc9">gated linear attention &#215; 30</text>
+        <rect x="0" y="30" width="14" height="14" rx="4" fill="#3b82f6" opacity="0.95"/>
+        <text x="26" y="42" fill="#98adc9">full attention &#215; 10 (every 4th)</text>
+      </g>
+      <g transform="translate(0,296)" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="16" fill="#98adc9">
+        <text x="0" y="0">256 experts &#183; 8 active &#183; 1 shared</text>
+        <text x="0" y="30">262,144-token training window</text>
+        <text x="0" y="60">+ Qwen3-VL vision tower (861 MiB)</text>
+        <text x="0" y="90">+ 1 MTP draft layer</text>
+      </g>
+    </g>
+
+    <text x="110" y="838" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="17" letter-spacing="1.6" fill="#5f7ba6">pvsm sreekar &#183; ollama + llama.cpp &#183; rtx 4060 laptop 8&#160;gb</text>
+  </g>
+</svg>
