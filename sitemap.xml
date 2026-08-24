@@ -2,21 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://sreekar2403.github.io/portfolio/</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-24</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://sreekar2403.github.io/portfolio/blogs</loc>
-    <lastmod>2026-07-31</lastmod>
+    <loc>https://sreekar2403.github.io/portfolio/blogs/</loc>
+    <lastmod>2026-08-24</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sreekar2403.github.io/portfolio/blog/ornith-broken-agent-blog</loc>
+    <loc>https://sreekar2403.github.io/portfolio/blog/ornith-1.5-local-audit/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sreekar2403.github.io/portfolio/blog/nemotron-3.5-lightning/</loc>
+    <lastmod>2026-08-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sreekar2403.github.io/portfolio/blog/bonsai-27b-laptop/</loc>
+    <lastmod>2026-07-27</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sreekar2403.github.io/portfolio/blog/ornith-broken-agent-blog/</loc>
     <lastmod>2026-07-26</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://sreekar2403.github.io/portfolio/blog/qwen-vs-nemotron</loc>
+    <loc>https://sreekar2403.github.io/portfolio/blog/qwen-vs-nemotron/</loc>
     <lastmod>2026-07-20</lastmod>
     <priority>0.7</priority>
   </url>
