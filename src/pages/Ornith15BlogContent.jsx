@@ -102,29 +102,39 @@ function Code({ title, file, children }) {
   )
 }
 
-function Ref({ href, title, children }) {
+function Ref({ index, href, title, children }) {
   return (
-    <li className="border-t border-slate-200 py-4 first:border-t-0 first:pt-0">
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group inline-flex items-baseline gap-1.5 font-medium text-primary-600 underline decoration-primary-300 underline-offset-[3px] transition-colors hover:text-primary-700 hover:decoration-primary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
+    <li className="flex gap-4 border-t border-slate-200 py-7 first:border-t-0">
+      <span
+        aria-hidden="true"
+        className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-100 font-mono text-xs font-semibold text-primary-700"
       >
-        <span>{title}</span>
-        <svg
-          className="w-3.5 h-3.5 shrink-0 self-center text-primary-400 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
-          aria-hidden="true"
+        {index}
+      </span>
+      <div className="min-w-0">
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group text-[1.0625rem] font-semibold leading-7 text-primary-600 no-underline transition-colors hover:text-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-        </svg>
-      </a>
-      <p className="mt-1 text-base text-slate-600 leading-6">{children}</p>
-      <p className="mt-1 font-mono text-xs text-slate-400 break-all">{href}</p>
+          <span className="underline decoration-primary-300 underline-offset-[3px] group-hover:decoration-primary-600">
+            {title}
+          </span>
+          <svg
+            className="ml-1 inline-block h-3.5 w-3.5 align-[-0.125em] text-primary-400 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+          </svg>
+        </a>
+        <p className="mt-1.5 text-base leading-7 text-slate-600">{children}</p>
+        <p className="mt-2 break-all font-mono text-xs leading-5 text-slate-400">{href}</p>
+      </div>
     </li>
   )
 }
@@ -960,38 +970,44 @@ scrollAnimations.js:4:   focus detection, counter tweens. Canvas constellation s
       </ul>
 
       <H2>References</H2>
-      <ul className="not-prose my-8 list-none pl-0 rounded-xl border border-slate-200 bg-slate-50/60 px-6 py-2">
+      <ul className="not-prose my-8 list-none rounded-xl border border-slate-200 bg-slate-50/60 px-6 py-1 pl-6 md:px-8 md:pl-8">
         <Ref
+          index={1}
           href="https://huggingface.co/ornith-ai/Ornith-1.5-35B-A3B"
           title="ornith-ai/Ornith-1.5-35B-A3B — model card"
         >
           Architecture summary, license, and the benchmark table quoted above.
         </Ref>
         <Ref
+          index={2}
           href="https://ornith.ai/ornith_1_5.html"
           title="Ornith-1.5: From Self-Scaffolding to Self-Improvement"
         >
           The release announcement and the joint task / scaffold / rollout GRPO loop.
         </Ref>
         <Ref
+          index={3}
           href="https://datanorth.ai/news/ornith-releases-ornith-1-5"
           title="Ornith releases Ornith-1.5 open weights under MIT"
         >
           Release date and the 397B / 35B / 9B lineup.
         </Ref>
         <Ref
+          index={4}
           href="https://benchlm.ai/models/ornith-1-5-35b-a3b"
           title="BenchLM — Ornith-1.5-35B-A3B"
         >
           Independent aggregate ranking, plus the BrowseComp and Humanity&rsquo;s Last Exam scores.
         </Ref>
         <Ref
+          index={5}
           href="https://huggingface.co/ornith-ai/Ornith-1.0-35B"
           title="ornith-ai/Ornith-1.0-35B"
         >
           The predecessor this build descends from.
         </Ref>
         <Ref
+          index={6}
           href="https://github.com/ggml-org/llama.cpp"
           title="ggml-org/llama.cpp"
         >
