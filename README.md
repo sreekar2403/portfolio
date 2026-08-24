@@ -18,6 +18,7 @@ Hero · About · What I Do · Tech Stack · Work · Research · Career · Educat
 
 Long-form write-ups on running local LLMs on consumer hardware:
 
+- **Ornith 1.5** — 35B hybrid-MoE (gated linear + full attention) audited across six build tasks
 - **Bonsai 27B** — 27B Qwen3.6 model on an 8 GB RTX 4060 laptop
 - **Nemotron 3.5 Lightning** — 30B hybrid Mamba-2 model via Ollama
 - **Ornith 27B** — reasoning failure analysis

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 690" width="1200" height="690" role="img" aria-label="Ornith 1.5 hybrid decoder: three gated-linear-attention blocks per full-attention block, a 256-expert MoE feed-forward, an MTP draft head and a vision tower">
+<rect width="1200" height="690" fill="#ffffff"/>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker></defs>
+<g font-family="Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif">
+<text x="40" y="46" font-size="25" font-weight="700" fill="#0f172a">Inside one repeating unit — 4 of Ornith-1.5&#8217;s 40 decoder blocks</text>
+<text x="40" y="76" font-size="16" fill="#64748b">Read from the GGUF metadata of the Q4_K_M build: <tspan font-family="Consolas, SFMono-Regular, Menlo, monospace" fill="#334155">full_attention_interval = 4</tspan>, so three cheap recurrent blocks run for every one that keeps a KV cache.</text>
+<rect x="44" y="132" width="260" height="214" rx="14" fill="#f6f8fa" stroke="#64748b" stroke-opacity="0.3"/>
+<rect x="44" y="132" width="260" height="5" rx="2.5" fill="#64748b"/>
+<text x="64" y="170" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12.5" letter-spacing="2" fill="#64748b">BLOCK 4n</text>
+<text x="64" y="204" font-size="18.5" font-weight="700" fill="#0f172a">Gated linear attention</text>
+<text x="64" y="230" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="11.5" fill="#94a3b8">16 groups · d_inner 4096 · conv 4</text>
+<rect x="64" y="250" width="220" height="34" rx="9" fill="#64748b" opacity="0.11"/>
+<text x="78" y="272" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="#475569">recurrent state · d_state 128</text>
+<text x="64" y="312" font-size="13.5" fill="#64748b">state size is constant —</text>
+<text x="64" y="331" font-size="13.5" fill="#64748b">context length does not grow it</text>
+<line x1="308" y1="239.0" x2="324" y2="239.0" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="330" y="132" width="260" height="214" rx="14" fill="#f6f8fa" stroke="#64748b" stroke-opacity="0.3"/>
+<rect x="330" y="132" width="260" height="5" rx="2.5" fill="#64748b"/>
+<text x="350" y="170" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12.5" letter-spacing="2" fill="#64748b">BLOCK 4n+1</text>
+<text x="350" y="204" font-size="18.5" font-weight="700" fill="#0f172a">Gated linear attention</text>
+<text x="350" y="230" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="11.5" fill="#94a3b8">16 groups · d_inner 4096 · conv 4</text>
+<rect x="350" y="250" width="220" height="34" rx="9" fill="#64748b" opacity="0.11"/>
+<text x="364" y="272" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="#475569">recurrent state · d_state 128</text>
+<text x="350" y="312" font-size="13.5" fill="#64748b">state size is constant —</text>
+<text x="350" y="331" font-size="13.5" fill="#64748b">context length does not grow it</text>
+<line x1="594" y1="239.0" x2="610" y2="239.0" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="616" y="132" width="260" height="214" rx="14" fill="#f6f8fa" stroke="#64748b" stroke-opacity="0.3"/>
+<rect x="616" y="132" width="260" height="5" rx="2.5" fill="#64748b"/>
+<text x="636" y="170" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12.5" letter-spacing="2" fill="#64748b">BLOCK 4n+2</text>
+<text x="636" y="204" font-size="18.5" font-weight="700" fill="#0f172a">Gated linear attention</text>
+<text x="636" y="230" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="11.5" fill="#94a3b8">16 groups · d_inner 4096 · conv 4</text>
+<rect x="636" y="250" width="220" height="34" rx="9" fill="#64748b" opacity="0.11"/>
+<text x="650" y="272" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="#475569">recurrent state · d_state 128</text>
+<text x="636" y="312" font-size="13.5" fill="#64748b">state size is constant —</text>
+<text x="636" y="331" font-size="13.5" fill="#64748b">context length does not grow it</text>
+<line x1="880" y1="239.0" x2="896" y2="239.0" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="902" y="132" width="260" height="214" rx="14" fill="#eff6fb" stroke="#2a78d6" stroke-opacity="0.55"/>
+<rect x="902" y="132" width="260" height="5" rx="2.5" fill="#2a78d6"/>
+<text x="922" y="170" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12.5" letter-spacing="2" fill="#2a78d6">BLOCK 4n+3</text>
+<text x="922" y="204" font-size="18.5" font-weight="700" fill="#0f172a">Full attention</text>
+<text x="922" y="230" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="11.5" fill="#94a3b8">16 heads / 2 KV · head dim 256</text>
+<rect x="922" y="250" width="220" height="34" rx="9" fill="#2a78d6" opacity="0.11"/>
+<text x="936" y="272" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="#1d4ed8">KV cache · grows with context</text>
+<text x="922" y="312" font-size="13.5" fill="#64748b">1,280 MiB of KV at 64k ctx,</text>
+<text x="922" y="331" font-size="13.5" fill="#64748b">spread over just 10 layers</text>
+<rect x="44" y="380" width="1118" height="86" rx="14" fill="#fdf3ee" stroke="#eb6834" stroke-opacity="0.45"/>
+<text x="66" y="414" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12.5" letter-spacing="2" fill="#eb6834">FEED-FORWARD &#8212; IDENTICAL IN EVERY BLOCK</text>
+<text x="66" y="446" font-size="18" font-weight="700" fill="#0f172a">MoE router: 256 experts, <tspan fill="#c2410c">8 routed</tspan> + 1 shared, FFN width 512</text>
+<text x="1140" y="442" font-size="15" fill="#7c4a2d" text-anchor="end">35.5B stored &#183; ~3B touched per token</text>
+<rect x="44" y="504" width="360" height="96" rx="13" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="66" y="538" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="13" letter-spacing="1.6" fill="#94a3b8">&#215;10</text>
+<text x="66" y="564" font-size="15" font-weight="600" fill="#0f172a">The unit above repeats ten times.</text>
+<text x="66" y="586" font-size="13" fill="#64748b">40 blocks in the graph; a 41st is loaded, then discarded.</text>
+<rect x="422" y="504" width="360" height="96" rx="13" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="444" y="538" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="13" letter-spacing="1.6" fill="#94a3b8">MTP</text>
+<text x="444" y="564" font-size="15" font-weight="600" fill="#0f172a">One multi-token-prediction layer.</text>
+<text x="444" y="586" font-size="13" fill="#64748b"><tspan font-family="Consolas, SFMono-Regular, Menlo, monospace">nextn_predict_layers = 1</tspan> &#8212; a built-in draft head.</text>
+<rect x="800" y="504" width="360" height="96" rx="13" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="822" y="538" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="13" letter-spacing="1.6" fill="#94a3b8">VL</text>
+<text x="822" y="564" font-size="15" font-weight="600" fill="#0f172a">A Qwen3-VL vision tower ships inside.</text>
+<text x="822" y="586" font-size="13" fill="#64748b">27 layers, 861 MiB, 768px patches &#8212; idle for a terminal agent.</text>
+<text x="40" y="672" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12" fill="#94a3b8">source: llama_model_loader KV dump, ornith-1.5:35b Q4_K_M (20.21 GiB, 4.89 BPW), llama.cpp via Ollama</text>
+</g></svg>

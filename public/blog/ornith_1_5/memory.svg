@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 510" width="1200" height="510" role="img" aria-label="Where a 20.2 GiB model goes on an 8 GB card: 3.4 GiB of weights on the GPU, 16.4 GiB in system RAM, plus KV cache, vision tower, compute buffers and recurrent state">
+<rect width="1200" height="510" fill="#ffffff"/>
+<g font-family="Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif">
+<text x="40" y="46" font-size="25" font-weight="700" fill="#0f172a">Where a 20.2&#160;GiB model goes on an 8&#160;GB card</text>
+<text x="40" y="76" font-size="16" fill="#64748b">Buffer sizes as llama.cpp reported them at load. 41 of 42 layers were &#8220;offloaded to GPU&#8221; &#8212; only the tensors fit.</text>
+<text x="44" y="116" font-size="16" font-weight="600" fill="#0f172a">Model weights, 20.21 GiB at Q4_K_M</text>
+<text x="1156" y="116" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="13" fill="#94a3b8" text-anchor="end">load_tensors</text>
+<rect x="44.0" y="132" width="185.9" height="46" rx="9.0" fill="#2a78d6"/>
+<rect x="231.9" y="132" width="924.1" height="46" rx="9.0" fill="#94a3b8"/>
+<line x1="45.0" y1="184" x2="45.0" y2="192" stroke="#cbd5e1" stroke-width="1"/>
+<text x="55.0" y="204" font-size="13.5" font-weight="600" fill="#0f172a" text-anchor="start">On the RTX 4060</text>
+<text x="55.0" y="223" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="#94a3b8" text-anchor="start">3,409 MiB · 16.9%</text>
+<line x1="232.9" y1="184" x2="232.9" y2="192" stroke="#cbd5e1" stroke-width="1"/>
+<text x="242.9" y="204" font-size="13.5" font-weight="600" fill="#0f172a" text-anchor="start">In system RAM</text>
+<text x="242.9" y="223" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="#94a3b8" text-anchor="start">16,766 MiB · 83.1%</text>
+<text x="44" y="294" font-size="16" font-weight="600" fill="#0f172a">Working memory the run adds on top, n_ctx 65,536</text>
+<text x="1156" y="294" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="13" fill="#94a3b8" text-anchor="end">llama_kv_cache / memory_recurrent / sched_reserve / clip</text>
+<rect x="44.0" y="310" width="541.0" height="46" rx="9.0" fill="#2a78d6"/>
+<rect x="587.0" y="310" width="363.2" height="46" rx="9.0" fill="#4a3aa7"/>
+<rect x="952.2" y="310" width="175.2" height="46" rx="9.0" fill="#eb6834"/>
+<rect x="1129.4" y="310" width="26.6" height="46" rx="9.0" fill="#1baf7a"/>
+<line x1="45.0" y1="362" x2="45.0" y2="370" stroke="#cbd5e1" stroke-width="1"/>
+<text x="55.0" y="382" font-size="13.5" font-weight="600" fill="#0f172a" text-anchor="start">KV cache (10 attention layers)</text>
+<text x="55.0" y="401" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="#94a3b8" text-anchor="start">1,280 MiB · 48.8%</text>
+<line x1="588.0" y1="362" x2="588.0" y2="370" stroke="#cbd5e1" stroke-width="1"/>
+<text x="598.0" y="382" font-size="13.5" font-weight="600" fill="#0f172a" text-anchor="start">Vision tower</text>
+<text x="598.0" y="401" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="#94a3b8" text-anchor="start">861 MiB · 32.8%</text>
+<line x1="953.2" y1="362" x2="953.2" y2="370" stroke="#cbd5e1" stroke-width="1"/>
+<text x="963.2" y="382" font-size="13.5" font-weight="600" fill="#0f172a" text-anchor="start">Compute buffers</text>
+<text x="963.2" y="401" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="#94a3b8" text-anchor="start">418 MiB · 15.9%</text>
+<line x1="1130.4" y1="362" x2="1130.4" y2="414" stroke="#cbd5e1" stroke-width="1"/>
+<text x="1156.0" y="426" font-size="13.5" font-weight="600" fill="#0f172a" text-anchor="end">Recurrent state, all 40 layers</text>
+<text x="1156.0" y="445" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12.5" fill="#94a3b8" text-anchor="end">63 MiB · 2.4%</text>
+<text x="40" y="492" font-family="Consolas, SFMono-Regular, Menlo, monospace" font-size="12" fill="#94a3b8">Task Manager during the run: 6.9 / 8.0&#160;GB dedicated VRAM, 23.5 / 31.6&#160;GB system RAM, GPU 62% at 59&#176;C</text>
+</g></svg>
