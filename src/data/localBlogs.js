@@ -43,7 +43,7 @@ export const LOCAL_BLOG_POSTS = [
   },
   {
     id: 'qwen-vs-nemotron',
-    title: 'Qwen3.6:35B-A3B-MTP vs Nemotron-3-Nano:30B-A3B � A Detailed Local Inference Comparison',
+    title: 'Qwen3.6:35B-A3B-MTP vs Nemotron-3-Nano:30B-A3B — A Detailed Local Inference Comparison',
     subtitle: 'A field report from someone who runs these models to actually ship code, not just to run a benchmark suite.',
     date: '2026-07-20',
     tags: ['Local LLM', 'Ollama', 'Qwen', 'Nemotron', 'Inference'],
