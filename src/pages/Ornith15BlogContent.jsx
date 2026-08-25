@@ -1,4 +1,4 @@
-import { BLOG_IMAGES } from '../data/localBlogs'
+import { BLOG_IMAGES, BLOG_VIDEO } from '../data/localBlogs'
 
 function Figure({ src, alt, caption }) {
   return (
@@ -181,6 +181,23 @@ export default function Ornith15BlogContent() {
         actually did on my machine, audited the only way that matters: by opening the files it wrote and looking for
         the bug.
       </p>
+
+      <div className="not-prose rounded-xl overflow-hidden border border-slate-200 bg-black shadow-xl mb-12">
+        <h3 className="text-lg font-semibold text-slate-900 mb-4">Live: Running Ornith 1.5 Locally</h3>
+        <div className="relative rounded-xl overflow-hidden border border-slate-200 bg-black shadow-xl">
+          <video
+            controls
+            preload="metadata"
+            playsInline
+            className="w-full max-h-[70vh]"
+            style={{ aspectRatio: '16 / 9' }}
+            poster={`${BASE}blog/ornith_1_5/poster.svg`}
+          >
+            <source src={BLOG_VIDEO.ornith15_local_run} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
 
       <H2>Part 1 — What Ornith 1.5 is</H2>
 
