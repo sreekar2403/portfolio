@@ -91,4 +91,5 @@ export const BLOG_VIDEO = {
   'local_llm_showdown': `${BASE}blog/Nemotron_VS_Qwen/Local_LLM_Showdown.mp4`,
   bonsai_laptop_analysis: `${BASE}blog/bonsai_27b/Bonsai_27B_on_8GB_Laptop.mp4`,
   nemotron_benchmark: `${BASE}blog/Nemotron/nemotron_benchmark.mp4`,
+  ornith15_local_run: `${BASE}blog/ornith_1_5/how_context_window_kills_local_ai_speed.mp4`,
 }
