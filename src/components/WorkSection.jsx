@@ -15,7 +15,10 @@ export default function WorkSection() {
     // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     
-    if (prefersReducedMotion) return
+    if (prefersReducedMotion) {
+      gsap.set('.work-heading, .work-item', { opacity: 1, y: 0 })
+      return
+    }
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -34,28 +37,30 @@ export default function WorkSection() {
         }
       )
 
-      gsap.fromTo(
-        '.work-item',
-        { y: 60, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: 'power3.out',
-          stagger: 0.15,
-          scrollTrigger: {
-            trigger: '.work-grid',
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      )
+      gsap.utils.toArray('.work-item').forEach((el) => {
+        gsap.fromTo(
+          el,
+          { y: 60, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 90%',
+              toggleActions: 'play none none none',
+            },
+          }
+        )
+      })
+
     }, sectionRef)
 
     return () => ctx.revert()
   }, [])
 
-  const featuredProject = PROJECTS.find(p => p.featured)
+  const featuredProjects = PROJECTS.filter(p => p.featured)
   const otherProjects = PROJECTS.filter(p => !p.featured)
 
   return (
@@ -68,12 +73,12 @@ export default function WorkSection() {
           </h2>
         </div>
 
-        {/* Featured Project - Full Width */}
-        {featuredProject && (
-          <div className="work-item work-card work-card-featured group mb-8 md:mb-12" style={{ opacity: 0 }}>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+        {/* Featured Projects - Full Width */}
+        {featuredProjects.map((featuredProject) => (
+          <div key={featuredProject.id} className="work-item work-card work-card-featured group mb-8 md:mb-12" style={{ opacity: 0 }}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch">
               {/* Screenshot */}
-              <div className="relative overflow-hidden bg-slate-100 aspect-[16/10] lg:aspect-auto">
+              <div className="relative overflow-hidden bg-slate-100 aspect-[16/10] lg:aspect-auto lg:min-h-[440px]">
                 {featuredProject.screenshot ? (
                   <img
                     src={featuredProject.screenshot}
@@ -90,7 +95,7 @@ export default function WorkSection() {
               </div>
 
               {/* Content */}
-              <div className="p-8 md:p-12 relative z-10 flex flex-col justify-center">
+              <div className="p-8 md:p-10 lg:p-12 relative z-10 flex flex-col justify-center">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="inline-block w-2 h-2 rounded-full bg-emerald-500" />
                   <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">
@@ -102,15 +107,15 @@ export default function WorkSection() {
                   {featuredProject.title}
                 </h3>
 
-                <p className="text-lg text-slate-600 mb-4 font-medium">
+                <p className="text-base md:text-lg text-slate-600 mb-4 font-medium">
                   {featuredProject.subtitle}
                 </p>
 
-                <p className="text-slate-600 text-sm leading-relaxed mb-8">
+                <p className="text-slate-600 text-sm leading-relaxed mb-6">
                   {featuredProject.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2 mb-8">
+                <div className="flex flex-wrap gap-2 mb-8 mt-auto">
                   {featuredProject.tags.map((tag) => (
                     <span key={tag} className="skill-badge">
                       {tag}
@@ -129,21 +134,21 @@ export default function WorkSection() {
               </div>
             </div>
           </div>
-        )}
+        ))}
 
         {/* Other Projects Grid */}
-        <div className="work-grid grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <div className={`work-grid grid gap-6 md:gap-8 grid-cols-1 ${otherProjects.length > 1 ? 'md:grid-cols-2' : ''}`}>
           {otherProjects.map((project, idx) => (
             <div
               key={project.id}
-              className="work-item work-card group"
+              className="work-item work-card group flex flex-col"
               style={{ opacity: 0 }}
             >
-              <div className="work-card-number">{`0${idx + (featuredProject ? 2 : 1)}`}</div>
+              <div className="work-card-number">{String(featuredProjects.length + idx + 1).padStart(2, '0')}</div>
 
               {/* Screenshot Preview */}
               {project.screenshot && (
-                <div className="relative overflow-hidden bg-slate-100 aspect-[16/9] m-4 rounded-xl">
+                <div className="relative overflow-hidden bg-slate-100 aspect-[16/9] m-5 mb-0 rounded-xl">
                   <img
                     src={project.screenshot}
                     alt={`${project.title} screenshot`}
@@ -154,7 +159,7 @@ export default function WorkSection() {
                 </div>
               )}
 
-              <div className="p-8 md:p-10 relative z-10">
+              <div className="p-5 md:p-6 relative z-10 flex flex-col flex-1">
                 {/* Category */}
                 <div className="flex items-center gap-2 mb-4">
                   <span className="inline-block w-2 h-2 rounded-full bg-blue-500" />
@@ -176,7 +181,7 @@ export default function WorkSection() {
                 </div>
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-8">
+                <div className="flex flex-wrap gap-2 mb-6 mt-auto">
                   {project.tags.map((tag) => (
                     <span key={tag} className="skill-badge">
                       {tag}

@@ -1,5 +1,17 @@
 export const PROJECTS = [
   {
+    id: 'hive',
+    title: 'Hive',
+    subtitle: 'Decentralized Collaboration Network',
+    description: 'A decentralized collaboration platform that enables secure peer-to-peer communication and resource sharing across distributed nodes. Built for resilience, privacy, and scalable teamwork without centralized infrastructure.',
+    githubUrl: 'https://github.com/sreekar2403/hive',
+    tags: ['JavaScript', 'WebRTC', 'Node.js', 'WebSocket'],
+    complexity: 'Production',
+    completionDate: '2026-08-29',
+    screenshot: '/portfolio/projects/hive.png',
+    featured: true,
+  },
+  {
     id: 'multi-agentic-platform',
     title: 'FRIDAY',
     subtitle: 'Local Multi-Agentic Platform',
