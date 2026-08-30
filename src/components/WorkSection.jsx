@@ -65,6 +65,8 @@ export default function WorkSection() {
   const slides = PROJECTS.map((p) => ({
     image: p.screenshot,
     title: p.title,
+    description: p.description,
+    githubUrl: p.githubUrl,
     alt: `${p.title} screenshot`,
   }))
 
@@ -83,8 +85,8 @@ export default function WorkSection() {
         <div className="coverflow-wrapper" style={{ opacity: 0 }}>
           <ProjectCoverflow
             slides={slides}
-            cardWidth={380}
-            cardHeight={290}
+            cardWidth={480}
+            cardHeight={400}
             tilt={12}
             sideTilt={8}
             gap={8}
