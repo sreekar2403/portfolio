@@ -1,22 +1,26 @@
-import { useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { FaGithub } from 'react-icons/fa6'
 import { HiArrowUpRight } from 'react-icons/hi2'
 import { PROJECTS } from '../data/projects'
+import ProjectCoverflow from './ProjectCoverflow'
 import MagneticButton from './MagneticButton'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function WorkSection() {
   const sectionRef = useRef(null)
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  const handleActiveChange = useCallback((idx) => {
+    setActiveIndex(idx)
+  }, [])
 
   useEffect(() => {
-    // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    
     if (prefersReducedMotion) {
-      gsap.set('.work-heading, .work-item', { opacity: 1, y: 0 })
+      gsap.set('.work-heading, .coverflow-wrapper', { opacity: 1, y: 0 })
       return
     }
 
@@ -37,31 +41,34 @@ export default function WorkSection() {
         }
       )
 
-      gsap.utils.toArray('.work-item').forEach((el) => {
-        gsap.fromTo(
-          el,
-          { y: 60, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 90%',
-              toggleActions: 'play none none none',
-            },
-          }
-        )
-      })
-
+      gsap.fromTo(
+        '.coverflow-wrapper',
+        { y: 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+          delay: 0.2,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 70%',
+            toggleActions: 'play none none none',
+          },
+        }
+      )
     }, sectionRef)
 
     return () => ctx.revert()
   }, [])
 
-  const featuredProjects = PROJECTS.filter(p => p.featured)
-  const otherProjects = PROJECTS.filter(p => !p.featured)
+  const slides = PROJECTS.map((p) => ({
+    image: p.screenshot,
+    title: p.title,
+    alt: `${p.title} screenshot`,
+  }))
+
+  const activeProject = PROJECTS[activeIndex]
 
   return (
     <section ref={sectionRef} id="projects" className="py-24 md:py-32">
@@ -73,139 +80,59 @@ export default function WorkSection() {
           </h2>
         </div>
 
-        {/* Featured Projects - Full Width */}
-        {featuredProjects.map((featuredProject) => (
-          <div key={featuredProject.id} className="work-item work-card work-card-featured group mb-8 md:mb-12" style={{ opacity: 0 }}>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch">
-              {/* Screenshot */}
-              <div className="relative overflow-hidden bg-slate-100 aspect-[16/10] lg:aspect-auto lg:min-h-[440px]">
-                {featuredProject.screenshot ? (
-                  <img
-                    src={featuredProject.screenshot}
-                    alt={`${featuredProject.title} screenshot`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50">
-                    <span className="text-6xl font-display font-bold text-slate-200">{featuredProject.title[0]}</span>
-                  </div>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 pointer-events-none" />
+        <div className="coverflow-wrapper" style={{ opacity: 0 }}>
+          <ProjectCoverflow
+            slides={slides}
+            cardWidth={380}
+            cardHeight={290}
+            tilt={12}
+            sideTilt={8}
+            gap={8}
+            opacity={54}
+            showTitle={true}
+            onActiveChange={handleActiveChange}
+          />
+
+          {/* Active project info panel */}
+          {activeProject && (
+            <div className="coverflow-info mt-10 md:mt-14">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="inline-block w-2 h-2 rounded-full bg-emerald-500" />
+                <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">
+                  {activeProject.complexity}
+                </span>
               </div>
 
-              {/* Content */}
-              <div className="p-8 md:p-10 lg:p-12 relative z-10 flex flex-col justify-center">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="inline-block w-2 h-2 rounded-full bg-emerald-500" />
-                  <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">
-                    Featured • {featuredProject.complexity}
+              <h3 className="text-3xl md:text-4xl font-bold font-display tracking-tight text-slate-900 mb-2">
+                {activeProject.title}
+              </h3>
+
+              <p className="text-base md:text-lg text-slate-500 mb-4 font-medium">
+                {activeProject.subtitle}
+              </p>
+
+              <p className="text-slate-600 text-sm leading-relaxed mb-6 max-w-2xl">
+                {activeProject.description}
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-8">
+                {activeProject.tags.map((tag) => (
+                  <span key={tag} className="skill-badge">
+                    {tag}
                   </span>
-                </div>
-
-                <h3 className="text-3xl md:text-4xl font-bold font-display tracking-tight text-slate-900 mb-4 group-hover:text-blue-600 transition-colors">
-                  {featuredProject.title}
-                </h3>
-
-                <p className="text-base md:text-lg text-slate-600 mb-4 font-medium">
-                  {featuredProject.subtitle}
-                </p>
-
-                <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                  {featuredProject.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-8 mt-auto">
-                  {featuredProject.tags.map((tag) => (
-                    <span key={tag} className="skill-badge">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <MagneticButton
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-xl text-xs font-semibold uppercase tracking-wider hover:bg-slate-800 transition-all shadow-lg self-start"
-                  onClick={() => window.open(featuredProject.githubUrl, '_blank')}
-                >
-                  <FaGithub className="text-sm" />
-                  View Project
-                  <HiArrowUpRight className="text-xs" />
-                </MagneticButton>
-              </div>
-            </div>
-          </div>
-        ))}
-
-        {/* Other Projects Grid */}
-        <div className={`work-grid grid gap-6 md:gap-8 grid-cols-1 ${otherProjects.length > 1 ? 'md:grid-cols-2' : ''}`}>
-          {otherProjects.map((project, idx) => (
-            <div
-              key={project.id}
-              className="work-item work-card group flex flex-col"
-              style={{ opacity: 0 }}
-            >
-              <div className="work-card-number">{String(featuredProjects.length + idx + 1).padStart(2, '0')}</div>
-
-              {/* Screenshot Preview */}
-              {project.screenshot && (
-                <div className="relative overflow-hidden bg-slate-100 aspect-[16/9] m-5 mb-0 rounded-xl">
-                  <img
-                    src={project.screenshot}
-                    alt={`${project.title} screenshot`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/40 to-transparent pointer-events-none" />
-                </div>
-              )}
-
-              <div className="p-5 md:p-6 relative z-10 flex flex-col flex-1">
-                {/* Category */}
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="inline-block w-2 h-2 rounded-full bg-blue-500" />
-                  <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">
-                    {project.complexity}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h3 className="text-2xl md:text-3xl font-bold font-display tracking-tight text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
-                  {project.title}
-                </h3>
-
-                <p className="text-sm text-slate-500 mb-4">{project.subtitle}</p>
-
-                {/* Description */}
-                <div className="text-slate-600 text-sm leading-relaxed mb-6">
-                  {project.description}
-                </div>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-6 mt-auto">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="skill-badge">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Actions */}
-                <div className="flex gap-3">
-                  <MagneticButton
-                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 text-white rounded-lg text-xs font-semibold uppercase tracking-wider hover:bg-slate-800 transition-all"
-                    onClick={() => window.open(project.githubUrl, '_blank')}
-                  >
-                    <FaGithub className="text-sm" />
-                    GitHub
-                    <HiArrowUpRight className="text-xs" />
-                  </MagneticButton>
-                </div>
+                ))}
               </div>
 
-              {/* Hover glow */}
-              <div className="absolute top-0 right-0 w-40 h-40 bg-blue-500/5 blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <MagneticButton
+                className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-xl text-xs font-semibold uppercase tracking-wider hover:bg-slate-800 transition-all shadow-lg"
+                onClick={() => window.open(activeProject.githubUrl, '_blank')}
+              >
+                <FaGithub className="text-sm" />
+                View Project
+                <HiArrowUpRight className="text-xs" />
+              </MagneticButton>
             </div>
-          ))}
+          )}
         </div>
       </div>
     </section>
