@@ -2,6 +2,16 @@ const BASE = import.meta.env.BASE_URL || '/'
 
 export const LOCAL_BLOG_POSTS = [
   {
+    id: 'qwen38-27b-local',
+    title: 'Qwen3-27B on an 8 GB Laptop: Strong Scaffolder, 1.5 tok/s Local Tax',
+    subtitle: 'Four artifacts on-device with a 27B quantized model — proactive toolchain bootstrapping, production-grade scaffolds, and why agentic loops stall on 8 GB VRAM.',
+    date: '2026-09-05',
+    tags: ['Local Models', 'Qwen', 'Ollama', 'Agentic Coding', 'Evaluation'],
+    coverImage: `${BASE}blog/qwen38_27b/cover.png`,
+    readTime: '14 min',
+    category: 'Local model evaluation',
+  },
+  {
     id: 'ornith-1.5-local-audit',
     title: 'Ornith 1.5 on an 8 GB Laptop: Six Deliverables, Six Clean Syntax Checks, Zero Working Projects',
     subtitle: 'A 35B hybrid-MoE model, an RTX 4060, and an audit of the code it hands back instead of the reasoning trace that produced it.',
@@ -84,6 +94,10 @@ export const BLOG_IMAGES = {
   bonsai_lmstudio_config: `${BASE}blog/bonsai_27b/lmstudio_config.png`,
   bonsai_benchmark_infographic: `${BASE}blog/bonsai_27b/Local_LLM_Laptop_Performance_Report.png`,
   bonsai: `${BASE}blog/bonsai_27b/bonsai.png`,
+
+  qwen38_cover: `${BASE}blog/qwen38_27b/cover.png`,
+  qwen38_hardware: `${BASE}blog/qwen38_27b/hardware.png`,
+  qwen38_tasks: `${BASE}blog/qwen38_27b/tasks.png`,
 }
 
 export const BLOG_VIDEO = {
