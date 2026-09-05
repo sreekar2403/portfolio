@@ -7,6 +7,7 @@ import BonsaiBlogContent from './BonsaiBlogContent'
 import OrnithBlogContent from './OrnithBlogContent'
 import NemotronBlogContent from './NemotronBlogContent'
 import Ornith15BlogContent from './Ornith15BlogContent'
+import Qwen38BlogContent from './Qwen38BlogContent'
 
 /* ─── Lightbox ─── */
 function Lightbox({ images, currentIndex, onClose, onPrev, onNext }) {
@@ -628,6 +629,7 @@ export default function BlogPostPage() {
   const isBonsaiPost = resolvedSlug === 'bonsai-27b-laptop'
   const isNemotronPost = resolvedSlug === 'nemotron-3.5-lightning'
   const isOrnith15Post = resolvedSlug === 'ornith-1.5-local-audit'
+  const isQwen38Post = resolvedSlug === 'qwen38-27b-local'
 
   // All clickable images for lightbox
   const allImages = useMemo(() => [
@@ -746,7 +748,7 @@ export default function BlogPostPage() {
 
       {/* ─── Article Body ─── */}
       <main className="max-w-4xl mx-auto px-4 py-12 md:py-16">
-        {isOrnith15Post ? <Ornith15BlogContent /> : isOrnithPost ? <OrnithBlogContent /> : isBonsaiPost ? <BonsaiBlogContent /> : isNemotronPost ? <NemotronBlogContent /> : <QwenVsNemotronContent onImageClick={openLightbox} />}
+        {isOrnith15Post ? <Ornith15BlogContent /> : isOrnithPost ? <OrnithBlogContent /> : isBonsaiPost ? <BonsaiBlogContent /> : isNemotronPost ? <NemotronBlogContent /> : isQwen38Post ? <Qwen38BlogContent /> : <QwenVsNemotronContent onImageClick={openLightbox} />}
       </main>
 
       {/* ─── Footer ─── */}
