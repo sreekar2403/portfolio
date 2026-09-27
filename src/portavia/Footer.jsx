@@ -19,7 +19,7 @@ export default function Footer() {
               <p>
                 {PERSONAL.role}, {PERSONAL.company}
               </p>
-              <p style={{ color: 'rgba(255,255,255,0.55)' }}>Chennai, India</p>
+              <p style={{ color: 'rgba(255,255,255,0.55)' }}>Bengaluru, India</p>
             </div>
             <div>
               <p className="pv-footer-label">Social</p>
@@ -34,11 +34,10 @@ export default function Footer() {
           </div>
         </Reveal>
         <div
-          className="mt-12 pt-6 flex flex-col md:flex-row gap-2 justify-between text-sm"
+          className="mt-12 pt-6 text-sm"
           style={{ borderTop: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.55)' }}
         >
           <span>© {new Date().getFullYear()} PVSM Sreekar. All rights reserved.</span>
-          <span>Built with React</span>
         </div>
       </div>
     </footer>

@@ -5,7 +5,7 @@ export const PV_HERO = {
   name: 'PVSM Sreekar',
   line1: 'Machine',
   line2: 'Learning',
-  sub: "I'm a Chennai-based Lead ML Engineer at Freshworks. I build AI systems that survive production.",
+  sub: "I'm a Bengaluru-based Lead ML Engineer at Freshworks. I build AI systems that survive production.",
   photo: '/portfolio/figurine.png',
   photoAlt: 'Portrait of PVSM Sreekar',
 }
