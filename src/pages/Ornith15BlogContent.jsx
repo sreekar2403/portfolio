@@ -165,7 +165,7 @@ export default function Ornith15BlogContent() {
 
       <div className="not-prose grid grid-cols-2 md:grid-cols-4 gap-4 my-8">
         <Stat label="Model" value="35.5B / ~3B active" tone="blue" />
-        <Stat label="Generation" value="0.75 – 33 tok/s" tone="amber" />
+        <Stat label="Generation" value="0.75 - 33 tok/s" tone="amber" />
         <Stat label="Peak session" value="6.1M tokens up" tone="emerald" />
         <Stat label="Ran clean" value="0 of 6" tone="rose" />
       </div>
@@ -201,7 +201,7 @@ export default function Ornith15BlogContent() {
         </div>
       </div>
 
-      <H2>Part 1 — What Ornith 1.5 is</H2>
+      <H2>Part 1, What Ornith 1.5 is</H2>
 
       <H3>The release</H3>
       <p>
@@ -235,11 +235,11 @@ export default function Ornith15BlogContent() {
         rows={[
           ['<strong>Architecture</strong>', '<code>qwen35moe</code>', 'general.architecture'],
           ['<strong>Total parameters</strong>', '35.51 B', 'print_info: model params'],
-          ['<strong>Model type</strong>', '35B.A3B — ~3B active per token', 'print_info: model type'],
+          ['<strong>Model type</strong>', '35B.A3B, ~3B active per token', 'print_info: model type'],
           ['<strong>Decoder blocks</strong>', '40 in the graph (41 declared; block 40 loaded, then discarded)', 'block_count / n_layer_all'],
           ['<strong>Hidden size</strong>', '2,048', 'embedding_length'],
           ['<strong>Attention heads</strong>', '16 query / 2 KV (GQA 8), head dim 256', 'head_count / head_count_kv'],
-          ['<strong>Full-attention interval</strong>', '<code>4</code> — every 4th block only', 'full_attention_interval'],
+          ['<strong>Full-attention interval</strong>', '<code>4</code>, every 4th block only', 'full_attention_interval'],
           ['<strong>Linear-attention state</strong>', 'd_state 128, d_inner 4096, 16 groups, conv kernel 4, dt_rank 32', 'qwen35moe.ssm.*'],
           ['<strong>Experts</strong>', '256 total, 8 routed per token, 1 shared, expert FFN width 512', 'expert_count / expert_used_count'],
           ['<strong>Speculative decoding</strong>', '1 multi-token-prediction layer built in', 'nextn_predict_layers'],
@@ -247,7 +247,7 @@ export default function Ornith15BlogContent() {
           ['<strong>RoPE</strong>', 'freq_base 1e7, linear scaling, mrope sections [11, 11, 10, 0]', 'rope.*'],
           ['<strong>Vocabulary</strong>', '248,320 BPE tokens, 247,587 merges, FIM tokens present', 'tokenizer.ggml.*'],
           ['<strong>Multimodal</strong>', 'Qwen3-VL vision tower: 27 layers, n_embd 1152, 768px images, 861 MiB', 'clip_model_loader'],
-          ['<strong>Quantisation</strong>', 'Q4_K_M — 20.21 GiB, 4.89 bits/weight (310 f32 · 379 q4_K · 64 q6_K tensors)', 'file type / file size'],
+          ['<strong>Quantisation</strong>', 'Q4_K_M, 20.21 GiB, 4.89 bits/weight (310 f32 · 379 q4_K · 64 q6_K tensors)', 'file type / file size'],
           ['<strong>Calibration</strong>', 'imatrix, 510 entries over 3,636 chunks', 'quantize.imatrix.*'],
         ]}
       />
@@ -310,13 +310,13 @@ llama_memory_recurrent: size =   62.81 MiB (     1 cells,  40 layers,  1 seqs)`}
         headers={['Benchmark', 'Ornith-1.5-35B', 'Qwen3.6-35B', 'Muse-Glimmer-30B', 'Gemma-4-31B']}
         rows={[
           ['Terminal-Bench 2.1 (Terminus-2)', '<strong>67.8</strong>', '52.5', '51.7', '42.1'],
-          ['Terminal-Bench (Claude Code harness)', '<strong>68.5</strong>', '49.2', '—', '—'],
+          ['Terminal-Bench (Claude Code harness)', '<strong>68.5</strong>', '49.2', '-', '-'],
           ['SWE-bench Verified', '<strong>79</strong>', '73.4', '76', '52'],
           ['SWE-bench Pro', '<strong>59.6</strong>', '49.5', '51.2', '35.7'],
-          ['SWE-bench Multilingual', '<strong>71.4</strong>', '67.2', '—', '51.7'],
-          ['DeepSWE', '<strong>22</strong>', '0', '—', '—'],
+          ['SWE-bench Multilingual', '<strong>71.4</strong>', '67.2', '-', '51.7'],
+          ['DeepSWE', '<strong>22</strong>', '0', '-', '-'],
           ['MCP-Atlas', '70.2', '62.8', '<strong>75.5</strong>', '55'],
-          ['ClawEval', '<strong>72.5</strong>', '68.7', '—', '48.5'],
+          ['ClawEval', '<strong>72.5</strong>', '68.7', '-', '48.5'],
           ['GPQA Diamond', '<strong>89.2</strong>', '86', '83.5', '84.3'],
         ]}
       />
@@ -335,7 +335,7 @@ llama_memory_recurrent: size =   62.81 MiB (     1 cells,  40 layers,  1 seqs)`}
         under different conditions.
       </Verdict>
 
-      <H2>Part 2 — The rig</H2>
+      <H2>Part 2, The rig</H2>
 
       <Table
         headers={['Component', 'Value']}
@@ -345,7 +345,7 @@ llama_memory_recurrent: size =   62.81 MiB (     1 cells,  40 layers,  1 seqs)`}
           ['<strong>Model</strong>', '<code>ornith-1.5:35b</code>, Q4_K_M, 20.21 GiB'],
           ['<strong>Server</strong>', 'Ollama (llama.cpp), 10 CPU threads, flash-attn auto, n_batch 512'],
           ['<strong>Context</strong>', '65,536 in the Rust sessions · 32,768 in the LangChain sessions'],
-          ['<strong>Agent harness</strong>', '<em>pi</em> — <code>@earendil-works/pi-coding-agent</code> v0.84.2, 128k budget with auto-compaction'],
+          ['<strong>Agent harness</strong>', '<em>pi</em>, <code>@earendil-works/pi-coding-agent</code> v0.84.2, 128k budget with auto-compaction'],
           ['<strong>Peak load</strong>', '62% GPU utilisation, 6.9 / 8.0 GB VRAM, 59°C'],
         ]}
       />
@@ -434,7 +434,7 @@ srv prompt_save:  - saving prompt with length 13454, total state size = 325.844 
         became usable at all.
       </Verdict>
 
-      <H2>Part 3 — Six tasks, audited</H2>
+      <H2>Part 3, Six tasks, audited</H2>
 
       <p>
         The prompts came from a fixed bank I reuse across local-model tests: one small Rust function, two LangChain
@@ -446,7 +446,7 @@ srv prompt_save:  - saving prompt with length 13454, total state size = 325.844 
         narrates a correct plan and then writes a broken line has written a broken line.
       </p>
 
-      <H3>Task 1 — A Rust function with a doc comment</H3>
+      <H3>Task 1, A Rust function with a doc comment</H3>
       <blockquote className="not-prose my-6 border-l-4 border-slate-300 bg-slate-50 px-5 py-4 text-slate-600 italic leading-7 rounded-r-lg">
         Write a Rust function that takes a <code>Vec&lt;i64&gt;</code> and returns (min, max, sum) using iterators.
         Include a doc comment and example.
@@ -512,7 +512,7 @@ The code is functionally correct for empty/non-overflowing inputs.`}
         the post &mdash; a well-presented review that inspects the right line and reaches the wrong verdict.
       </Verdict>
 
-      <H3>Task 2 — A LangChain research agent (loose spec)</H3>
+      <H3>Task 2, A LangChain research agent (loose spec)</H3>
       <blockquote className="not-prose my-6 border-l-4 border-slate-300 bg-slate-50 px-5 py-4 text-slate-600 italic leading-7 rounded-r-lg">
         Create a folder and build a simple agentic project using LangChain which can analyse a user request, research,
         write a report and give it to the user.
@@ -549,7 +549,7 @@ The code is functionally correct for empty/non-overflowing inputs.`}
       </p>
 
       <Code title="The mock, and the line it was shaped around" file="agentic-reporter/pipeline.py + test harness">
-{`# pipeline.py — what the real code calls
+{`# pipeline.py, what the real code calls
 ai_response: AIMessage = self.agent.model.invoke(
     messages, tools=self.agent.tools
 )
@@ -598,7 +598,7 @@ if not articles:
         <code> articles</code> line.
       </p>
 
-      <H3>Task 2b — The same brief with a hard contract</H3>
+      <H3>Task 2b, The same brief with a hard contract</H3>
       <p>
         The strict version of the prompt mandates an exact tree (<code>main.py</code>, <code>agent.py</code>,
         <code> tools.py</code>, <code>requirements.txt</code>, <code>README.md</code>), a ReAct or structured-chat
@@ -637,7 +637,7 @@ def make_llm(...):
         so a ReAct agent built on this class has no way to call the three tools the prompt required.
       </p>
 
-      <H3>Task 3 — A drag-and-drop Kanban board</H3>
+      <H3>Task 3, A drag-and-drop Kanban board</H3>
       <p>
         Ten numbered requirements, vanilla JS only, native HTML5 drag-and-drop, localStorage persistence, touch support,
         ARIA. This is the run where the transcript is more interesting than the code.
@@ -659,7 +659,7 @@ def make_llm(...):
       <Code title="Unprompted self-correction" file="kanban-board-app/observation_logs/pi_log.txt">
 {`I've spent enough cycles chasing false negatives caused by my own buggy regex
 harness, not by the app. Let me be honest about the state and give you a clean,
-reliable test — which I keep dodging.
+reliable test, which I keep dodging.
 
 Honest assessment:
 - The original error was old Text (space) -> fixed to oldText. That fix was
@@ -683,7 +683,7 @@ I was about to rewrite the whole file to add missing pieces that didn't exist.`}
 {`// app.js line 91
 const $ = (sel, ctx) => (ctx || document).querySelector(sel);
 
-// app.js — the modal opener, wired to the "Add task" button
+// app.js, the modal opener, wired to the "Add task" button
 const open = () => {
   overlay.hidden = false;
   overlay.dataset.open = '1';
@@ -691,14 +691,14 @@ const open = () => {
   document.addEventListener('keydown', onModalKeydown);   // never reached
 };
 
-// app.js — the floating action button
+// app.js, the floating action button
 function initFab() {
   const fab = $('button[data-fab]');
   if (!fab) return;                          // always returns
   ...
 }
 
-// index.html — the actual markup
+// index.html, the actual markup
 <button id="fab" class="fab" aria-label="Add a new task">`}
       </Code>
 
@@ -722,7 +722,7 @@ function initFab() {
         are failing.&rdquo;</em> It cost <code>↑3.1M ↓51k</code> tokens and about thirty minutes.
       </p>
 
-      <H3>Task 4 — A 2D canvas racing game</H3>
+      <H3>Task 4, A 2D canvas racing game</H3>
       <p>
         This one I killed. After more than ninety minutes, one auto-compaction at a 62k context, roughly 4.7M tokens
         sent and a single UI page to show for it, I stopped the run.
@@ -732,7 +732,7 @@ function initFab() {
         canvas speedometer, ran <code>node --check</code> after every edit, and caught a genuine bug on its own:
       </p>
 
-      <Code title="Catching a real bug — and then keeping it" file="car-racing-game/observation_logs/pi_logs.txt">
+      <Code title="Catching a real bug, and then keeping it" file="car-racing-game/observation_logs/pi_logs.txt">
 {`Syntax passes. Now I realize a bug: drawSpeedometer clears the canvas, which
 would wipe the whole scene. Let me check the current state and fix the
 rendering flow.
@@ -749,12 +749,12 @@ This is the correct place (speedometer drawn on main canvas).`}
       </p>
 
       <Code title="Dead on arrival, line 845" file="car-racing-game/js/game.js + index.html">
-{`// game.js — initUI(), called from the window load handler
+{`// game.js, initUI(), called from the window load handler
 this.ui.hud = document.getElementById('hud');
 if (this.ui.hud) this.ui.hud.querySelector('.lives').textContent = '♥♥♥';
 //                                          ^ TypeError: reading 'textContent' of null
 
-// index.html — #hud contains ids, not classes
+// index.html, #hud contains ids, not classes
 <div id="hud" class="hid-when">
   <div id="highscore" class="hud-tl">HIGH 0</div>
   <div id="dist"      class="hud-ct">0 m</div>
@@ -782,7 +782,7 @@ if (this.ui.hud) this.ui.hud.querySelector('.lives').textContent = '♥♥♥';
           <code> if (PLAY) pause()</code>, so pressing space would start the game and pause it in the same event.</li>
       </ul>
 
-      <H3>Task 5 — An animated agency landing page</H3>
+      <H3>Task 5, An animated agency landing page</H3>
       <p>
         The largest prompt in the bank: ten numbered sections, a canvas particle constellation, a typewriter, a custom
         lerped cursor, 3D card tilt, a scroll-snap gallery, counters, a sticky-footer reveal, and an explicit ban on
@@ -823,7 +823,7 @@ if (this.ui.hud) this.ui.hud.querySelector('.lives').textContent = '♥♥♥';
   });
 
 The page loads scripts at the end of body, so by the time initLoader() runs,
-document.readyState is already 'interactive' — DOMContentLoaded never fires
+document.readyState is already 'interactive', DOMContentLoaded never fires
 again, so the listener is never attached, and the load listener (nested inside
 it) never gets added. Result: loader.done is never called, overlay never hides.`}
       </Code>
@@ -841,11 +841,11 @@ it) never gets added. Result: loader.done is never called, overlay never hides.`
   <span id="typewriter" aria-live="polite"></span><span class="typewriter-cursor">|</span>
 </p>
 
-/* css/main.css — both are styled */
+/* css/main.css, both are styled */
 #constellation { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
 .typewriter-cursor { color: var(--cyan); animation: blink 0.7s steps(1) infinite; }
 
-// js/*.js — the only mention of either, anywhere in 391 lines
+// js/*.js, the only mention of either, anywhere in 391 lines
 scrollAnimations.js:4:   focus detection, counter tweens. Canvas constellation sits`}
       </Code>
 
@@ -869,7 +869,7 @@ scrollAnimations.js:4:   focus detection, counter tweens. Canvas constellation s
       <Table
         headers={['Task', 'Files', 'Parses', 'Runs', 'Blocking defect']}
         rows={[
-          ['Rust min/max/sum', '3', '✅', '❌', 'Fold seeds swapped — returns <code>(i64::MIN, i64::MAX, sum)</code>; its own doctest fails'],
+          ['Rust min/max/sum', '3', '✅', '❌', 'Fold seeds swapped, returns <code>(i64::MIN, i64::MAX, sum)</code>; its own doctest fails'],
           ['LangChain reporter', '7', '✅', '❌', '<code>invoke(tools=…)</code> instead of <code>bind_tools</code>; Tavily key <code>articles</code> vs <code>results</code>'],
           ['LangChain ReAct agent', '5', '✅', '❌', 'URL resolves to <code>/api/api/chat</code>; Pydantic v2 attribute error; no <code>bind_tools</code>'],
           ['Kanban board', '3', '✅', '⚠️ partial', 'Selector missing its <code>#</code>; FAB queries a <code>data-fab</code> that does not exist; no touch handlers'],
@@ -993,7 +993,7 @@ scrollAnimations.js:4:   focus detection, counter tweens. Canvas constellation s
         <Ref
           index={1}
           href="https://huggingface.co/ornith-ai/Ornith-1.5-35B-A3B"
-          title="ornith-ai/Ornith-1.5-35B-A3B — model card"
+          title="ornith-ai/Ornith-1.5-35B-A3B, model card"
         >
           Architecture summary, license, and the benchmark table quoted above.
         </Ref>
@@ -1014,7 +1014,7 @@ scrollAnimations.js:4:   focus detection, counter tweens. Canvas constellation s
         <Ref
           index={4}
           href="https://benchlm.ai/models/ornith-1-5-35b-a3b"
-          title="BenchLM — Ornith-1.5-35B-A3B"
+          title="BenchLM, Ornith-1.5-35B-A3B"
         >
           Independent aggregate ranking, plus the BrowseComp and Humanity&rsquo;s Last Exam scores.
         </Ref>

@@ -22,7 +22,7 @@ export default function MinimalContact() {
       </section>
       <footer className="minimal-wrap minimal-footer">
         <span>© {new Date().getFullYear()} PVSM Sreekar</span>
-        <span>Built with React · Editorial minimal v1</span>
+        <span>Chennai, India</span>
       </footer>
     </>
   )

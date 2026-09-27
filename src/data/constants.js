@@ -26,14 +26,14 @@ export const NAV_LINKS = [
   { label: 'Contact', href: '#contact' },
 ]
 
-export const ABOUT_TEXT = `I am a Lead Machine Learning Engineer at Freshworks with 5+ years of experience building production-grade AI systems. My work spans end-to-end MLOps pipeline design, large language model fine-tuning, and architecting scalable inference platforms for SaaS products serving millions of users. I thrive at the intersection of cutting-edge research and real-world engineering — transforming complex ML problems into reliable, high-throughput production services.`
+export const ABOUT_TEXT = `I am a Lead Machine Learning Engineer at Freshworks with 5+ years of experience building production-grade AI systems. My work spans end-to-end MLOps pipeline design, large language model fine-tuning, and architecting scalable inference platforms for SaaS products serving millions of users. I thrive at the intersection of cutting-edge research and real-world engineering, transforming complex ML problems into reliable, high-throughput production services.`
 
 export const WHAT_I_DO = [
   {
     id: 1,
     title: 'AI & MLOps',
     subtitle: 'Production ML Systems at Scale',
-    description: 'Specializing in building end-to-end ML pipelines, LLM fine-tuning, and scalable inference architectures. From model training to deployment — designing systems that serve millions of predictions reliably.',
+    description: 'Specializing in building end-to-end ML pipelines, LLM fine-tuning, and scalable inference architectures. From model training to deployment, designing systems that serve millions of predictions reliably.',
     skills: ['PyTorch', 'Databricks', 'MLflow', 'LLMs', 'Optuna', 'FastAPI'],
     icon: 'brain',
     color: 'blue',
@@ -53,7 +53,7 @@ export const CAREER = [
   {
     role: 'Lead Machine Learning Engineer',
     company: 'Freshworks',
-    period: 'Jan 2025 — Present',
+    period: 'Jan 2025 - Present',
     current: true,
     description: [
       'Driving architectural migration to open-source LLMs, enhancing horizontal scalability by 20%.',
@@ -65,7 +65,7 @@ export const CAREER = [
   {
     role: 'Senior Data Scientist',
     company: 'Freshworks',
-    period: 'Oct 2022 — Jan 2025',
+    period: 'Oct 2022 - Jan 2025',
     current: false,
     description: [
       'Spearheaded end-to-end automation for Auto-triage and Smart Reply leveraging Databricks and Kafka.',
@@ -77,7 +77,7 @@ export const CAREER = [
   {
     role: 'Senior Machine Learning Engineer',
     company: 'Freshworks',
-    period: 'Oct 2020 — Oct 2022',
+    period: 'Oct 2020 - Oct 2022',
     current: false,
     description: [
       'Optimized sentiment engines and escalation predictors for multi-tenant SaaS environments.',
@@ -89,7 +89,7 @@ export const CAREER = [
   {
     role: 'Machine Learning Intern',
     company: 'Freshworks',
-    period: 'Jan 2020 — Oct 2020',
+    period: 'Jan 2020 - Oct 2020',
     current: false,
     description: [
       'Executed research in pronoun replacement to enhance structural NLP readability.',

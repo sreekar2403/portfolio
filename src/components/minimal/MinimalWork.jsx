@@ -58,7 +58,7 @@ export default function MinimalWork() {
 
       <div className="minimal-more">
         <p>
-          I also write field notes on running local models on a laptop GPU.
+          I also write about running local models on a laptop GPU.
         </p>
         <Link className="minimal-text-link" to="/blogs">
           All technical writing <span aria-hidden="true">↗</span>

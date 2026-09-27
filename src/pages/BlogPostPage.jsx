@@ -66,7 +66,7 @@ function Lightbox({ images, currentIndex, onClose, onPrev, onNext }) {
         />
         <p className="text-center text-white/70 text-sm mt-4 font-mono">
           {images[currentIndex].caption}
-          {images.length > 1 && ` — ${currentIndex + 1} / ${images.length}`}
+          {images.length > 1 && `, ${currentIndex + 1} / ${images.length}`}
         </p>
       </div>
     </div>
@@ -187,14 +187,14 @@ function QwenVsNemotronContent({ onImageClick }) {
           </video>
         </div>
         <p className="text-sm text-slate-400 mt-3 text-center font-mono">
-          Screen recording — Qwen3.6:35B-A3B-MTP vs Nemotron-3-Nano:30B-A3B running head-to-head
+          Screen recording, Qwen3.6:35B-A3B-MTP vs Nemotron-3-Nano:30B-A3B running head-to-head
         </p>
       </div>
 
       <h2>Why this comparison exists</h2>
       <p>
         For a while now my daily workflow has been: ideate on Claude directly, or on NVIDIA's free hosted endpoints,
-        then hand the grunt work — refactors, boilerplate, repetitive edits — off to local models through OpenCode + Ollama.
+        then hand the grunt work, refactors, boilerplate, repetitive edits, off to local models through OpenCode + Ollama.
         Not every model earns a permanent spot in that loop.
       </p>
       <p>A few things I've learned the hard way:</p>
@@ -204,15 +204,15 @@ function QwenVsNemotronContent({ onImageClick }) {
           loops in mind, and it falls apart the moment you drop it into a harness that expects structured multi-step tool use.
         </li>
         <li>
-          <strong>Dense 6–14B models</strong> are fine in isolation, but they choke the moment a task spans a large repo or
-          needs multiple cross-file edits in the same pass. On an 8GB VRAM laptop, that's roughly <strong>3–8 tokens/sec</strong> —
+          <strong>Dense 6-14B models</strong> are fine in isolation, but they choke the moment a task spans a large repo or
+          needs multiple cross-file edits in the same pass. On an 8GB VRAM laptop, that's roughly <strong>3-8 tokens/sec</strong>,
           slow enough that every agentic turn becomes a coffee break.
         </li>
         <li>
           <strong>A3B-style MoE (Mixture-of-Experts) models</strong> are where things changed for me. "A3B" means the model
           has a much larger total parameter count, but only routes each token through roughly <strong>3B active parameters</strong> at
           inference time. You get a bigger knowledge base <em>and</em> the speed of a small model, because you're not running
-          the whole network on every token — just the "experts" the router decides are relevant.
+          the whole network on every token, just the "experts" the router decides are relevant.
         </li>
       </ul>
       <p>
@@ -227,14 +227,14 @@ function QwenVsNemotronContent({ onImageClick }) {
 
       <h2>Methodology (keeping this honest)</h2>
       <p>
-        This is <strong>not</strong> a controlled benchmark suite — no MMLU, no HumanEval, no repeated trials for statistical
+        This is <strong>not</strong> a controlled benchmark suite, no MMLU, no HumanEval, no repeated trials for statistical
         significance. It's a same-machine, same-session field comparison, which is exactly the kind of decision most of us
         are actually making: <em>"which of these two models do I point OpenCode at today?"</em>
       </p>
       <p>Controls I did keep constant:</p>
       <ul>
         <li><strong>Context window:</strong> fixed to 32,768 tokens for both models.</li>
-        <li><strong>Quantization:</strong> both <code>q4_K_M</code> — same 4-bit weight quantization scheme.</li>
+        <li><strong>Quantization:</strong> both <code>q4_K_M</code>, same 4-bit weight quantization scheme.</li>
         <li><strong>Temperature:</strong> left at Ollama's default for both, no manual tuning.</li>
         <li><strong>Hardware:</strong> same machine, same session, back-to-back.</li>
       </ul>
@@ -243,7 +243,7 @@ function QwenVsNemotronContent({ onImageClick }) {
       <SectionDivider number={1} title="What ollama ps tells you before a single token is generated" />
 
       <p>
-        The first thing worth checking with any local model is how it's actually being placed on your hardware — how much
+        The first thing worth checking with any local model is how it's actually being placed on your hardware, how much
         lands on GPU vs. spills to CPU, because that ratio alone can explain half of any speed difference you see later.
       </p>
 
@@ -287,10 +287,10 @@ function QwenVsNemotronContent({ onImageClick }) {
       </ol>
 
       {/* ── Round 2 ── */}
-      <SectionDivider number={2} title="Prompt processing — how fast each model reads your context" />
+      <SectionDivider number={2} title="Prompt processing, how fast each model reads your context" />
 
       <p>
-        Before a model generates anything, it has to <em>ingest</em> your prompt — your system prompt, your repo context,
+        Before a model generates anything, it has to <em>ingest</em> your prompt, your system prompt, your repo context,
         your conversation history. On long-context agentic work, this step alone can eat tens of seconds per turn.
       </p>
 
@@ -306,9 +306,9 @@ function QwenVsNemotronContent({ onImageClick }) {
       <Screenshot
         image={{
           src: BLOG_IMAGES['nemotron_3_nano_t_s'],
-          alt: 'Nemotron prompt processing — second run'
+          alt: 'Nemotron prompt processing, second run'
         }}
-        caption="Nemotron-3-Nano (2nd run): 16,382 tokens at 257.70 tokens/sec — consistent"
+        caption="Nemotron-3-Nano (2nd run): 16,382 tokens at 257.70 tokens/sec, consistent"
         onImageClick={onImageClick}
       />
 
@@ -324,7 +324,7 @@ function QwenVsNemotronContent({ onImageClick }) {
       <Screenshot
         image={{
           src: BLOG_IMAGES['qwen_ollama_t_s'],
-          alt: 'Qwen prompt processing — later run'
+          alt: 'Qwen prompt processing, later run'
         }}
         caption="Qwen3.6 (later run): 16,382 tokens at 276.57 tokens/sec"
         onImageClick={onImageClick}
@@ -342,13 +342,13 @@ function QwenVsNemotronContent({ onImageClick }) {
           <tbody>
             <MetricRow
               label="Nemotron-3-Nano"
-              nemotron="16,382–16,386"
-              qwen="253.75–257.70 t/s"
+              nemotron="16,382-16,386"
+              qwen="253.75-257.70 t/s"
             />
             <MetricRow
               label="Qwen3.6-A3B-MTP"
               nemotron="16,382"
-              qwen="269.99–276.57 t/s"
+              qwen="269.99-276.57 t/s"
               highlight
             />
           </tbody>
@@ -356,20 +356,20 @@ function QwenVsNemotronContent({ onImageClick }) {
       </div>
 
       <p>
-        Qwen holds a consistent <strong>~7–9% edge</strong> in raw prompt ingestion speed across multiple runs. Not huge on its
+        Qwen holds a consistent <strong>~7-9% edge</strong> in raw prompt ingestion speed across multiple runs. Not huge on its
         own, but it's the first of several data points pointing the same direction.
       </p>
 
       {/* ── Round 3 ── */}
-      <SectionDivider number={3} title="Generation speed — where the real gap opens up" />
+      <SectionDivider number={3} title="Generation speed, where the real gap opens up" />
 
       <p>
         This is the number that actually matters for agentic work, because it's the part of the loop you're staring at the
-        screen waiting on: how fast does the model produce <em>new</em> tokens, and — critically — <strong>does that speed
+        screen waiting on: how fast does the model produce <em>new</em> tokens, and, critically, <strong>does that speed
         hold up as the response gets longer?</strong>
       </p>
 
-      <p><strong>Nemotron-3-Nano, task 4628 — the full generation curve:</strong></p>
+      <p><strong>Nemotron-3-Nano, task 4628, the full generation curve:</strong></p>
       <pre className="bg-slate-900 text-slate-100 rounded-xl p-5 text-sm overflow-x-auto my-6 font-mono leading-relaxed">
 {`n_decoded = 100,  tg = 25.26 t/s
 n_decoded = 168,  tg = 24.01 t/s
@@ -384,7 +384,7 @@ n_decoded = 873,  tg = 20.15 t/s, tg_3s = 18.72 t/s`}
         Total round trip: <strong>108.27 seconds for 17,266 tokens.</strong>
       </p>
 
-      <p><strong>Nemotron-3-Nano, task 1915 — a second, independent generation:</strong></p>
+      <p><strong>Nemotron-3-Nano, task 1915, a second, independent generation:</strong></p>
       <pre className="bg-slate-900 text-slate-100 rounded-xl p-5 text-sm overflow-x-auto my-6 font-mono leading-relaxed">
 {`n_decoded = 100,  tg = 25.95 t/s
 n_decoded = 298,  tg = 23.07 t/s
@@ -393,17 +393,17 @@ n_decoded = 838,  tg = 20.86 t/s
 n_decoded = 1016, tg = 20.63 t/s, tg_3s = 19.66 t/s`}
       </pre>
       <p>
-        Same decay shape: starts in the mid-20s t/s, and by roughly 900–1,000 generated tokens it's settled into the
-        <strong>18–20 t/s</strong> range. Two separate runs, same curve — this is a real, repeatable pattern.
+        Same decay shape: starts in the mid-20s t/s, and by roughly 900-1,000 generated tokens it's settled into the
+        <strong>18-20 t/s</strong> range. Two separate runs, same curve, this is a real, repeatable pattern.
       </p>
 
-      <p><strong>Qwen3.6, task 0 — first generation sample:</strong></p>
+      <p><strong>Qwen3.6, task 0, first generation sample:</strong></p>
       <Screenshot
         image={{
           src: BLOG_IMAGES['qwen_ollama_project'],
           alt: 'Qwen generation log'
         }}
-        caption="Qwen3.6 generation curve — starts at 41.16 t/s"
+        caption="Qwen3.6 generation curve, starts at 41.16 t/s"
         onImageClick={onImageClick}
       />
       <pre className="bg-slate-900 text-slate-100 rounded-xl p-5 text-sm overflow-x-auto my-6 font-mono leading-relaxed">
@@ -415,13 +415,13 @@ n_decoded = 1460, tg = 29.66 t/s
 n_decoded = 1768, tg = 28.75 t/s, tg_3s = 23.16 t/s`}
       </pre>
 
-      <p><strong>Qwen3.6 — the same session, generation continuing further:</strong></p>
+      <p><strong>Qwen3.6, the same session, generation continuing further:</strong></p>
       <Screenshot
         image={{
           src: BLOG_IMAGES['qwen_ollama_t_s'],
           alt: 'Qwen generation continuing'
         }}
-        caption="Qwen3.6 generation stabilizes at 23–29 t/s — holds steady past 2,300 tokens"
+        caption="Qwen3.6 generation stabilizes at 23-29 t/s, holds steady past 2,300 tokens"
         onImageClick={onImageClick}
       />
       <pre className="bg-slate-900 text-slate-100 rounded-xl p-5 text-sm overflow-x-auto my-6 font-mono leading-relaxed">
@@ -436,7 +436,7 @@ n_decoded = 2333, tg = 23.04 t/s, tg_3s = 23.12 t/s`}
         <p className="font-medium mb-1">Key insight</p>
         <p className="text-slate-600">
           <strong>Qwen's decode speed stabilizes and holds.</strong> After the initial burst above 40 t/s cools off,
-          it settles into a stable <strong>23–29 t/s band and stays there — even out past 2,300 generated tokens.</strong>
+          it settles into a stable <strong>23-29 t/s band and stays there, even out past 2,300 generated tokens.</strong>
           It doesn't keep decaying the way Nemotron's curve does; it finds a floor and holds it.
         </p>
       </div>
@@ -455,13 +455,13 @@ n_decoded = 2333, tg = 23.04 t/s, tg_3s = 23.12 t/s`}
             <MetricRow
               label="Nemotron-3-Nano"
               nemotron="~26 t/s"
-              qwen="~18–20 t/s"
+              qwen="~18-20 t/s"
               highlight={false}
             />
             <MetricRow
               label="Qwen3.6-A3B-MTP"
               nemotron="~41 t/s"
-              qwen="~23–29 t/s"
+              qwen="~23-29 t/s"
               highlight
             />
           </tbody>
@@ -471,17 +471,17 @@ n_decoded = 2333, tg = 23.04 t/s, tg_3s = 23.12 t/s`}
       <p>Two things worth being precise about:</p>
       <ol>
         <li>
-          Qwen's <em>steady-state</em> floor (~23–29 t/s) is meaningfully higher than Nemotron's (~18–20 t/s) — roughly
-          <strong>20–40% faster</strong> once both models have settled in.
+          Qwen's <em>steady-state</em> floor (~23-29 t/s) is meaningfully higher than Nemotron's (~18-20 t/s), roughly
+          <strong>20-40% faster</strong> once both models have settled in.
         </li>
         <li>
-          This comparison is happening at <em>different generation lengths</em> — Nemotron's logs cap out around 900–1,000
+          This comparison is happening at <em>different generation lengths</em>, Nemotron's logs cap out around 900-1,000
           decoded tokens, Qwen's run over twice as far. What <em>is</em> fair to say: Qwen was still comfortably above 23 t/s
           at a token count where Nemotron's own logs had already dropped below 20 t/s.
         </li>
       </ol>
       <p>
-        My working theory: Qwen3.6 here is the <strong>MTP variant — multi-token prediction</strong>, meaning
+        My working theory: Qwen3.6 here is the <strong>MTP variant, multi-token prediction</strong>, meaning
         the model drafts and verifies multiple tokens per forward pass instead of strictly one-at-a-time. That's
         a plausible mechanical explanation for why it holds a stable, higher decode rate over long generations.
       </p>
@@ -498,20 +498,20 @@ n_decoded = 2333, tg = 23.04 t/s, tg_3s = 23.12 t/s`}
         keep responses terse). Three moments from that session are worth walking through.
       </p>
       <p>
-        <strong>Moment 1 — a straightforward build request took 2 minutes 32 seconds of internal deliberation.</strong> Asked
+        <strong>Moment 1, a straightforward build request took 2 minutes 32 seconds of internal deliberation.</strong> Asked
         to build a simple CLI todo app, the model's own visible "thought" process worked through reasonable design decisions
         before writing any code. Thorough, if a little wordy, but defensible for a multi-part spec.
       </p>
       <p>
-        <strong>Moment 2 — an ambiguous one-line follow-up cost 32 seconds and never actually got resolved cleanly.</strong> I
-        sent: <em>"write it to current directory <code>C:\Users\...\linkedin posts</code>"</em> — genuinely ambiguous. The model's
+        <strong>Moment 2, an ambiguous one-line follow-up cost 32 seconds and never actually got resolved cleanly.</strong> I
+        sent: <em>"write it to current directory <code>C:\Users\...\linkedin posts</code>"</em>, genuinely ambiguous. The model's
         internal trace shows it correctly identifying the ambiguity, but spending real time weighing whether to guess at content
         before landing on asking for clarification.
       </p>
       <p>
-        <strong>Moment 3 — this is the one that surprised me.</strong> I replied with a single word: <strong>"ok."</strong>
+        <strong>Moment 3, this is the one that surprised me.</strong> I replied with a single word: <strong>"ok."</strong>
         Nemotron's internal thought process for that one word ran <strong>40.2 seconds</strong>, relitigating its own
-        output-formatting rule — debating whether a reply counts as "three short lines" or "two short lines."
+        output-formatting rule, debating whether a reply counts as "three short lines" or "two short lines."
       </p>
 
       <Screenshot
@@ -532,14 +532,14 @@ n_decoded = 2333, tg = 23.04 t/s, tg_3s = 23.12 t/s`}
           src: BLOG_IMAGES['qwen_ollama_ans'],
           alt: 'Qwen answering the DeepAgents question directly'
         }}
-        caption="Qwen3.6 — direct, structured, no visible relitigating"
+        caption="Qwen3.6, direct, structured, no visible relitigating"
         onImageClick={onImageClick}
       />
 
       <p>
         No visible relitigating. The model states plainly that there's no official LangChain package called <code>deepagents</code>,
-        then lays out the three real interpretations — the independent OSS package, LangGraph's actual agent-executor replacement,
-        or the general "deep agent" architecture pattern — and closes by offering to scaffold whichever one I actually meant.
+        then lays out the three real interpretations, the independent OSS package, LangGraph's actual agent-executor replacement,
+        or the general "deep agent" architecture pattern, and closes by offering to scaffold whichever one I actually meant.
         Direct, structured, and done in 3 minutes 40 seconds without a single detour.
       </p>
 
@@ -558,10 +558,10 @@ n_decoded = 2333, tg = 23.04 t/s, tg_3s = 23.12 t/s`}
           <tbody>
             <MetricRow label="Disk size" nemotron="25 GB" qwen="22 GB" />
             <MetricRow label="CPU/GPU split" nemotron="77% / 23%" qwen="79% / 21%" />
-            <MetricRow label="Prompt eval speed" nemotron="253.75–257.70 t/s" qwen="269.99–276.57 t/s" highlight />
+            <MetricRow label="Prompt eval speed" nemotron="253.75-257.70 t/s" qwen="269.99-276.57 t/s" highlight />
             <MetricRow label="Peak generation speed" nemotron="~26 t/s" qwen="~41 t/s" highlight />
-            <MetricRow label="Steady-state generation speed" nemotron="~18–20 t/s" qwen="~23–29 t/s" highlight />
-            <MetricRow label="Reasoning overhead on trivial turns" nemotron="High — visible self-looping" qwen="Low — direct answers" />
+            <MetricRow label="Steady-state generation speed" nemotron="~18-20 t/s" qwen="~23-29 t/s" highlight />
+            <MetricRow label="Reasoning overhead on trivial turns" nemotron="High, visible self-looping" qwen="Low, direct answers" />
           </tbody>
         </table>
       </div>
@@ -569,10 +569,10 @@ n_decoded = 2333, tg = 23.04 t/s, tg_3s = 23.12 t/s`}
       <h2>Caveats, because a single-machine test deserves them</h2>
       <ul>
         <li>
-          This is <strong>one machine, one session</strong> — not a reproducible benchmark suite.
+          This is <strong>one machine, one session</strong>, not a reproducible benchmark suite.
         </li>
         <li>
-          Both models are <strong>architecturally different</strong> from different labs — this isn't an isolated "does MTP help" ablation.
+          Both models are <strong>architecturally different</strong> from different labs, this isn't an isolated "does MTP help" ablation.
         </li>
         <li>
           Generation-length comparisons are reported at the lengths the logs actually reached, not extrapolated further.
@@ -589,11 +589,11 @@ n_decoded = 2333, tg = 23.04 t/s, tg_3s = 23.12 t/s`}
         to burn turns relitigating its own formatting decisions the way Nemotron-3-Nano did in this session.
       </p>
       <p>
-        Nemotron-3-Nano isn't a bad model — the actual answers it produced were correct — but if your workload involves long
+        Nemotron-3-Nano isn't a bad model, the actual answers it produced were correct, but if your workload involves long
         agentic sessions where a model needs to hold up over thousands of generated tokens per task, the gap here is hard to ignore.
       </p>
       <p>
-        If you're running local models for coding on similarly constrained hardware, I'd genuinely like to compare notes — drop
+        If you're running local models for coding on similarly constrained hardware, I'd genuinely like to compare notes, drop
         your own <code>ollama ps</code> numbers and generation curves in the comments.
       </p>
     </article>
@@ -619,14 +619,14 @@ export default function BlogPostPage() {
 
   // All clickable images for lightbox
   const allImages = useMemo(() => [
-    { src: BLOG_IMAGES['nemotron_3_nano'], alt: 'ollama ps — Nemotron-3-Nano', caption: 'Nemotron-3-Nano: ollama ps output' },
-    { src: BLOG_IMAGES['qwen_ollama_ps'], alt: 'ollama ps — Qwen3.6', caption: 'Qwen3.6: ollama ps output' },
+    { src: BLOG_IMAGES['nemotron_3_nano'], alt: 'ollama ps, Nemotron-3-Nano', caption: 'Nemotron-3-Nano: ollama ps output' },
+    { src: BLOG_IMAGES['qwen_ollama_ps'], alt: 'ollama ps, Qwen3.6', caption: 'Qwen3.6: ollama ps output' },
     { src: BLOG_IMAGES['nemotron_3_nano_project'], alt: 'Nemotron prompt processing', caption: 'Nemotron-3-Nano: prompt eval log' },
-    { src: BLOG_IMAGES['nemotron_3_nano_t_s'], alt: 'Nemotron prompt processing (2nd)', caption: 'Nemotron-3-Nano: prompt eval — second run' },
+    { src: BLOG_IMAGES['nemotron_3_nano_t_s'], alt: 'Nemotron prompt processing (2nd)', caption: 'Nemotron-3-Nano: prompt eval, second run' },
     { src: BLOG_IMAGES['qwen_ollama_project'], alt: 'Qwen prompt processing', caption: 'Qwen3.6: prompt eval log' },
-    { src: BLOG_IMAGES['qwen_ollama_t_s'], alt: 'Qwen prompt processing (2nd)', caption: 'Qwen3.6: prompt eval — later run' },
+    { src: BLOG_IMAGES['qwen_ollama_t_s'], alt: 'Qwen prompt processing (2nd)', caption: 'Qwen3.6: prompt eval, later run' },
     { src: BLOG_IMAGES['nemotron_3_nano_ans'], alt: 'Nemotron reasoning trace', caption: 'Nemotron-3-Nano: self-looping reasoning trace' },
-    { src: BLOG_IMAGES['qwen_ollama_ans'], alt: 'Qwen answer', caption: 'Qwen3.6: direct answer — no relitigating' },
+    { src: BLOG_IMAGES['qwen_ollama_ans'], alt: 'Qwen answer', caption: 'Qwen3.6: direct answer, no relitigating' },
     { src: BLOG_IMAGES['nemotron_35_lightning_metrics'], alt: 'Windows Task Manager showing the RTX 4060 Laptop GPU during the Nemotron-3.5-Lightning run', caption: 'Task Manager during the run: RTX 4060 Laptop GPU at 49% utilization, 6.7/8.0 GB dedicated VRAM, 50°C' },
   ], [])
 
@@ -684,11 +684,9 @@ export default function BlogPostPage() {
           <h1>{post.title}</h1>
           <p className="minimal-article-sub">{post.subtitle}</p>
           <div className="minimal-article-meta" style={{ marginTop: '1.25rem' }}>
-            <span>{post.date}</span>
-            <span>·</span>
-            <span>{post.readTime}</span>
-            <span>·</span>
-            <span>{post.category || 'Field notes'}</span>
+            <span>
+              {post.date} · {post.readTime}
+            </span>
           </div>
           {post.coverImage && (
             <figure className="minimal-cover">

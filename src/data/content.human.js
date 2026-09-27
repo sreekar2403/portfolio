@@ -7,8 +7,8 @@ export const HUMAN = {
   headline: 'ML systems, built for production.',
   intro: `I'm Sreekar. I lead machine learning at ${PERSONAL.company}.`,
   lede:
-    'I work on the parts of AI that have to run every day — triage, replies, evaluation, and inference. Less demo, more uptime.',
-  bio: 'For the past five years I have built ML systems for support software used by thousands of teams. I like small, reliable models, clear evals, and pipelines other engineers can debug at 2am.',
+    'I work on the parts of AI that have to run every day, triage, replies, evaluation, and inference.',
+  bio: 'For the past five years I have built ML systems for support software used by thousands of teams. I like small models, clear evals, and pipelines other engineers can debug at 2am.',
   location: 'Chennai, India',
   primaryCta: { label: 'View career profile', href: '#experience' },
   secondaryCta: { label: 'Explore my work', href: '#work' },
@@ -18,21 +18,21 @@ export const HUMAN = {
 
 export const EXPERIENCE = [
   {
-    period: '2025–present',
+    period: '2025-present',
     company: 'Freshworks',
     role: 'Lead ML Engineer',
     summary: 'Open-source LLMs, evals, and inference that stays up.',
     linkLabel: 'Current role',
   },
   {
-    period: '2022–2025',
+    period: '2022-2025',
     company: 'Freshworks',
     role: 'Senior Data Scientist',
     summary: 'Auto-triage and smart replies on Databricks + Kafka. About 50% more throughput.',
     linkLabel: 'Engineering work',
   },
   {
-    period: '2020–2022',
+    period: '2020-2022',
     company: 'Freshworks',
     role: 'ML Engineer',
     summary: 'Sentiment, escalation prediction, and Q&A backends for multi-tenant SaaS.',
@@ -62,7 +62,7 @@ export const SECONDARY_WORK = [
     link: { label: 'See Hive', href: hive?.githubUrl ?? PERSONAL.github },
   },
   {
-    meta: `Field notes · ${LOCAL_BLOG_POSTS[0]?.readTime ?? '14 min'}`,
+    meta: `${LOCAL_BLOG_POSTS[0]?.category ?? 'Local models'} · ${LOCAL_BLOG_POSTS[0]?.readTime ?? '14 min'}`,
     title: LOCAL_BLOG_POSTS[0]?.title ?? 'Running 27B models on a laptop',
     body: LOCAL_BLOG_POSTS[0]?.subtitle ?? 'What actually works on 8 GB VRAM.',
     link: { label: 'Read the notes', href: `/portfolio/blog/${LOCAL_BLOG_POSTS[0]?.id ?? ''}` },

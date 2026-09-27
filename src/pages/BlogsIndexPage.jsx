@@ -97,10 +97,9 @@ export default function BlogsIndexPage() {
           <Link to="/" className="minimal-back">
             ← Back to home
           </Link>
-          <p className="minimal-eyebrow">Writing</p>
-          <h1>Field notes on local AI.</h1>
+          <h1>Writing on local AI.</h1>
           <p className="minimal-blog-lede">
-            I run open models on a laptop GPU and write down what actually happens — speeds, failures,
+            I run open models on a laptop GPU and write down what actually happens, speeds, failures,
             and the prompts in between. No benchmarks for their own sake.
           </p>
         </div>
@@ -162,9 +161,7 @@ export default function BlogsIndexPage() {
 
         <footer className="minimal-footer">
           <span>© {new Date().getFullYear()} PVSM Sreekar</span>
-          <Link className="minimal-text-link" to="/">
-            Home
-          </Link>
+          <span>Chennai, India</span>
         </footer>
       </main>
     </div>

@@ -4,7 +4,7 @@ export const LOCAL_BLOG_POSTS = [
   {
     id: 'qwen38-27b-local',
     title: 'Qwen3-27B on an 8 GB Laptop: Strong Scaffolder, 1.5 tok/s Local Tax',
-    subtitle: 'Four artifacts on-device with a 27B quantized model — proactive toolchain bootstrapping, production-grade scaffolds, and why agentic loops stall on 8 GB VRAM.',
+    subtitle: 'Four artifacts on-device with a 27B quantized model, proactive toolchain bootstrapping, production-grade scaffolds, and why agentic loops stall on 8 GB VRAM.',
     date: '2026-09-05',
     tags: ['Local Models', 'Qwen', 'Ollama', 'Agentic Coding', 'Evaluation'],
     coverImage: `${BASE}blog/qwen38_27b/cover.png`,
@@ -24,7 +24,7 @@ export const LOCAL_BLOG_POSTS = [
   {
     id: 'nemotron-3.5-lightning',
     title: 'Nemotron-3.5-Lightning: Clean Rust, Honest Self-Verification, and One Sneaky Typo',
-    subtitle: 'Three tasks, one local model, one RTX 4060 laptop — a field report on running NVIDIA Nemotron-3.5-Lightning through Ollama.',
+    subtitle: 'Three tasks, one local model, one RTX 4060 laptop, a field report on running NVIDIA Nemotron-3.5-Lightning through Ollama.',
     date: '2026-08-16',
     tags: ['Local Models', 'NVIDIA', 'Nemotron', 'Ollama', 'Evaluation'],
     coverImage: `${BASE}blog/nemotron_35_lightning/blog-poster.png`,
@@ -34,7 +34,7 @@ export const LOCAL_BLOG_POSTS = [
   {
     id: 'bonsai-27b-laptop',
     title: 'Bonsai 27B on an 8GB Laptop: Fast, Architecturally Sound, and Loosely Bound to Its Own Instructions',
-    subtitle: 'Three tasks, one local model, one RTX 4060 laptop pushed to its thermal ceiling — a field report on running prism-ml/bonsai-27b through LM Studio.',
+    subtitle: 'Three tasks, one local model, one RTX 4060 laptop pushed to its thermal ceiling, a field report on running prism-ml/bonsai-27b through LM Studio.',
     date: '2026-07-27',
     tags: ['Local Models', 'PrismML', 'Qwen3.6', 'Compressed LLMs', 'GPU Inference'],
     coverImage: `${BASE}blog/bonsai_27b/bonsai.png`,
@@ -53,7 +53,7 @@ export const LOCAL_BLOG_POSTS = [
   },
   {
     id: 'qwen-vs-nemotron',
-    title: 'Qwen3.6:35B-A3B-MTP vs Nemotron-3-Nano:30B-A3B — A Detailed Local Inference Comparison',
+    title: 'Qwen3.6:35B-A3B-MTP vs Nemotron-3-Nano:30B-A3B, A Detailed Local Inference Comparison',
     subtitle: 'A field report from someone who runs these models to actually ship code, not just to run a benchmark suite.',
     date: '2026-07-20',
     tags: ['Local LLM', 'Ollama', 'Qwen', 'Nemotron', 'Inference'],
