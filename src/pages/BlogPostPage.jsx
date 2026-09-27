@@ -1,8 +1,9 @@
 import { useEffect, useState, useCallback, useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { HiArrowLeft, HiXMark, HiChevronLeft, HiChevronRight } from 'react-icons/hi2'
-import '../minimal.css'
-import MinimalNav from '../components/minimal/MinimalNav'
+import '../portavia/portavia.css'
+import Navbar from '../portavia/Navbar'
+import Footer from '../portavia/Footer'
 import { LOCAL_BLOG_POSTS, BLOG_IMAGES, BLOG_VIDEO } from '../data/localBlogs'
 import BonsaiBlogContent from './BonsaiBlogContent'
 import OrnithBlogContent from './OrnithBlogContent'
@@ -150,8 +151,8 @@ function MetricRow({ label, nemotron, qwen, highlight }) {
 /* ─── Section divider with label ─── */
 function SectionDivider({ number, title }) {
   return (
-    <div className="minimal-divider">
-      <span className="minimal-divider-num">{number}</span>
+    <div className="pv-divider">
+      <span className="pv-divider-num">{number}</span>
       <h2>{title}</h2>
     </div>
   )
@@ -160,15 +161,15 @@ function SectionDivider({ number, title }) {
 /* ─── Blog content ─── */
 function QwenVsNemotronContent({ onImageClick }) {
   return (
-    <article className="minimal-article">
+    <article className="pv-article">
       <p className="text-lg leading-relaxed mb-8 border-l-2 border-slate-900 pl-4 italic text-slate-600">
         A field report from someone who runs these models to actually ship code, not just to run a benchmark suite.
       </p>
 
       {/* ── Video showdown ── */}
       <div className="my-8 md:my-10">
-        <div className="minimal-divider">
-          <span className="minimal-divider-num">▷</span>
+        <div className="pv-divider">
+          <span className="pv-divider-num">▷</span>
           <h2 className="m-0">
             Watch the showdown
           </h2>
@@ -651,86 +652,77 @@ export default function BlogPostPage() {
 
   if (!post) {
     return (
-      <div className="minimal-page">
-        <MinimalNav />
-        <main className="minimal-wrap" style={{ padding: '4rem 0' }}>
-          <h1>Post not found</h1>
-          <p>
-            <Link to="/blogs" className="minimal-text-link">
-              ← Back to writing
+      <div className="pv-page">
+        <Navbar />
+        <main className="pv-wrap pt-32 pb-16">
+          <h1 className="pv-display pv-h2">Post not found</h1>
+          <p className="mt-4">
+            <Link to="/blogs" className="pv-btn">
+              Back to writing
             </Link>
           </p>
         </main>
+        <Footer />
       </div>
     )
   }
 
   return (
-    <div className="minimal-page">
-      <MinimalNav />
-      <main className="minimal-wrap">
+    <div className="pv-page">
+      <Navbar />
+      <main className="pv-wrap pt-32 md:pt-40">
         {/* ─── Article header ─── */}
-        <header className="minimal-article-head">
-          <Link to="/blogs" className="minimal-back">
-            ← All writing
+        <header style={{ maxWidth: '46rem' }}>
+          <Link to="/blogs" className="text-sm font-semibold" style={{ color: '#5E67E6' }}>
+            All writing
           </Link>
-          <div className="minimal-tags" style={{ marginBottom: '0.5rem' }}>
+          <div className="flex flex-wrap gap-2" style={{ margin: '1rem 0' }}>
             {post.tags?.slice(0, 4).map((tag) => (
-              <span key={tag} className="minimal-tag">
+              <span key={tag} className="pv-tag">
                 {tag}
               </span>
             ))}
           </div>
-          <h1>{post.title}</h1>
-          <p className="minimal-article-sub">{post.subtitle}</p>
-          <div className="minimal-article-meta" style={{ marginTop: '1.25rem' }}>
-            <span>
-              {post.date} · {post.readTime}
-            </span>
-          </div>
+          <h1 className="pv-display" style={{ fontSize: 'clamp(2rem, 5vw, 3.4rem)' }}>
+            {post.title}
+          </h1>
+          <p className="pv-lede mt-4" style={{ fontSize: '1.15rem' }}>
+            {post.subtitle}
+          </p>
+          <p className="text-xs font-mono uppercase tracking-widest mt-5" style={{ color: '#777' }}>
+            {post.date} · {post.readTime}
+          </p>
           {post.coverImage && (
-            <figure className="minimal-cover">
+            <figure className="pv-photo-card mt-8">
               <img src={post.coverImage} alt="" />
-              <figcaption>{post.category || 'Cover'}</figcaption>
             </figure>
           )}
         </header>
 
         {/* ─── Article Body ─── */}
+        <div className="pv-article" style={{ padding: '2.5rem 0 1rem' }}>
         {isOrnith15Post ? (
-          <div className="minimal-article">
-            <Ornith15BlogContent />
-          </div>
+          <Ornith15BlogContent />
         ) : isOrnithPost ? (
-          <div className="minimal-article">
-            <OrnithBlogContent />
-          </div>
+          <OrnithBlogContent />
         ) : isBonsaiPost ? (
-          <div className="minimal-article">
-            <BonsaiBlogContent />
-          </div>
+          <BonsaiBlogContent />
         ) : isNemotronPost ? (
-          <div className="minimal-article">
-            <NemotronBlogContent />
-          </div>
+          <NemotronBlogContent />
         ) : isQwen38Post ? (
-          <div className="minimal-article">
-            <Qwen38BlogContent />
-          </div>
+          <Qwen38BlogContent />
         ) : (
           <QwenVsNemotronContent onImageClick={openLightbox} />
         )}
+        </div>
 
-        {/* ─── Footer ─── */}
-        <footer className="minimal-footer">
-          <Link to="/blogs" className="minimal-text-link">
-            ← Back to all articles
+        <div className="flex flex-wrap gap-4" style={{ padding: '1rem 0 4rem' }}>
+          <Link to="/blogs" className="pv-btn">
+            Back to all articles
           </Link>
-          <Link to="/" className="minimal-text-link">
-            Home
-          </Link>
-        </footer>
+        </div>
       </main>
+      <Footer />
 
       {/* ─── Lightbox ─── */}
       {lightbox.open && (

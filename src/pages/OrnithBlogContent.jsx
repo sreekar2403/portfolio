@@ -81,8 +81,8 @@ export default function OrnithBlogContent() {
       </div>
 
       <div className="not-prose my-10">
-        <div className="minimal-divider">
-          <span className="minimal-divider-num">▷</span>
+        <div className="pv-divider">
+          <span className="pv-divider-num">▷</span>
           <h2 className="m-0">
             Watch the audit
           </h2>

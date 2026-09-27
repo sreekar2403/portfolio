@@ -26,10 +26,18 @@ export default {
           100: '#f1f5f9',
           200: '#e2e8f0',
         },
+        portavia: {
+          accent: '#5E67E6',
+          accentDark: '#4a52c9',
+          ink: '#303030',
+          card: '#F5F5F5',
+          green: '#0BDE66',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
         display: ['Space Grotesk', 'Inter', 'sans-serif'],
+        antonio: ['Antonio', 'Inter', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       animation: {

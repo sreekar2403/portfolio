@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import '../minimal.css'
-import MinimalNav from '../components/minimal/MinimalNav'
+import { ArrowUpRight } from 'lucide-react'
+import '../portavia/portavia.css'
+import Navbar from '../portavia/Navbar'
+import Footer from '../portavia/Footer'
+import { Reveal } from '../portavia/primitives'
 import { LOCAL_BLOG_POSTS } from '../data/localBlogs'
 
 const MEDIUM_FEED_URL = 'https://medium.com/feed/@padarthi24sreekar2'
@@ -90,80 +93,86 @@ export default function BlogsIndexPage() {
   })
 
   return (
-    <div className="minimal-page">
-      <MinimalNav />
-      <main className="minimal-wrap">
-        <div className="minimal-blog-head">
-          <Link to="/" className="minimal-back">
-            ← Back to home
-          </Link>
-          <h1>Writing on local AI.</h1>
-          <p className="minimal-blog-lede">
-            I run open models on a laptop GPU and write down what actually happens, speeds, failures,
-            and the prompts in between. No benchmarks for their own sake.
+    <div className="pv-page">
+      <Navbar />
+      <main className="pv-wrap pt-32 md:pt-40 pb-10">
+        <Reveal>
+          <p className="text-sm font-semibold" style={{ color: '#5E67E6' }}>
+            <Link to="/" style={{ color: 'inherit' }}>
+              Back to home
+            </Link>
           </p>
-        </div>
+          <h1 className="pv-display pv-h2 mt-3">Writing on local AI</h1>
+          <p className="pv-lede mt-4">
+            I run open models on a laptop GPU and write down what actually happens, speeds, failures, and the prompts
+            in between. No benchmarks for their own sake.
+          </p>
+        </Reveal>
 
         {loading ? (
-          <p className="minimal-blog-lede" style={{ padding: '3rem 0' }}>
-            Gathering articles…
+          <p className="pv-lede" style={{ padding: '3rem 0' }}>
+            Gathering articles...
           </p>
         ) : allPosts.length === 0 ? (
-          <p className="minimal-blog-lede" style={{ padding: '3rem 0' }}>
+          <p className="pv-lede" style={{ padding: '3rem 0' }}>
             No articles published yet.
           </p>
         ) : (
-          <ul className="minimal-post-list">
-            {allPosts.map((post) =>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-10">
+            {allPosts.map((post, i) =>
               post.type === 'local' ? (
-                <li key={post.id}>
-                  <Link to={`/blog/${post.id}`} className="minimal-post-row">
-                    <div className="minimal-post-top">
-                      <span className="minimal-post-date">
-                        {post.date} · {post.readTime}
-                      </span>
-                    </div>
-                    <h2 className="minimal-post-title">{post.title}</h2>
-                    <p className="minimal-post-sub">{post.subtitle}</p>
-                    {post.tags?.length > 0 && (
-                      <div className="minimal-tags">
-                        {post.tags.slice(0, 4).map((tag) => (
-                          <span key={tag} className="minimal-tag">
-                            {tag}
-                          </span>
-                        ))}
+                <Reveal key={post.id} delay={0.06 * (i % 2)} className="h-full">
+                  <Link to={`/blog/${post.id}`} className="pv-card block no-underline" style={{ color: 'inherit' }}>
+                    {post.coverImage ? (
+                      <div className="overflow-hidden" style={{ borderRadius: 16 }}>
+                        <img
+                          src={post.coverImage}
+                          alt=""
+                          loading="lazy"
+                          className="w-full aspect-[16/9] object-cover"
+                        />
                       </div>
-                    )}
+                    ) : null}
+                    <p className="text-xs font-mono uppercase tracking-widest mt-5" style={{ color: '#5E67E6' }}>
+                      {post.category} · {post.date} · {post.readTime}
+                    </p>
+                    <h2 className="pv-display mt-2" style={{ fontSize: '1.6rem' }}>
+                      {post.title}
+                    </h2>
+                    <p className="mt-3 text-[0.95rem] leading-relaxed" style={{ color: '#5b5b5b' }}>
+                      {post.subtitle}
+                    </p>
+                    <span className="inline-flex items-center gap-1 mt-4 text-sm font-semibold">
+                      Read article <ArrowUpRight size={15} />
+                    </span>
                   </Link>
-                </li>
+                </Reveal>
               ) : (
-                <li key={post.guid}>
-                  <a href={post.link} target="_blank" rel="noopener noreferrer" className="minimal-post-row">
-                    <div className="minimal-post-top">
-                      <span className="minimal-post-date">{formatDate(post.pubDate)} · Medium ↗</span>
-                    </div>
-                    <h2 className="minimal-post-title">{post.title}</h2>
-                    {post.categories?.length > 0 && (
-                      <div className="minimal-tags">
-                        {post.categories.slice(0, 4).map((cat) => (
-                          <span key={cat} className="minimal-tag">
-                            {cat}
-                          </span>
-                        ))}
-                      </div>
-                    )}
+                <Reveal key={post.guid} delay={0.06 * (i % 2)} className="h-full">
+                  <a
+                    href={post.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="pv-card block no-underline"
+                    style={{ color: 'inherit' }}
+                  >
+                    <p className="text-xs font-mono uppercase tracking-widest mt-1" style={{ color: '#5E67E6' }}>
+                      Medium · {formatDate(post.pubDate)}
+                    </p>
+                    <h2 className="pv-display mt-2" style={{ fontSize: '1.6rem' }}>
+                      {post.title}
+                    </h2>
+                    <span className="inline-flex items-center gap-1 mt-4 text-sm font-semibold">
+                      Read on Medium <ArrowUpRight size={15} />
+                    </span>
                   </a>
-                </li>
+                </Reveal>
               )
             )}
-          </ul>
+          </div>
         )}
-
-        <footer className="minimal-footer">
-          <span>© {new Date().getFullYear()} PVSM Sreekar</span>
-          <span>Chennai, India</span>
-        </footer>
       </main>
+      <Footer />
     </div>
   )
 }
