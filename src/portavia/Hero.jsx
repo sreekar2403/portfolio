@@ -13,7 +13,7 @@ export default function Hero() {
   })
 
   return (
-    <header className="pv-wrap pt-32 md:pt-40 pb-10 relative" id="top">
+    <header className="pv-wrap pt-36 md:pt-48 pb-10 relative" id="top">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         <div className="lg:col-span-4 order-2 lg:order-1">
           <Motion.div {...rise(0.35)} className="relative mx-auto" style={{ maxWidth: 340 }}>
@@ -34,7 +34,7 @@ export default function Hero() {
         </div>
 
         <div className="lg:col-span-8 order-1 lg:order-2">
-          <Motion.p {...rise(0)} className="text-lg mb-2">
+          <Motion.p {...rise(0)} className="text-lg mb-4 mt-2">
             {PV_HERO.greeting}, I&rsquo;m {PV_HERO.name}
           </Motion.p>
           <Motion.h1 {...rise(0.1)} className="pv-display pv-hero-title">
@@ -42,7 +42,7 @@ export default function Hero() {
             <span className="block">{PV_HERO.line2}</span>
           </Motion.h1>
           <div className="flex flex-wrap items-end gap-6">
-            <Motion.p {...rise(0.3)} className="pv-lede pb-3" style={{ maxWidth: '22rem' }}>
+            <Motion.p {...rise(0.3)} className="pv-lede mt-6 lg:mt-0 lg:pb-3" style={{ maxWidth: '22rem' }}>
               {PV_HERO.sub}
             </Motion.p>
           </div>
