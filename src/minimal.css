@@ -1,0 +1,364 @@
+/* Editorial minimal theme — inspired by soumendrak.com: flat, calm, content-first */
+.minimal-page {
+  --paper: #fafaf8;
+  --ink: #1a1a18;
+  --muted: #5f5d58;
+  --line: #e7e5e0;
+  --card: #ffffff;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.minimal-page h1,
+.minimal-page h2,
+.minimal-page h3 {
+  font-family: Georgia, 'Source Serif 4', 'Times New Roman', serif;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  font-weight: 500;
+}
+
+.minimal-wrap {
+  width: 1080px;
+  max-width: calc(100% - 48px);
+  margin: 0 auto;
+}
+
+.minimal-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(250, 250, 248, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.minimal-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.minimal-brand {
+  font-family: Georgia, serif;
+  font-size: 1.05rem;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.minimal-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.minimal-links a {
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.minimal-links a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.minimal-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3rem;
+  padding: 5rem 0 4rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.minimal-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.minimal-h1 {
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  margin: 0 0 1.5rem;
+}
+
+.minimal-acts {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.minimal-btn {
+  display: inline-block;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.9rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.minimal-btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.minimal-text-link {
+  font-size: 0.9rem;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.minimal-lede {
+  font-family: Georgia, serif;
+  font-size: 1.35rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.minimal-bio {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.minimal-person {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+}
+
+.minimal-person img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.minimal-person small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.minimal-section {
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.minimal-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.minimal-section-head h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  margin: 0;
+}
+
+.minimal-section-head p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.minimal-role-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.minimal-role {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.minimal-role:hover {
+  border-color: var(--ink);
+}
+
+.minimal-role-period {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.minimal-role h3 {
+  font-size: 1.4rem;
+  margin: 0.6rem 0;
+}
+
+.minimal-role p {
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.minimal-role-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.88rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.minimal-feature {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 2.5rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.minimal-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.minimal-feature h3 {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  margin: 0.75rem 0 1rem;
+}
+
+.minimal-feature p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.minimal-project-image {
+  margin: 0;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.minimal-project-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.minimal-project-image figcaption {
+  padding: 0.75rem 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+}
+
+.minimal-writing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.minimal-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.minimal-card:hover {
+  border-color: var(--ink);
+}
+
+.minimal-card h3 {
+  font-size: 1.5rem;
+  margin: 0.6rem 0;
+}
+
+.minimal-card p {
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.minimal-more {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1.5rem;
+  color: var(--muted);
+}
+
+.minimal-contact {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  padding: 4rem 0 2rem;
+}
+
+.minimal-contact h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin: 0 0 1rem;
+}
+
+.minimal-contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.minimal-contact-links a {
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.minimal-footer {
+  padding: 1.5rem 0 3rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .minimal-hero,
+  .minimal-feature,
+  .minimal-contact {
+    grid-template-columns: 1fr;
+  }
+  .minimal-role-grid,
+  .minimal-writing-grid {
+    grid-template-columns: 1fr;
+  }
+  .minimal-links {
+    display: none;
+  }
+}
