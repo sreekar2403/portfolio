@@ -12,14 +12,14 @@ const TAGS = {
 
 function Card({ project, index }) {
   return (
-    <div className="pv-stack-card" style={{ top: 84 + index * 24, background: '#1e1e1e' }}>
+    <div className="st-stack-card" style={{ top: 84 + index * 24, background: '#1e1e1e' }}>
       {project.screenshot ? (
-        <img className="pv-stack-bg" src={project.screenshot} alt={`${project.title} cover`} loading="lazy" />
+        <img className="st-stack-bg" src={project.screenshot} alt={`${project.title} cover`} loading="lazy" />
       ) : null}
-      <div className="pv-stack-scrim" aria-hidden="true" />
+      <div className="st-stack-scrim" aria-hidden="true" />
       <div className="relative p-8 md:p-14 w-full" style={{ maxWidth: 800 }}>
-        <span className="pv-tag">{TAGS[project.id] || 'Project'}</span>
-        <h3 className="pv-display mt-5" style={{ fontSize: 'clamp(2.2rem, 6vw, 4.5rem)', color: '#fff' }}>
+        <span className="st-tag">{TAGS[project.id] || 'Project'}</span>
+        <h3 className="st-display mt-5" style={{ fontSize: 'clamp(2.2rem, 6vw, 4.5rem)', color: '#fff' }}>
           {project.title}
         </h3>
         <p className="mt-4 text-white/80 leading-relaxed" style={{ maxWidth: '36rem' }}>
@@ -39,7 +39,7 @@ function Card({ project, index }) {
           href={project.githubUrl}
           target="_blank"
           rel="noreferrer"
-          className="pv-btn mt-7"
+          className="st-btn mt-7"
         >
           View on GitHub <ArrowUpRight size={16} />
         </a>
@@ -50,7 +50,7 @@ function Card({ project, index }) {
 
 export default function Projects() {
   return (
-    <section className="pv-wrap py-20 md:py-28" id="projects">
+    <section className="st-wrap py-20 md:py-28" id="projects">
       <SectionHead
         title="Featured Projects"
         lede="A few things I built and maintain. Each one runs for real users or on real hardware, not just in a demo."
@@ -69,7 +69,7 @@ export default function Projects() {
         ))}
       </div>
       <Reveal delay={0.05} className="mt-10 text-center">
-        <a href={PERSONAL.github} target="_blank" rel="noreferrer" className="pv-btn">
+        <a href={PERSONAL.github} target="_blank" rel="noreferrer" className="st-btn">
           Browse All Projects <ArrowUpRight size={16} />
         </a>
       </Reveal>

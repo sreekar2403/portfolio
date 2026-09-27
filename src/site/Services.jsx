@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import { AnimatePresence, motion as Motion, useReducedMotion } from 'framer-motion'
 import { Plus } from 'lucide-react'
-import { PV_SERVICES } from './data'
+import { ST_SERVICES } from './data'
 import { Reveal, SectionHead } from './primitives'
 
 function Item({ index, title, points, open, onToggle }) {
   const reduce = useReducedMotion()
   return (
-    <div className={`pv-acc-item${open ? ' open' : ''}`} onClick={onToggle}>
-      <div className="pv-acc-head">
-        <span className="pv-acc-num">{String(index + 1).padStart(2, '0')}</span>
-        <span className="pv-acc-title">{title}</span>
-        <span className="pv-acc-icon" aria-hidden="true">
+    <div className={`st-acc-item${open ? ' open' : ''}`} onClick={onToggle}>
+      <div className="st-acc-head">
+        <span className="st-acc-num">{String(index + 1).padStart(2, '0')}</span>
+        <span className="st-acc-title">{title}</span>
+        <span className="st-acc-icon" aria-hidden="true">
           <Plus size={20} />
         </span>
       </div>
@@ -45,14 +45,14 @@ function Item({ index, title, points, open, onToggle }) {
 export default function Services() {
   const [open, setOpen] = useState(0)
   return (
-    <section className="pv-wrap py-20 md:py-28" id="services">
+    <section className="st-wrap py-20 md:py-28" id="services">
       <SectionHead
         title="What I can do for you"
         lede="Production ML is mostly unglamorous work done well: good data, honest evals, and systems that stay up. Here is where I help."
       />
       <Reveal delay={0.1} className="mt-10">
         <div>
-          {PV_SERVICES.map((s, i) => (
+          {ST_SERVICES.map((s, i) => (
             <Item
               key={s.title}
               index={i}

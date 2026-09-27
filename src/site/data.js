@@ -1,6 +1,6 @@
 import { PERSONAL } from '../data/constants'
 
-export const PV_HERO = {
+export const ST_HERO = {
   greeting: 'Hi',
   name: 'PVSM Sreekar',
   line1: 'Machine',
@@ -10,7 +10,7 @@ export const PV_HERO = {
   photoAlt: 'Portrait of PVSM Sreekar',
 }
 
-export const PV_SERVICES = [
+export const ST_SERVICES = [
   {
     title: 'MLOps and LLM Systems',
     points: [
@@ -49,13 +49,13 @@ export const PV_SERVICES = [
   },
 ]
 
-export const PV_STATS = [
+export const ST_STATS = [
   { value: 5, suffix: '', label: 'Years of Experience' },
   { value: 10, suffix: '', label: 'Projects Shipped' },
   { value: 1, suffix: 'M+', label: 'Users Served' },
 ]
 
-export const PV_FAQS = [
+export const ST_FAQS = [
   {
     q: 'What services do you offer?',
     a: 'End-to-end ML systems: data pipelines, model training and fine-tuning, evaluation, inference infrastructure, and MLOps automation. Mostly for support software and SaaS products.',
@@ -82,7 +82,7 @@ export const PV_FAQS = [
   },
 ]
 
-export const PV_TESTIMONIALS = [
+export const ST_TESTIMONIALS = [
   {
     quote:
       "Sreekar's deep understanding of ML systems architecture transformed our approach to production inference. His work on our LLM pipeline reduced latency by 40 percent while maintaining accuracy.",
@@ -106,14 +106,14 @@ export const PV_TESTIMONIALS = [
   },
 ]
 
-export const PV_SOCIALS = [
+export const ST_SOCIALS = [
   { label: 'GitHub', href: PERSONAL.github },
   { label: 'LinkedIn', href: PERSONAL.linkedin },
   { label: 'Medium', href: PERSONAL.medium },
   { label: 'Email', href: `mailto:${PERSONAL.email}` },
 ]
 
-export const PV_NAV = [
+export const ST_NAV = [
   { index: '01', label: 'About', href: '#about' },
   { index: '02', label: 'Services', href: '#services' },
   { index: '03', label: 'Projects', href: '#projects' },

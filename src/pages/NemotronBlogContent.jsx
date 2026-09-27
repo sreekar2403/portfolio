@@ -98,8 +98,8 @@ export default function NemotronBlogContent() {
       </div>
 
       <div className="not-prose my-8">
-        <div className="pv-divider">
-          <span className="pv-divider-num">▷</span>
+        <div className="st-divider">
+          <span className="st-divider-num">▷</span>
           <h2 className="m-0">
             Watch the benchmark run
           </h2>

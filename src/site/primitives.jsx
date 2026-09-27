@@ -48,8 +48,8 @@ export function CountUp({ value, suffix = '' }) {
 export function SectionHead({ title, lede }) {
   return (
     <Reveal>
-      <h2 className="pv-display pv-h2">{title}</h2>
-      {lede ? <p className="pv-lede mt-4">{lede}</p> : null}
+      <h2 className="st-display st-h2">{title}</h2>
+      {lede ? <p className="st-lede mt-4">{lede}</p> : null}
     </Reveal>
   )
 }

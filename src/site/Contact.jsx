@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Send } from 'lucide-react'
 import { PERSONAL } from '../data/constants'
-import { PV_HERO } from './data'
+import { ST_HERO } from './data'
 import { Reveal } from './primitives'
 
 export default function Contact() {
@@ -16,32 +16,32 @@ export default function Contact() {
   }
 
   return (
-    <section className="pv-wrap py-20 md:py-28" id="contact">
+    <section className="st-wrap py-20 md:py-28" id="contact">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         <Reveal>
-          <div className="pv-photo-card aspect-[4/5]" style={{ maxWidth: 400 }}>
-            <img src={PV_HERO.photo} alt={PV_HERO.photoAlt} loading="lazy" />
+          <div className="st-photo-card aspect-[4/5]" style={{ maxWidth: 400 }}>
+            <img src={ST_HERO.photo} alt={ST_HERO.photoAlt} loading="lazy" />
           </div>
           <p className="mt-4 text-lg">Hi, I&rsquo;m Sreekar. Tell me what you&rsquo;re building.</p>
         </Reveal>
         <div>
           <Reveal>
-            <h2 className="pv-display pv-h2">Let&rsquo;s work together</h2>
-            <p className="pv-lede mt-4">
+            <h2 className="st-display st-h2">Let&rsquo;s work together</h2>
+            <p className="st-lede mt-4">
               ML roles, local models, evals, or production reliability. Email is best, and I reply within a couple of
               days.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
             <form onSubmit={submit} className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div className="pv-field">
-                <label htmlFor="pv-name">Name</label>
-                <input id="pv-name" value={form.name} onChange={set('name')} placeholder="John Smith" required />
+              <div className="st-field">
+                <label htmlFor="st-name">Name</label>
+                <input id="st-name" value={form.name} onChange={set('name')} placeholder="John Smith" required />
               </div>
-              <div className="pv-field">
-                <label htmlFor="pv-email">Email</label>
+              <div className="st-field">
+                <label htmlFor="st-email">Email</label>
                 <input
-                  id="pv-email"
+                  id="st-email"
                   type="email"
                   value={form.email}
                   onChange={set('email')}
@@ -49,19 +49,19 @@ export default function Contact() {
                   required
                 />
               </div>
-              <div className="pv-field sm:col-span-2">
-                <label htmlFor="pv-service">Service Needed</label>
-                <select id="pv-service" value={form.service} onChange={set('service')}>
+              <div className="st-field sm:col-span-2">
+                <label htmlFor="st-service">Service Needed</label>
+                <select id="st-service" value={form.service} onChange={set('service')}>
                   <option>MLOps Pipeline</option>
                   <option>LLM Fine-tuning</option>
                   <option>ML Consultation</option>
                   <option>Just saying hello</option>
                 </select>
               </div>
-              <div className="pv-field sm:col-span-2">
-                <label htmlFor="pv-message">What can I help with</label>
+              <div className="st-field sm:col-span-2">
+                <label htmlFor="st-message">What can I help with</label>
                 <textarea
-                  id="pv-message"
+                  id="st-message"
                   rows={4}
                   value={form.message}
                   onChange={set('message')}
@@ -70,7 +70,7 @@ export default function Contact() {
                 />
               </div>
               <div className="sm:col-span-2">
-                <button type="submit" className="pv-btn">
+                <button type="submit" className="st-btn">
                   Submit <Send size={16} />
                 </button>
               </div>

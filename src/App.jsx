@@ -1,7 +1,6 @@
 import { useLayoutEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
-import './App.css'
-import PortaviaHome from './portavia/PortaviaHome'
+import SiteHome from './site/SiteHome'
 import BlogPostPage from './pages/BlogPostPage'
 import BlogsIndexPage from './pages/BlogsIndexPage'
 
@@ -24,7 +23,7 @@ export default function App() {
     <BrowserRouter basename="/portfolio">
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<PortaviaHome />} />
+        <Route path="/" element={<SiteHome />} />
         <Route path="/blogs" element={<BlogsIndexPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
       </Routes>

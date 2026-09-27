@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
-import '../portavia/portavia.css'
-import Navbar from '../portavia/Navbar'
-import Footer from '../portavia/Footer'
-import { Reveal } from '../portavia/primitives'
+import '../site/site.css'
+import Navbar from '../site/Navbar'
+import Footer from '../site/Footer'
+import { Reveal } from '../site/primitives'
 import { LOCAL_BLOG_POSTS } from '../data/localBlogs'
 
 const MEDIUM_FEED_URL = 'https://medium.com/feed/@padarthi24sreekar2'
@@ -93,28 +93,28 @@ export default function BlogsIndexPage() {
   })
 
   return (
-    <div className="pv-page">
+    <div className="st-page">
       <Navbar />
-      <main className="pv-wrap pt-32 md:pt-40 pb-10">
+      <main className="st-wrap pt-32 md:pt-40 pb-10">
         <Reveal>
           <p className="text-sm font-semibold" style={{ color: '#5E67E6' }}>
             <Link to="/" style={{ color: 'inherit' }}>
               Back to home
             </Link>
           </p>
-          <h1 className="pv-display pv-h2 mt-3">Writing on local AI</h1>
-          <p className="pv-lede mt-4">
+          <h1 className="st-display st-h2 mt-3">Writing on local AI</h1>
+          <p className="st-lede mt-4">
             I run open models on a laptop GPU and write down what actually happens, speeds, failures, and the prompts
             in between. No benchmarks for their own sake.
           </p>
         </Reveal>
 
         {loading ? (
-          <p className="pv-lede" style={{ padding: '3rem 0' }}>
+          <p className="st-lede" style={{ padding: '3rem 0' }}>
             Gathering articles...
           </p>
         ) : allPosts.length === 0 ? (
-          <p className="pv-lede" style={{ padding: '3rem 0' }}>
+          <p className="st-lede" style={{ padding: '3rem 0' }}>
             No articles published yet.
           </p>
         ) : (
@@ -122,7 +122,7 @@ export default function BlogsIndexPage() {
             {allPosts.map((post, i) =>
               post.type === 'local' ? (
                 <Reveal key={post.id} delay={0.06 * (i % 2)} className="h-full">
-                  <Link to={`/blog/${post.id}`} className="pv-card block no-underline" style={{ color: 'inherit' }}>
+                  <Link to={`/blog/${post.id}`} className="st-card block no-underline" style={{ color: 'inherit' }}>
                     {post.coverImage ? (
                       <div className="overflow-hidden" style={{ borderRadius: 16 }}>
                         <img
@@ -136,7 +136,7 @@ export default function BlogsIndexPage() {
                     <p className="text-xs font-mono uppercase tracking-widest mt-5" style={{ color: '#5E67E6' }}>
                       {post.category} · {post.date} · {post.readTime}
                     </p>
-                    <h2 className="pv-display mt-2" style={{ fontSize: '1.6rem' }}>
+                    <h2 className="st-display mt-2" style={{ fontSize: '1.6rem' }}>
                       {post.title}
                     </h2>
                     <p className="mt-3 text-[0.95rem] leading-relaxed" style={{ color: '#5b5b5b' }}>
@@ -153,13 +153,13 @@ export default function BlogsIndexPage() {
                     href={post.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="pv-card block no-underline"
+                    className="st-card block no-underline"
                     style={{ color: 'inherit' }}
                   >
                     <p className="text-xs font-mono uppercase tracking-widest mt-1" style={{ color: '#5E67E6' }}>
                       Medium · {formatDate(post.pubDate)}
                     </p>
-                    <h2 className="pv-display mt-2" style={{ fontSize: '1.6rem' }}>
+                    <h2 className="st-display mt-2" style={{ fontSize: '1.6rem' }}>
                       {post.title}
                     </h2>
                     <span className="inline-flex items-center gap-1 mt-4 text-sm font-semibold">

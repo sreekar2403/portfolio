@@ -1,6 +1,6 @@
 import { motion as Motion, useReducedMotion } from 'framer-motion'
 import { ArrowDown, Cpu, Sparkles } from 'lucide-react'
-import { PV_HERO } from './data'
+import { ST_HERO } from './data'
 
 const ease = [0.16, 1, 0.3, 1]
 
@@ -13,18 +13,18 @@ export default function Hero() {
   })
 
   return (
-    <header className="pv-wrap pt-36 md:pt-48 pb-10 relative" id="top">
+    <header className="st-wrap pt-36 md:pt-48 pb-10 relative" id="top">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         <div className="lg:col-span-4 order-2 lg:order-1">
           <Motion.div {...rise(0.35)} className="relative mx-auto" style={{ maxWidth: 340 }}>
-            <div className="pv-photo-card aspect-[3/4]">
-              <img src={PV_HERO.photo} alt={PV_HERO.photoAlt} loading="eager" />
+            <div className="st-photo-card aspect-[3/4]">
+              <img src={ST_HERO.photo} alt={ST_HERO.photoAlt} loading="eager" />
             </div>
-            <div className="pv-float-btn" style={{ left: -28, bottom: 64 }} aria-hidden="true">
+            <div className="st-float-btn" style={{ left: -28, bottom: 64 }} aria-hidden="true">
               <Sparkles size={28} />
             </div>
             <div
-              className="pv-float-btn"
+              className="st-float-btn"
               style={{ right: -24, top: 48, animationDelay: '1.2s', width: 64, height: 64 }}
               aria-hidden="true"
             >
@@ -35,15 +35,15 @@ export default function Hero() {
 
         <div className="lg:col-span-8 order-1 lg:order-2">
           <Motion.p {...rise(0)} className="text-lg mb-4 mt-2">
-            {PV_HERO.greeting}, I&rsquo;m {PV_HERO.name}
+            {ST_HERO.greeting}, I&rsquo;m {ST_HERO.name}
           </Motion.p>
-          <Motion.h1 {...rise(0.1)} className="pv-display pv-hero-title">
-            <span className="block">{PV_HERO.line1}</span>
-            <span className="block">{PV_HERO.line2}</span>
+          <Motion.h1 {...rise(0.1)} className="st-display st-hero-title">
+            <span className="block">{ST_HERO.line1}</span>
+            <span className="block">{ST_HERO.line2}</span>
           </Motion.h1>
           <div className="flex flex-wrap items-end gap-6">
-            <Motion.p {...rise(0.3)} className="pv-lede mt-6 lg:mt-0 lg:pb-3" style={{ maxWidth: '22rem' }}>
-              {PV_HERO.sub}
+            <Motion.p {...rise(0.3)} className="st-lede mt-6 lg:mt-0 lg:pb-3" style={{ maxWidth: '22rem' }}>
+              {ST_HERO.sub}
             </Motion.p>
           </div>
           <Motion.div {...rise(0.4)} className="mt-8">
@@ -53,7 +53,7 @@ export default function Hero() {
                 e.preventDefault()
                 document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
               }}
-              className="pv-btn"
+              className="st-btn"
             >
               Let&rsquo;s talk <ArrowDown size={16} />
             </a>

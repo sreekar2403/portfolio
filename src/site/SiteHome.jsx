@@ -1,4 +1,4 @@
-import './portavia.css'
+import './site.css'
 import Navbar from './Navbar'
 import Hero from './Hero'
 import Services from './Services'
@@ -10,9 +10,9 @@ import Insights from './Insights'
 import Contact from './Contact'
 import Footer from './Footer'
 
-export default function PortaviaHome() {
+export default function SiteHome() {
   return (
-    <div className="pv-page">
+    <div className="st-page">
       <Navbar />
       <main>
         <Hero />

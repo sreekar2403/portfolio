@@ -1,6 +1,6 @@
 import { Github, Linkedin, Mail, Rss } from 'lucide-react'
 import { PERSONAL } from '../data/constants'
-import { PV_HERO, PV_SOCIALS, PV_STATS } from './data'
+import { ST_HERO, ST_SOCIALS, ST_STATS } from './data'
 import { CountUp, Reveal, SectionHead } from './primitives'
 
 const ICONS = { GitHub: Github, LinkedIn: Linkedin, Medium: Rss, Email: Mail }
@@ -8,7 +8,7 @@ const ICONS = { GitHub: Github, LinkedIn: Linkedin, Medium: Rss, Email: Mail }
 export default function About() {
   return (
     <section className="py-20 md:py-28" id="about" style={{ background: '#F5F5F5', borderRadius: 28 }}>
-      <div className="pv-wrap">
+      <div className="st-wrap">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
             <SectionHead
@@ -17,9 +17,9 @@ export default function About() {
             />
             <Reveal delay={0.1}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10">
-                {PV_STATS.map((s) => (
+                {ST_STATS.map((s) => (
                   <div key={s.label}>
-                    <div className="pv-stat-num">
+                    <div className="st-stat-num">
                       <CountUp value={s.value} suffix={s.suffix} />
                       {s.suffix === '' && '+'}
                     </div>
@@ -31,8 +31,8 @@ export default function About() {
           </div>
 
           <Reveal delay={0.15}>
-            <div className="pv-photo-card aspect-[4/5]" style={{ maxWidth: 420 }}>
-              <img src={PV_HERO.photo} alt={PV_HERO.photoAlt} loading="lazy" />
+            <div className="st-photo-card aspect-[4/5]" style={{ maxWidth: 420 }}>
+              <img src={ST_HERO.photo} alt={ST_HERO.photoAlt} loading="lazy" />
             </div>
           </Reveal>
         </div>
@@ -54,7 +54,7 @@ export default function About() {
             <div>
               <p className="text-sm font-semibold">Social</p>
               <div className="flex gap-3 mt-1">
-                {PV_SOCIALS.map((s) => {
+                {ST_SOCIALS.map((s) => {
                   const Icon = ICONS[s.label] || Mail
                   return (
                     <a
@@ -77,7 +77,7 @@ export default function About() {
 
         <Reveal delay={0.1}>
           <div className="mt-10">
-            <a href={PERSONAL.resumeUrl} target="_blank" rel="noreferrer" className="pv-btn">
+            <a href={PERSONAL.resumeUrl} target="_blank" rel="noreferrer" className="st-btn">
               My Story
             </a>
           </div>
