@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { HiArrowLeft, HiArrowUpRight } from 'react-icons/hi2'
+import { ArrowUpRight } from 'lucide-react'
+import '../site/site.css'
+import Navbar from '../site/Navbar'
+import Footer from '../site/Footer'
+import { Reveal } from '../site/primitives'
 import { LOCAL_BLOG_POSTS } from '../data/localBlogs'
 
 const MEDIUM_FEED_URL = 'https://medium.com/feed/@padarthi24sreekar2'
@@ -27,7 +31,7 @@ function parseXMLFeed(xmlString) {
       link: getTextContent('link'),
       guid: getTextContent('guid'),
       description: getTextContent('description'),
-      categories: Array.from(item.getElementsByTagName('category')).map(cat => cat.textContent)
+      categories: Array.from(item.getElementsByTagName('category')).map((cat) => cat.textContent),
     })
   }
   return posts.length > 0 ? posts : null
@@ -68,18 +72,20 @@ export default function BlogsIndexPage() {
             return
           }
         } catch {
-          // CORS proxy failed — fall through to the loading state below
+          // fall through
         }
       }
       if (!cancelled) setLoading(false)
     }
     fetchPosts()
-    return () => { cancelled = true }
+    return () => {
+      cancelled = true
+    }
   }, [])
 
   const allPosts = [
-    ...LOCAL_BLOG_POSTS.map(p => ({ ...p, type: 'local' })),
-    ...mediumPosts.map(p => ({ ...p, type: 'medium' }))
+    ...LOCAL_BLOG_POSTS.map((p) => ({ ...p, type: 'local' })),
+    ...mediumPosts.map((p) => ({ ...p, type: 'medium' })),
   ].sort((a, b) => {
     const dateA = a.type === 'local' ? a.date : a.pubDate
     const dateB = b.type === 'local' ? b.date : b.pubDate
@@ -87,141 +93,86 @@ export default function BlogsIndexPage() {
   })
 
   return (
-    <div className="min-h-screen bg-surface-50 text-slate-900">
-      <div className="noise-overlay" aria-hidden="true" />
-
-      <header className="relative overflow-hidden bg-slate-950 text-white">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-500/20 via-transparent to-emerald-500/10" aria-hidden="true" />
-        <div className="relative max-w-6xl mx-auto px-4 py-16 md:py-24">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white transition-colors mb-10"
-          >
-            <HiArrowLeft className="w-4 h-4" />
-            Back to home
-          </Link>
-
-          <p className="section-subheading text-primary-200">Blogs</p>
-          <h1 className="text-4xl md:text-6xl font-bold font-display tracking-tight mb-6">
-            Latest <span className="text-gradient">Articles</span>
-          </h1>
-          <p className="max-w-2xl text-lg text-white/60 leading-relaxed">
-            Field notes on local LLMs, agentic coding, MLOps, and the engineering work behind production AI systems.
+    <div className="st-page">
+      <Navbar />
+      <main className="st-wrap pt-32 md:pt-40 pb-10">
+        <Reveal>
+          <p className="text-sm font-semibold" style={{ color: '#5E67E6' }}>
+            <Link to="/" style={{ color: 'inherit' }}>
+              Back to home
+            </Link>
           </p>
-        </div>
-      </header>
+          <h1 className="st-display st-h2 mt-3">Writing on local AI</h1>
+          <p className="st-lede mt-4">
+            I run open models on a laptop GPU and write down what actually happens, speeds, failures, and the prompts
+            in between. No benchmarks for their own sake.
+          </p>
+        </Reveal>
 
-      <main className="max-w-6xl mx-auto px-4 py-16 md:py-20">
         {loading ? (
-          <div className="flex flex-col items-center justify-center py-20 gap-4">
-            <div className="w-8 h-8 border-2 border-primary-400 border-t-transparent rounded-full animate-spin" />
-            <p className="text-sm text-slate-400 font-mono">Fetching articles...</p>
-          </div>
+          <p className="st-lede" style={{ padding: '3rem 0' }}>
+            Gathering articles...
+          </p>
         ) : allPosts.length === 0 ? (
-          <div className="text-center py-20">
-            <p className="text-slate-500">No articles published yet.</p>
-          </div>
+          <p className="st-lede" style={{ padding: '3rem 0' }}>
+            No articles published yet.
+          </p>
         ) : (
-          <div className="blog-grid grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {allPosts.map((post) =>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-10">
+            {allPosts.map((post, i) =>
               post.type === 'local' ? (
-                <Link
-                  key={post.id}
-                  to={`/blog/${post.id}`}
-                  className="blog-card glass-card overflow-hidden block group text-left"
-                >
-                  {post.coverImage && (
-                    <div className="aspect-[16/9] overflow-hidden bg-slate-100 border-b border-slate-200">
-                      <img
-                        src={post.coverImage}
-                        alt=""
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                    </div>
-                  )}
-
-                  <div className="p-8 md:p-10 flex flex-col min-h-[22rem]">
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="inline-block w-2 h-2 rounded-full bg-emerald-500" />
-                      <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">
-                        {post.date} · {post.readTime}
-                      </span>
-                    </div>
-
-                    <p className="text-xs font-mono uppercase tracking-[0.18em] text-primary-500 mb-3">
-                      {post.category}
+                <Reveal key={post.id} delay={0.06 * (i % 2)} className="h-full">
+                  <Link to={`/blog/${post.id}`} className="st-card block no-underline" style={{ color: 'inherit' }}>
+                    {post.coverImage ? (
+                      <div className="overflow-hidden" style={{ borderRadius: 16 }}>
+                        <img
+                          src={post.coverImage}
+                          alt=""
+                          loading="lazy"
+                          className="w-full aspect-[16/9] object-cover"
+                        />
+                      </div>
+                    ) : null}
+                    <p className="text-xs font-mono uppercase tracking-widest mt-5" style={{ color: '#5E67E6' }}>
+                      {post.category} · {post.date} · {post.readTime}
                     </p>
-
-                    <h2 className="text-2xl md:text-3xl font-bold font-display tracking-tight text-slate-900 mb-4 group-hover:text-primary-600 transition-colors">
+                    <h2 className="st-display mt-2" style={{ fontSize: '1.6rem' }}>
                       {post.title}
                     </h2>
-
-                    <p className="text-slate-500 leading-relaxed mb-6">
+                    <p className="mt-3 text-[0.95rem] leading-relaxed" style={{ color: '#5b5b5b' }}>
                       {post.subtitle}
                     </p>
-
-                    {post.tags?.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mb-8">
-                        {post.tags.map((tag) => (
-                          <span key={tag} className="skill-badge text-[0.55rem]">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-
-                    <div className="flex-1" />
-
-                    <div className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 group-hover:text-primary-500 transition-colors">
-                      Read Article
-                      <HiArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                    </div>
-                  </div>
-                </Link>
+                    <span className="inline-flex items-center gap-1 mt-4 text-sm font-semibold">
+                      Read article <ArrowUpRight size={15} />
+                    </span>
+                  </Link>
+                </Reveal>
               ) : (
-                <a
-                  key={post.guid}
-                  href={post.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="blog-card glass-card overflow-hidden block group"
-                >
-                  <div className="p-8 md:p-10 flex flex-col min-h-[22rem]">
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="inline-block w-2 h-2 rounded-full bg-primary-500" />
-                      <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">
-                        {formatDate(post.pubDate)}
-                      </span>
-                    </div>
-
-                    <h2 className="text-2xl md:text-3xl font-bold font-display tracking-tight text-slate-900 mb-4 group-hover:text-primary-600 transition-colors">
+                <Reveal key={post.guid} delay={0.06 * (i % 2)} className="h-full">
+                  <a
+                    href={post.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="st-card block no-underline"
+                    style={{ color: 'inherit' }}
+                  >
+                    <p className="text-xs font-mono uppercase tracking-widest mt-1" style={{ color: '#5E67E6' }}>
+                      Medium · {formatDate(post.pubDate)}
+                    </p>
+                    <h2 className="st-display mt-2" style={{ fontSize: '1.6rem' }}>
                       {post.title}
                     </h2>
-
-                    {post.categories?.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mb-8">
-                        {post.categories.map((cat) => (
-                          <span key={cat} className="skill-badge text-[0.55rem]">
-                            {cat}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-
-                    <div className="flex-1" />
-
-                    <div className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 group-hover:text-primary-500 transition-colors">
-                      Read on Medium
-                      <HiArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                    </div>
-                  </div>
-                </a>
+                    <span className="inline-flex items-center gap-1 mt-4 text-sm font-semibold">
+                      Read on Medium <ArrowUpRight size={15} />
+                    </span>
+                  </a>
+                </Reveal>
               )
             )}
           </div>
         )}
       </main>
+      <Footer />
     </div>
   )
 }

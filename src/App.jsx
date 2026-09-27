@@ -1,67 +1,29 @@
-import { useState } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import './App.css'
-import LoadingScreen from './components/LoadingScreen'
-import CustomCursor from './components/CustomCursor'
-import Navbar from './components/Navbar'
-import SocialIcons from './components/SocialIcons'
-import HeroSection from './components/HeroSection'
-import AboutSection from './components/AboutSection'
-import WhatIDoSection from './components/WhatIDoSection'
-import TechStackSection from './components/TechStackSection'
-import CareerSection from './components/CareerSection'
-import WorkSection from './components/WorkSection'
-import BlogSection from './components/BlogSection'
-import TestimonialsSection from './components/TestimonialsSection'
-import ResearchSection from './components/ResearchSection'
-import EducationSection from './components/EducationSection'
-import ContactSection from './components/ContactSection'
+import { useLayoutEffect } from 'react'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import SiteHome from './site/SiteHome'
 import BlogPostPage from './pages/BlogPostPage'
 import BlogsIndexPage from './pages/BlogsIndexPage'
 
-function HomePage() {
-  const [loaded, setLoaded] = useState(false)
+if (typeof history !== 'undefined' && 'scrollRestoration' in history) {
+  history.scrollRestoration = 'manual'
+}
 
-  return (
-    <div className="relative">
-      {/* Loading Screen */}
-      <LoadingScreen onComplete={() => setLoaded(true)} />
-
-      {/* Custom Cursor (desktop only) */}
-      <CustomCursor />
-
-      {/* Noise overlay for premium texture */}
-      <div className="noise-overlay" aria-hidden="true" />
-
-      {/* Navigation */}
-      <Navbar />
-
-      {/* Social Sidebar */}
-      <SocialIcons />
-
-      {/* Main Content */}
-      <main style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.8s ease' }}>
-        <HeroSection isLoaded={loaded} />
-        <AboutSection />
-        <WhatIDoSection />
-        <TechStackSection />
-        <CareerSection />
-        <WorkSection />
-        <BlogSection />
-        <TestimonialsSection />
-        <ResearchSection />
-        <EducationSection />
-        <ContactSection />
-      </main>
-    </div>
-  )
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+    const raf = requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' }))
+    return () => cancelAnimationFrame(raf)
+  }, [pathname])
+  return null
 }
 
 export default function App() {
   return (
     <BrowserRouter basename="/portfolio">
+      <ScrollToTop />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<SiteHome />} />
         <Route path="/blogs" element={<BlogsIndexPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
       </Routes>
