@@ -362,3 +362,332 @@
     display: none;
   }
 }
+
+/* ─── Blog index (editorial list) ─── */
+.minimal-blog-head {
+  padding: 4rem 0 2.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.minimal-blog-head h1 {
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  margin: 0 0 1rem;
+}
+
+.minimal-blog-lede {
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 44rem;
+}
+
+.minimal-post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.minimal-post-row {
+  display: block;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+}
+
+.minimal-post-row:hover .minimal-post-title {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.minimal-post-top {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.minimal-post-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.minimal-post-title {
+  font-family: Georgia, 'Source Serif 4', serif;
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+  font-weight: 500;
+}
+
+.minimal-post-sub {
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0 0 0.75rem;
+  max-width: 46rem;
+}
+
+.minimal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.minimal-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.25rem 0.65rem;
+  color: var(--muted);
+  background: #fff;
+}
+
+.minimal-back {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+}
+
+.minimal-back:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ─── Article (editorial longform) ─── */
+.minimal-article-head {
+  padding: 3rem 0 2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.minimal-article-head h1 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.12;
+  margin: 0.9rem 0 1rem;
+  max-width: 22ch;
+}
+
+.minimal-article-sub {
+  font-family: Georgia, serif;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 42rem;
+}
+
+.minimal-article-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.minimal-cover {
+  margin: 2rem 0 0;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.minimal-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.minimal-cover figcaption {
+  padding: 0.75rem 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+}
+
+.minimal-article {
+  max-width: 46rem;
+  padding: 2.5rem 0 3rem;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #2a2926;
+}
+
+.minimal-article h2 {
+  font-size: 1.7rem;
+  margin: 2.75rem 0 1rem;
+}
+
+.minimal-article h3 {
+  font-size: 1.3rem;
+  margin: 2rem 0 0.75rem;
+}
+
+.minimal-article p,
+.minimal-article ul,
+.minimal-article ol {
+  margin: 1rem 0;
+}
+
+.minimal-article a {
+  color: var(--ink);
+  text-underline-offset: 3px;
+}
+
+.minimal-article figure {
+  margin: 2rem 0;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.minimal-article figure img,
+.minimal-article img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.minimal-article figcaption {
+  padding: 0.7rem 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  text-align: left;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.minimal-article pre {
+  background: #1a1a18;
+  color: #f2f0eb;
+  border-radius: 12px;
+  padding: 1.1rem 1.25rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.minimal-article code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88em;
+}
+
+.minimal-article table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.minimal-article th,
+.minimal-article td {
+  text-align: left;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.minimal-article thead th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Tame old gradient/prose helpers when rendered inside minimal theme */
+.minimal-article .bg-gradient-to-br,
+.minimal-article .bg-gradient-to-r,
+.minimal-article .bg-gradient-to-l,
+.minimal-article .bg-gradient-to-t {
+  background: #fff;
+}
+
+.minimal-article .shadow-lg,
+.minimal-article .shadow-xl,
+.minimal-article .shadow-2xl {
+  box-shadow: none;
+}
+
+/* Neutralize legacy palette accents inside articles — editorial ink on paper */
+.minimal-article .border-primary-300 {
+  border-color: var(--ink);
+}
+
+.minimal-article .bg-primary-50\/60,
+.minimal-article .bg-primary-50\/50,
+.minimal-article .bg-primary-50\/70,
+.minimal-article .bg-emerald-50\/60,
+.minimal-article .bg-emerald-50\/70,
+.minimal-article .bg-amber-50\/60,
+.minimal-article .bg-amber-50\/70,
+.minimal-article .bg-rose-50\/60,
+.minimal-article .bg-slate-50 {
+  background-color: #fff;
+}
+
+.minimal-article .border-primary-200,
+.minimal-article .border-emerald-200,
+.minimal-article .border-amber-200,
+.minimal-article .border-rose-200 {
+  border-color: var(--line);
+}
+
+.minimal-article .text-primary-600,
+.minimal-article .text-primary-700,
+.minimal-article .text-emerald-700,
+.minimal-article .text-amber-700 {
+  color: var(--ink);
+}
+
+.minimal-article .bg-primary-100 {
+  background-color: #f0efec;
+}
+
+.minimal-article .text-primary-400 {
+  color: var(--muted);
+}
+
+.minimal-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2.5rem 0 1.5rem;
+}
+
+.minimal-divider-num {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.minimal-divider h2 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.minimal-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}

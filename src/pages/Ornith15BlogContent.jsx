@@ -1,5 +1,7 @@
 import { BLOG_IMAGES, BLOG_VIDEO } from '../data/localBlogs'
 
+const BASE = import.meta.env.BASE_URL || '/'
+
 function Figure({ src, alt, caption }) {
   return (
     <figure className="my-8 not-prose">

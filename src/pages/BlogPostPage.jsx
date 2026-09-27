@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
+import { useEffect, useState, useCallback, useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import gsap from 'gsap'
 import { HiArrowLeft, HiXMark, HiChevronLeft, HiChevronRight } from 'react-icons/hi2'
+import '../minimal.css'
+import MinimalNav from '../components/minimal/MinimalNav'
 import { LOCAL_BLOG_POSTS, BLOG_IMAGES, BLOG_VIDEO } from '../data/localBlogs'
 import BonsaiBlogContent from './BonsaiBlogContent'
 import OrnithBlogContent from './OrnithBlogContent'
@@ -78,7 +79,7 @@ function ImagePair({ left, right, onImageClick }) {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
       <button
         onClick={() => onImageClick(left)}
-        className="group relative overflow-hidden rounded-xl border border-slate-200 bg-slate-50 hover:border-primary-300 transition-all hover:shadow-lg"
+        className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white hover:border-slate-900 transition-all block w-full text-left"
       >
         <img
           src={left.src}
@@ -86,14 +87,13 @@ function ImagePair({ left, right, onImageClick }) {
           className="w-full h-auto"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-        <span className="absolute bottom-3 left-3 text-xs font-mono text-white opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 px-2 py-1 rounded">
+        <span className="block text-xs font-mono text-slate-500 px-3 py-2 border-t border-slate-200">
           {left.label}
         </span>
       </button>
       <button
         onClick={() => onImageClick(right)}
-        className="group relative overflow-hidden rounded-xl border border-slate-200 bg-slate-50 hover:border-primary-300 transition-all hover:shadow-lg"
+        className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white hover:border-slate-900 transition-all block w-full text-left"
       >
         <img
           src={right.src}
@@ -101,8 +101,7 @@ function ImagePair({ left, right, onImageClick }) {
           className="w-full h-auto"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-        <span className="absolute bottom-3 left-3 text-xs font-mono text-white opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 px-2 py-1 rounded">
+        <span className="block text-xs font-mono text-slate-500 px-3 py-2 border-t border-slate-200">
           {right.label}
         </span>
       </button>
@@ -116,7 +115,7 @@ function Screenshot({ image, caption, onImageClick }) {
     <figure className="my-8">
       <button
         onClick={() => onImageClick(image)}
-        className="group relative overflow-hidden rounded-xl border border-slate-200 bg-slate-50 hover:border-primary-300 transition-all hover:shadow-lg block w-full text-left"
+        className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white hover:border-slate-900 transition-all block w-full text-left"
       >
         <img
           src={image.src}
@@ -124,8 +123,7 @@ function Screenshot({ image, caption, onImageClick }) {
           className="w-full h-auto"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-        <span className="absolute bottom-3 right-3 text-xs font-mono text-white opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 px-2 py-1 rounded">
+        <span className="block text-xs font-mono text-slate-500 px-3 py-2 border-t border-slate-200">
           Click to enlarge
         </span>
       </button>
@@ -144,7 +142,7 @@ function MetricRow({ label, nemotron, qwen, highlight }) {
     <tr className="border-b border-slate-100 last:border-0">
       <td className="py-3 px-4 font-medium text-slate-700">{label}</td>
       <td className={`py-3 px-4 ${highlight ? 'font-semibold text-slate-900' : 'text-slate-600'}`}>{nemotron}</td>
-      <td className={`py-3 px-4 ${highlight ? 'font-semibold text-primary-600' : 'text-slate-600'}`}>{qwen}</td>
+      <td className={`py-3 px-4 ${highlight ? 'font-semibold text-slate-900' : 'text-slate-600'}`}>{qwen}</td>
     </tr>
   )
 }
@@ -152,14 +150,9 @@ function MetricRow({ label, nemotron, qwen, highlight }) {
 /* ─── Section divider with label ─── */
 function SectionDivider({ number, title }) {
   return (
-    <div className="flex items-center gap-4 my-12 md:my-16">
-      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-primary-500/25">
-        {number}
-      </div>
-      <h2 className="text-2xl md:text-3xl font-bold font-display tracking-tight text-slate-900">
-        {title}
-      </h2>
-      <div className="flex-1 h-px bg-gradient-to-r from-slate-200 to-transparent" />
+    <div className="minimal-divider">
+      <span className="minimal-divider-num">{number}</span>
+      <h2>{title}</h2>
     </div>
   )
 }
@@ -167,23 +160,18 @@ function SectionDivider({ number, title }) {
 /* ─── Blog content ─── */
 function QwenVsNemotronContent({ onImageClick }) {
   return (
-    <article className="prose prose-slate prose-lg max-w-none">
-      <p className="text-slate-500 italic text-lg leading-relaxed mb-8 border-l-2 border-primary-300 pl-4">
+    <article className="minimal-article">
+      <p className="text-lg leading-relaxed mb-8 border-l-2 border-slate-900 pl-4 italic text-slate-600">
         A field report from someone who runs these models to actually ship code, not just to run a benchmark suite.
       </p>
 
       {/* ── Video showdown ── */}
-      <div className="not-prose my-8 md:my-10">
-        <div className="flex items-center gap-4 mb-5">
-          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-rose-500/25">
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
-            </svg>
-          </div>
-          <h2 className="text-2xl md:text-3xl font-bold font-display tracking-tight text-slate-900 m-0">
+      <div className="my-8 md:my-10">
+        <div className="minimal-divider">
+          <span className="minimal-divider-num">▷</span>
+          <h2 className="m-0">
             Watch the showdown
           </h2>
-          <div className="flex-1 h-px bg-gradient-to-r from-slate-200 to-transparent" />
         </div>
         <div className="relative rounded-xl overflow-hidden border border-slate-200 bg-black shadow-xl">
           <video
@@ -279,10 +267,10 @@ function QwenVsNemotronContent({ onImageClick }) {
           <p className="text-2xl font-bold text-slate-900">25 GB</p>
           <p className="text-sm text-slate-500 mt-1">77% CPU / 23% GPU</p>
         </div>
-        <div className="rounded-xl border border-primary-200 bg-primary-50/50 p-5">
-          <p className="text-xs font-mono text-primary-500 uppercase tracking-widest mb-2">Qwen3.6</p>
-          <p className="text-2xl font-bold text-primary-700">22 GB</p>
-          <p className="text-sm text-primary-600/70 mt-1">79% CPU / 21% GPU</p>
+        <div className="rounded-xl border border-slate-900 bg-white p-5">
+          <p className="text-xs font-mono text-slate-500 uppercase tracking-widest mb-2">Qwen3.6</p>
+          <p className="text-2xl font-bold text-slate-900">22 GB</p>
+          <p className="text-sm text-slate-500 mt-1">79% CPU / 21% GPU</p>
         </div>
       </div>
 
@@ -444,9 +432,9 @@ n_decoded = 2071, tg = 23.36 t/s
 n_decoded = 2333, tg = 23.04 t/s, tg_3s = 23.12 t/s`}
       </pre>
 
-      <div className="bg-primary-50 border border-primary-200 rounded-xl p-5 my-8">
-        <p className="text-primary-800 font-medium mb-1">Key insight</p>
-        <p className="text-primary-700">
+      <div className="border border-slate-900 rounded-xl p-5 my-8 bg-white">
+        <p className="font-medium mb-1">Key insight</p>
+        <p className="text-slate-600">
           <strong>Qwen's decode speed stabilizes and holds.</strong> After the initial burst above 40 t/s cools off,
           it settles into a stable <strong>23–29 t/s band and stays there — even out past 2,300 generated tokens.</strong>
           It doesn't keep decaying the way Nemotron's curve does; it finds a floor and holds it.
@@ -564,7 +552,7 @@ n_decoded = 2333, tg = 23.04 t/s, tg_3s = 23.12 t/s`}
             <tr className="bg-slate-50 border-b border-slate-200">
               <th className="text-left py-3 px-4 font-semibold text-slate-700">Metric</th>
               <th className="text-left py-3 px-4 font-semibold text-slate-700">Nemotron-3-Nano:30B-A3B</th>
-              <th className="text-left py-3 px-4 font-semibold text-primary-600">Qwen3.6:35B-A3B-MTP</th>
+              <th className="text-left py-3 px-4 font-semibold text-slate-700">Qwen3.6:35B-A3B-MTP</th>
             </tr>
           </thead>
           <tbody>
@@ -615,14 +603,12 @@ n_decoded = 2333, tg = 23.04 t/s, tg_3s = 23.12 t/s`}
 /* ─── Page ─── */
 export default function BlogPostPage() {
   const { slug } = useParams()
-  const pageRef = useRef(null)
-  const coverRef = useRef(null)
   const [lightbox, setLightbox] = useState({ open: false, index: 0 })
   const blogMap = {
-    'Ornith': 'ornith-broken-agent-blog',
-    'bonsai': 'bonsai-27b-laptop'
-  };
-  const resolvedSlug = slug === 'Ornith' ? blogMap['Ornith'] : slug;
+    Ornith: 'ornith-broken-agent-blog',
+    bonsai: 'bonsai-27b-laptop',
+  }
+  const resolvedSlug = slug === 'Ornith' ? blogMap.Ornith : slug
 
   const post = LOCAL_BLOG_POSTS.find((p) => p.id === resolvedSlug)
   const isOrnithPost = resolvedSlug === 'ornith-broken-agent-blog'
@@ -661,108 +647,92 @@ export default function BlogPostPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    if (pageRef.current) {
-      gsap.fromTo(pageRef.current, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'power2.out' })
-    }
-    if (coverRef.current) {
-      gsap.fromTo(
-        coverRef.current.querySelectorAll('.cover-animate'),
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, stagger: 0.12, ease: 'power3.out', delay: 0.2 }
-      )
-    }
   }, [resolvedSlug])
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-surface-50 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-slate-900 mb-4">Blog post not found</h1>
-          <Link
-            to="/blogs"
-            className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 transition-colors"
-          >
-            <HiArrowLeft className="w-4 h-4" />
-            Back to blogs
-          </Link>
-        </div>
+      <div className="minimal-page">
+        <MinimalNav />
+        <main className="minimal-wrap" style={{ padding: '4rem 0' }}>
+          <h1>Post not found</h1>
+          <p>
+            <Link to="/blogs" className="minimal-text-link">
+              ← Back to writing
+            </Link>
+          </p>
+        </main>
       </div>
     )
   }
 
   return (
-    <div ref={pageRef} className="min-h-screen bg-white" style={{ opacity: 0 }}>
-      {/* ─── Cover Hero ─── */}
-      <header ref={coverRef} className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-primary-900">
-        {/* Animated grid pattern */}
-        <div className="absolute inset-0 opacity-[0.04]" style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
-        }} />
-        {/* Gradient orbs */}
-        <div className="absolute top-20 -left-32 w-96 h-96 bg-primary-500/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-10 right-0 w-80 h-80 bg-emerald-500/10 rounded-full blur-[100px]" />
-
-        <div className="relative max-w-4xl mx-auto px-4 pt-8 pb-16 md:pt-12 md:pb-24">
-          {/* Back link */}
-          <Link
-            to="/blogs"
-            className="cover-animate inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm font-medium mb-8"
-          >
-            <HiArrowLeft className="w-4 h-4" />
-            Back to blogs
+    <div className="minimal-page">
+      <MinimalNav />
+      <main className="minimal-wrap">
+        {/* ─── Article header ─── */}
+        <header className="minimal-article-head">
+          <Link to="/blogs" className="minimal-back">
+            ← All writing
           </Link>
-
-          {/* Tags */}
-          <div className="cover-animate flex flex-wrap gap-2 mb-6">
-            {post.tags?.map((tag) => (
-              <span
-                key={tag}
-                className="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white/80 border border-white/10"
-              >
+          <div className="minimal-tags" style={{ marginBottom: '0.5rem' }}>
+            {post.tags?.slice(0, 4).map((tag) => (
+              <span key={tag} className="minimal-tag">
                 {tag}
               </span>
             ))}
           </div>
-
-          {/* Title */}
-          <h1 className="cover-animate text-3xl md:text-4xl lg:text-5xl font-bold font-display tracking-tight text-white mb-4 leading-tight">
-            {post.title}
-          </h1>
-
-          {/* Subtitle */}
-          <p className="cover-animate text-lg text-white/60 mb-8 max-w-3xl">
-            {post.subtitle}
-          </p>
-
-          {/* Meta */}
-          <div className="cover-animate flex items-center gap-4 text-sm text-white/50 font-mono">
+          <h1>{post.title}</h1>
+          <p className="minimal-article-sub">{post.subtitle}</p>
+          <div className="minimal-article-meta" style={{ marginTop: '1.25rem' }}>
             <span>{post.date}</span>
-            <span className="w-1 h-1 rounded-full bg-white/30" />
+            <span>·</span>
             <span>{post.readTime}</span>
-            <span className="w-1 h-1 rounded-full bg-white/30" />
-            <span>{post.category || 'Local LLM comparison'}</span>
+            <span>·</span>
+            <span>{post.category || 'Field notes'}</span>
           </div>
-        </div>
-      </header>
+          {post.coverImage && (
+            <figure className="minimal-cover">
+              <img src={post.coverImage} alt="" />
+              <figcaption>{post.category || 'Cover'}</figcaption>
+            </figure>
+          )}
+        </header>
 
-      {/* ─── Article Body ─── */}
-      <main className="max-w-4xl mx-auto px-4 py-12 md:py-16">
-        {isOrnith15Post ? <Ornith15BlogContent /> : isOrnithPost ? <OrnithBlogContent /> : isBonsaiPost ? <BonsaiBlogContent /> : isNemotronPost ? <NemotronBlogContent /> : isQwen38Post ? <Qwen38BlogContent /> : <QwenVsNemotronContent onImageClick={openLightbox} />}
-      </main>
+        {/* ─── Article Body ─── */}
+        {isOrnith15Post ? (
+          <div className="minimal-article">
+            <Ornith15BlogContent />
+          </div>
+        ) : isOrnithPost ? (
+          <div className="minimal-article">
+            <OrnithBlogContent />
+          </div>
+        ) : isBonsaiPost ? (
+          <div className="minimal-article">
+            <BonsaiBlogContent />
+          </div>
+        ) : isNemotronPost ? (
+          <div className="minimal-article">
+            <NemotronBlogContent />
+          </div>
+        ) : isQwen38Post ? (
+          <div className="minimal-article">
+            <Qwen38BlogContent />
+          </div>
+        ) : (
+          <QwenVsNemotronContent onImageClick={openLightbox} />
+        )}
 
-      {/* ─── Footer ─── */}
-      <footer className="border-t border-slate-200 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-4 py-8 flex items-center justify-between">
-          <Link
-            to="/blogs"
-            className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium"
-          >
-            <HiArrowLeft className="w-4 h-4" />
-            Back to all articles
+        {/* ─── Footer ─── */}
+        <footer className="minimal-footer">
+          <Link to="/blogs" className="minimal-text-link">
+            ← Back to all articles
           </Link>
-        </div>
-      </footer>
+          <Link to="/" className="minimal-text-link">
+            Home
+          </Link>
+        </footer>
+      </main>
 
       {/* ─── Lightbox ─── */}
       {lightbox.open && (

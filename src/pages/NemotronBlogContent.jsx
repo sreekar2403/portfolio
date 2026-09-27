@@ -98,15 +98,11 @@ export default function NemotronBlogContent() {
       </div>
 
       <div className="not-prose my-8">
-        <div className="flex items-center gap-4 mb-4">
-          <div className="flex-1 h-px bg-gradient-to-l from-slate-200 to-transparent" />
-          <svg className="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
-          </svg>
-          <h2 className="text-2xl md:text-3xl font-bold font-display tracking-tight text-slate-900 m-0">
+        <div className="minimal-divider">
+          <span className="minimal-divider-num">▷</span>
+          <h2 className="m-0">
             Watch the benchmark run
           </h2>
-          <div className="flex-1 h-px bg-gradient-to-r from-slate-200 to-transparent" />
         </div>
         <div className="relative rounded-xl overflow-hidden border border-slate-200 bg-black shadow-xl">
           <video
