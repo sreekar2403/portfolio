@@ -13,7 +13,7 @@ export default function About() {
           <div>
             <SectionHead
               title="About me"
-              lede="Hi, I'm Sreekar, a Lead ML Engineer at Freshworks. For five years I have built ML systems for support software used by thousands of teams: triage, replies, evaluation, and inference."
+              lede="Lead ML Engineer at Freshworks. For five years I have built ML systems for support software used by thousands of teams: triage, replies, evaluation, and inference."
             />
             <Reveal delay={0.1}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10">

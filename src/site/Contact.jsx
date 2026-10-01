@@ -22,7 +22,7 @@ export default function Contact() {
           <div className="st-photo-card aspect-[4/5]" style={{ maxWidth: 400 }}>
             <img src={ST_HERO.photo} alt={ST_HERO.photoAlt} loading="lazy" />
           </div>
-          <p className="mt-4 text-lg">Hi, I&rsquo;m Sreekar. Tell me what you&rsquo;re building.</p>
+          <p className="mt-4 text-lg">Tell me what you&rsquo;re building.</p>
         </Reveal>
         <div>
           <Reveal>
