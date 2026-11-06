@@ -1,87 +1,97 @@
 import { Github, Linkedin, Mail, Rss } from 'lucide-react'
 import { PERSONAL } from '../data/constants'
 import { ST_HERO, ST_SOCIALS, ST_STATS } from './data'
-import { CountUp, Reveal, SectionHead } from './primitives'
+import { CountUp, SectionHead } from './primitives'
+import { ImageFrame } from './build/BuildFrame'
 
 const ICONS = { GitHub: Github, LinkedIn: Linkedin, Medium: Rss, Email: Mail }
 
 export default function About() {
   return (
-    <section className="py-20 md:py-28" id="about" style={{ background: '#F5F5F5', borderRadius: 28 }}>
+    <section className="st-section" id="about" style={{ background: 'var(--st-card)', borderTop: '1px solid var(--st-hairline)', borderBottom: '1px solid var(--st-hairline)' }}>
       <div className="st-wrap">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <SectionHead
+          index="02"
+          kicker="About"
+          title="Five years of ML systems for support software"
+          lede="Lead ML Engineer at Freshworks. I build triage, replies, evaluation, and inference for products used by thousands of teams, and I mentor the engineers who keep them running."
+        />
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <div>
-            <SectionHead
-              title="About me"
-              lede="Lead ML Engineer at Freshworks. For five years I have built ML systems for support software used by thousands of teams: triage, replies, evaluation, and inference."
-            />
-            <Reveal delay={0.1}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10">
-                {ST_STATS.map((s) => (
-                  <div key={s.label}>
-                    <div className="st-stat-num">
-                      <CountUp value={s.value} suffix={s.suffix} />
-                      {s.suffix === '' && '+'}
-                    </div>
-                    <p className="font-semibold mt-1">{s.label}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {ST_STATS.map((s) => (
+                <div key={s.label} className="st-card" style={{ padding: 20 }}>
+                  <div className="st-stat-figure">
+                    <CountUp value={s.value} suffix={s.suffix} />
                   </div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-
-          <Reveal delay={0.15}>
-            <div className="st-photo-card aspect-[4/5]" style={{ maxWidth: 420 }}>
-              <img src={ST_HERO.photo} alt={ST_HERO.photoAlt} loading="lazy" />
+                  <p className="st-stat-label">{s.label}</p>
+                  <p className="st-stat-note">{s.note}</p>
+                </div>
+              ))}
             </div>
-          </Reveal>
-        </div>
 
-        <Reveal delay={0.1}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-14">
-            <div>
-              <p className="text-sm font-semibold">Email</p>
-              <a href={`mailto:${PERSONAL.email}`} className="hover:underline break-all">
-                {PERSONAL.email}
+            <dl className="st-spec" style={{ marginTop: 32 }}>
+              <div className="st-spec-row">
+                <dt>Email</dt>
+                <dd>
+                  <a href={`mailto:${PERSONAL.email}`} style={{ color: 'var(--st-ink)', textDecoration: 'none' }}>
+                    {PERSONAL.email}
+                  </a>
+                </dd>
+              </div>
+              <div className="st-spec-row">
+                <dt>Currently</dt>
+                <dd>
+                  {PERSONAL.role}, {PERSONAL.company}
+                </dd>
+              </div>
+              <div className="st-spec-row">
+                <dt>Research</dt>
+                <dd>
+                  <a
+                    href="https://arxiv.org/abs/2503.18076"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ color: 'var(--st-ink)', textDecoration: 'none' }}
+                  >
+                    Speculative decoding for classification, arXiv 2025
+                  </a>
+                </dd>
+              </div>
+            </dl>
+
+            <div className="flex flex-wrap items-center gap-3" style={{ marginTop: 32 }}>
+              {ST_SOCIALS.map((s) => {
+                const Icon = ICONS[s.label] || Mail
+                return (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={s.label}
+                    className="st-icon-btn"
+                  >
+                    <Icon size={17} strokeWidth={1.5} />
+                  </a>
+                )
+              })}
+              <a href={PERSONAL.resumeUrl} target="_blank" rel="noreferrer" className="st-btn-ghost st-btn-sm" style={{ marginLeft: 4 }}>
+                Résumé
               </a>
             </div>
-            <div>
-              <p className="text-sm font-semibold">Currently</p>
-              <p>
-                {PERSONAL.role} at {PERSONAL.company}
-              </p>
-            </div>
-            <div>
-              <p className="text-sm font-semibold">Social</p>
-              <div className="flex gap-3 mt-1">
-                {ST_SOCIALS.map((s) => {
-                  const Icon = ICONS[s.label] || Mail
-                  return (
-                    <a
-                      key={s.label}
-                      href={s.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={s.label}
-                      className="inline-flex items-center justify-center transition-transform hover:-translate-y-1"
-                      style={{ width: 40, height: 40, borderRadius: 999, background: '#303030', color: '#fff' }}
-                    >
-                      <Icon size={17} />
-                    </a>
-                  )
-                })}
-              </div>
-            </div>
           </div>
-        </Reveal>
 
-        <Reveal delay={0.1}>
-          <div className="mt-10">
-            <a href={PERSONAL.resumeUrl} target="_blank" rel="noreferrer" className="st-btn">
-              My Story
-            </a>
-          </div>
-        </Reveal>
+          <ImageFrame
+            src={ST_HERO.photo}
+            alt={ST_HERO.photoAlt}
+            label="portrait"
+            className="st-photo"
+            imgClassName="h-full w-full"
+            style={{ aspectRatio: '4 / 5', maxWidth: 400 }}
+          />
+        </div>
       </div>
     </section>
   )

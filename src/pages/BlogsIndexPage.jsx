@@ -4,7 +4,8 @@ import { ArrowUpRight } from 'lucide-react'
 import '../site/site.css'
 import Navbar from '../site/Navbar'
 import Footer from '../site/Footer'
-import { Reveal } from '../site/primitives'
+import { BuildFrame, ImageFrame } from '../site/build/BuildFrame'
+import { SkeletonCard } from '../site/Skeleton'
 import { LOCAL_BLOG_POSTS } from '../data/localBlogs'
 
 const MEDIUM_FEED_URL = 'https://medium.com/feed/@padarthi24sreekar2'
@@ -12,8 +13,7 @@ const RSS2JSON_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURICo
 const CORS_PROXY_URL = `https://api.allorigins.win/get?url=${encodeURIComponent(MEDIUM_FEED_URL)}&json`
 
 function formatDate(dateStr) {
-  const date = new Date(dateStr)
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+  return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
 }
 
 function parseXMLFeed(xmlString) {
@@ -93,80 +93,113 @@ export default function BlogsIndexPage() {
   })
 
   return (
-    <div className="st-page">
+    <div className="st-page st-route">
       <Navbar />
-      <main className="st-wrap pt-32 md:pt-40 pb-10">
-        <Reveal>
-          <p className="text-sm font-semibold" style={{ color: '#5E67E6' }}>
-            <Link to="/" style={{ color: 'inherit' }}>
+      <main className="st-wrap" style={{ paddingTop: 128, paddingBottom: 16 }}>
+        <header style={{ marginBottom: 48 }}>
+          <BuildFrame
+            kind="rule"
+            label="section 01"
+            className="st-readout"
+            contentClassName="flex items-center gap-3"
+          >
+            <b>01</b>
+            <span>Writing</span>
+          </BuildFrame>
+          <h1 className="st-display" style={{ fontSize: 'clamp(2rem, 4.6vw, 3.25rem)', marginTop: 16 }}>
+            Field notes on local models
+          </h1>
+          <p className="st-lede" style={{ marginTop: 12 }}>
+            I run open models on a laptop GPU and write down what actually happens. Speeds, failures, and the prompts
+            in between. No benchmarks for their own sake.
+          </p>
+          <p style={{ marginTop: 24 }}>
+            <Link to="/" className="st-mono" style={{ textDecoration: 'none', color: 'var(--st-accent)' }}>
               Back to home
             </Link>
           </p>
-          <h1 className="st-display st-h2 mt-3">Writing on local AI</h1>
-          <p className="st-lede mt-4">
-            I run open models on a laptop GPU and write down what actually happens, speeds, failures, and the prompts
-            in between. No benchmarks for their own sake.
-          </p>
-        </Reveal>
+        </header>
 
         {loading ? (
-          <p className="st-lede" style={{ padding: '3rem 0' }}>
-            Gathering articles...
-          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+          </div>
         ) : allPosts.length === 0 ? (
           <p className="st-lede" style={{ padding: '3rem 0' }}>
             No articles published yet.
           </p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-10">
-            {allPosts.map((post, i) =>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {allPosts.map((post) =>
               post.type === 'local' ? (
-                <Reveal key={post.id} delay={0.06 * (i % 2)} className="h-full">
-                  <Link to={`/blog/${post.id}`} className="st-card block no-underline" style={{ color: 'inherit' }}>
+                <BuildFrame
+                  key={post.id}
+                  kind="frame"
+                  label="post"
+                  className="st-card"
+                  contentClassName="h-full"
+                  style={{ borderRadius: 'var(--st-r-card)' }}
+                >
+                  <Link to={`/blog/${post.id}`} className="block h-full no-underline" style={{ color: 'inherit' }}>
                     {post.coverImage ? (
-                      <div className="overflow-hidden" style={{ borderRadius: 16 }}>
-                        <img
-                          src={post.coverImage}
-                          alt=""
-                          loading="lazy"
-                          className="w-full aspect-[16/9] object-cover"
-                        />
-                      </div>
+                      <ImageFrame
+                        src={post.coverImage}
+                        alt=""
+                        label="cover"
+                        imgClassName="w-full"
+                        style={{ aspectRatio: '16 / 9', borderRadius: 8 }}
+                      />
                     ) : null}
-                    <p className="text-xs font-mono uppercase tracking-widest mt-5" style={{ color: '#5E67E6' }}>
+                    <p className="st-mono" style={{ marginTop: 20, color: 'var(--st-accent)' }}>
                       {post.category} · {post.date} · {post.readTime}
                     </p>
-                    <h2 className="st-display mt-2" style={{ fontSize: '1.6rem' }}>
+                    <h2 className="st-h3" style={{ marginTop: 8 }}>
                       {post.title}
                     </h2>
-                    <p className="mt-3 text-[0.95rem] leading-relaxed" style={{ color: '#5b5b5b' }}>
+                    <p className="st-body" style={{ marginTop: 8, fontSize: 14, lineHeight: 1.65 }}>
                       {post.subtitle}
                     </p>
-                    <span className="inline-flex items-center gap-1 mt-4 text-sm font-semibold">
+                    <span
+                      className="inline-flex items-center gap-1"
+                      style={{ marginTop: 16, fontSize: 14, fontWeight: 500, color: 'var(--st-accent)' }}
+                    >
                       Read article <ArrowUpRight size={15} />
                     </span>
                   </Link>
-                </Reveal>
+                </BuildFrame>
               ) : (
-                <Reveal key={post.guid} delay={0.06 * (i % 2)} className="h-full">
+                <BuildFrame
+                  key={post.guid}
+                  kind="frame"
+                  label="post"
+                  className="st-card"
+                  contentClassName="h-full"
+                  style={{ borderRadius: 'var(--st-r-card)' }}
+                >
                   <a
                     href={post.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="st-card block no-underline"
+                    className="block h-full no-underline"
                     style={{ color: 'inherit' }}
                   >
-                    <p className="text-xs font-mono uppercase tracking-widest mt-1" style={{ color: '#5E67E6' }}>
+                    <p className="st-mono" style={{ color: 'var(--st-accent)' }}>
                       Medium · {formatDate(post.pubDate)}
                     </p>
-                    <h2 className="st-display mt-2" style={{ fontSize: '1.6rem' }}>
+                    <h2 className="st-h3" style={{ marginTop: 8 }}>
                       {post.title}
                     </h2>
-                    <span className="inline-flex items-center gap-1 mt-4 text-sm font-semibold">
+                    <span
+                      className="inline-flex items-center gap-1"
+                      style={{ marginTop: 16, fontSize: 14, fontWeight: 500, color: 'var(--st-accent)' }}
+                    >
                       Read on Medium <ArrowUpRight size={15} />
                     </span>
                   </a>
-                </Reveal>
+                </BuildFrame>
               )
             )}
           </div>

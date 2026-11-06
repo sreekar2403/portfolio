@@ -1,48 +1,55 @@
-import { motion as Motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { PROJECTS } from '../data/projects'
 import { PERSONAL } from '../data/constants'
 import { Reveal, SectionHead } from './primitives'
+import { BuildFrame, ImageFrame } from './build/BuildFrame'
 
-const TAGS = {
-  hive: 'Open Source',
-  'multi-agentic-platform': 'Local AI',
-  'local-image-gen': 'Local AI',
+function formatDate(dateStr) {
+  return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'short' })
 }
 
 function Card({ project, index }) {
   return (
-    <div className="st-stack-card" style={{ top: 84 + index * 24, background: '#1e1e1e' }}>
-      {project.screenshot ? (
-        <img className="st-stack-bg" src={project.screenshot} alt={`${project.title} cover`} loading="lazy" />
-      ) : null}
-      <div className="st-stack-scrim" aria-hidden="true" />
-      <div className="relative p-8 md:p-14 w-full" style={{ maxWidth: 800 }}>
-        <span className="st-tag">{TAGS[project.id] || 'Project'}</span>
-        <h3 className="st-display mt-5" style={{ fontSize: 'clamp(2.2rem, 6vw, 4.5rem)', color: '#fff' }}>
-          {project.title}
-        </h3>
-        <p className="mt-4 text-white/80 leading-relaxed" style={{ maxWidth: '36rem' }}>
-          {project.description}
-        </p>
-        <div className="flex flex-wrap gap-2 mt-5">
-          {project.tags?.slice(0, 4).map((t) => (
-            <span
-              key={t}
-              className="text-xs font-mono px-3 py-1 rounded-full border border-white/25 text-white/80"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-        <a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="st-btn mt-7"
-        >
-          View on GitHub <ArrowUpRight size={16} />
-        </a>
+    <div className="st-stack-card" style={{ top: 88 + index * 20 }}>
+      <ImageFrame
+        src={project.screenshot}
+        alt={`${project.title} screenshot`}
+        label={`cover · ${project.title.toLowerCase()}`}
+        className="st-stack-media"
+        imgClassName="h-full w-full"
+      />
+      <div className="st-stack-body">
+        <BuildFrame kind="frame" label={`copy · ${project.title.toLowerCase()}`}>
+          <span className="st-readout">
+            <b>{String(index + 1).padStart(2, '0')}</b>
+            <span>{project.subtitle}</span>
+          </span>
+          <h3 className="st-stack-title">{project.title}</h3>
+          <p className="st-stack-desc">{project.description}</p>
+          <dl className="st-spec">
+            <div className="st-spec-row">
+              <dt>Stack</dt>
+              <dd>{project.tags.slice(0, 4).join(' · ')}</dd>
+            </div>
+            <div className="st-spec-row">
+              <dt>Status</dt>
+              <dd>{project.complexity}</dd>
+            </div>
+            <div className="st-spec-row">
+              <dt>Updated</dt>
+              <dd>{formatDate(project.completionDate)}</dd>
+            </div>
+          </dl>
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="st-btn st-btn-sm"
+            style={{ alignSelf: 'flex-start', marginTop: 4 }}
+          >
+            View on GitHub <ArrowUpRight size={15} />
+          </a>
+        </BuildFrame>
       </div>
     </div>
   )
@@ -50,29 +57,27 @@ function Card({ project, index }) {
 
 export default function Projects() {
   return (
-    <section className="st-wrap py-20 md:py-28" id="projects">
-      <SectionHead
-        title="Featured Projects"
-        lede="A few things I built and maintain. Each one runs for real users or on real hardware, not just in a demo."
-      />
-      <div className="mt-10 flex flex-col gap-6">
-        {PROJECTS.map((p, i) => (
-          <Motion.div
-            key={p.id}
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <Card project={p} index={i} />
-          </Motion.div>
-        ))}
+    <section className="st-section" id="projects">
+      <div className="st-wrap">
+        <SectionHead
+          index="03"
+          kicker="Projects"
+          title="Built for real users, on real hardware"
+          lede="A few things I built and maintain. Each one runs for real users or on a real GPU, not just in a demo."
+        />
+        <div className="st-stack">
+          {PROJECTS.map((p, i) => (
+            <Reveal key={p.id} delay={i * 60}>
+              <Card project={p} index={i} />
+            </Reveal>
+          ))}
+        </div>
+        <Reveal delay={60} className="text-center" >
+          <a href={PERSONAL.github} target="_blank" rel="noreferrer" className="st-btn-ghost" style={{ marginTop: 40, display: 'inline-flex' }}>
+            Browse all projects <ArrowUpRight size={15} />
+          </a>
+        </Reveal>
       </div>
-      <Reveal delay={0.05} className="mt-10 text-center">
-        <a href={PERSONAL.github} target="_blank" rel="noreferrer" className="st-btn">
-          Browse All Projects <ArrowUpRight size={16} />
-        </a>
-      </Reveal>
     </section>
   )
 }
