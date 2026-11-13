@@ -5,6 +5,7 @@ import '../site/site.css'
 import Navbar from '../site/Navbar'
 import Footer from '../site/Footer'
 import { LOCAL_BLOG_POSTS, BLOG_IMAGES, BLOG_VIDEO } from '../data/localBlogs'
+import { ImageFrame } from '../site/build/BuildFrame'
 import BonsaiBlogContent from './BonsaiBlogContent'
 import OrnithBlogContent from './OrnithBlogContent'
 import NemotronBlogContent from './NemotronBlogContent'
@@ -652,7 +653,7 @@ export default function BlogPostPage() {
 
   if (!post) {
     return (
-      <div className="st-page">
+      <div className="st-page st-route">
         <Navbar />
         <main className="st-wrap pt-32 pb-16">
           <h1 className="st-display st-h2">Post not found</h1>
@@ -668,12 +669,12 @@ export default function BlogPostPage() {
   }
 
   return (
-    <div className="st-page">
+    <div className="st-page st-route">
       <Navbar />
-      <main className="st-wrap pt-32 md:pt-40">
+      <main className="st-wrap" style={{ paddingTop: 128, paddingBottom: 16 }}>
         {/* ─── Article header ─── */}
         <header style={{ maxWidth: '46rem' }}>
-          <Link to="/blogs" className="text-sm font-semibold" style={{ color: '#5E67E6' }}>
+          <Link to="/blogs" className="text-sm font-medium" style={{ color: 'var(--st-accent)', textDecoration: 'none' }}>
             All writing
           </Link>
           <div className="flex flex-wrap gap-2" style={{ margin: '1rem 0' }}>
@@ -683,19 +684,23 @@ export default function BlogPostPage() {
               </span>
             ))}
           </div>
-          <h1 className="st-display" style={{ fontSize: 'clamp(2rem, 5vw, 3.4rem)' }}>
+          <h1 className="st-display" style={{ fontSize: 'clamp(2rem, 4.6vw, 3.25rem)' }}>
             {post.title}
           </h1>
           <p className="st-lede mt-4" style={{ fontSize: '1.15rem' }}>
             {post.subtitle}
           </p>
-          <p className="text-xs font-mono uppercase tracking-widest mt-5" style={{ color: '#777' }}>
+          <p className="st-mono" style={{ marginTop: 20 }}>
             {post.date} · {post.readTime}
           </p>
           {post.coverImage && (
-            <figure className="st-photo-card mt-8">
-              <img src={post.coverImage} alt="" />
-            </figure>
+            <ImageFrame
+              src={post.coverImage}
+              alt=""
+              label="cover"
+              imgClassName="w-full"
+              style={{ aspectRatio: '16 / 9', borderRadius: 12, marginTop: 32 }}
+            />
           )}
         </header>
 

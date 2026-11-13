@@ -2,8 +2,7 @@ import { useState } from 'react'
 import { AnimatePresence, motion as Motion, useReducedMotion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { ST_NAV, ST_SOCIALS } from './data'
-import { ST_HERO } from './data'
+import { ST_NAV, ST_SOCIALS, ST_HERO } from './data'
 import { PERSONAL } from '../data/constants'
 
 function scrollToHash(href) {
@@ -22,7 +21,7 @@ export default function Navbar() {
     setOpen(false)
     if (location.pathname !== '/') {
       navigate('/')
-      setTimeout(() => scrollToHash(href), 120)
+      setTimeout(() => scrollToHash(href), 140)
     } else {
       scrollToHash(href)
     }
@@ -30,20 +29,43 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="st-pillnav">
-        <img src={ST_HERO.photo} alt="" width="72" height="72" />
-        <button
-          onClick={() => go('#contact')}
-          className="text-sm font-medium"
-          style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'inherit' }}
-        >
-          Available for work
-        </button>
-        <span className="st-status-dot" aria-hidden="true" />
-        <button className="st-menu-btn" onClick={() => setOpen(true)} aria-label="Open menu">
-          <Menu size={18} />
-        </button>
-      </div>
+      <header className="st-topbar">
+        <div className="st-topbar-inner">
+          <a href="/portfolio/" className="st-brand" onClick={(e) => { e.preventDefault(); go('#top') }}>
+            <img src="/portfolio/title_icon.svg" alt="" width="24" height="24" />
+            PVSM Sreekar
+          </a>
+
+          <nav className="st-navlinks" aria-label="Sections">
+            {ST_NAV.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="st-navlink"
+                onClick={(e) => {
+                  e.preventDefault()
+                  go(item.href)
+                }}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="st-topbar-right">
+            <span className="st-availability">
+              <span className="st-dot" aria-hidden="true" />
+              Available for work
+            </span>
+            <a href="#contact" className="st-btn st-btn-sm" onClick={(e) => { e.preventDefault(); go('#contact') }}>
+              Contact
+            </a>
+            <button className="st-menu-btn" onClick={() => setOpen(true)} aria-label="Open menu">
+              <Menu size={17} />
+            </button>
+          </div>
+        </div>
+      </header>
 
       <AnimatePresence>
         {open && (
@@ -52,23 +74,25 @@ export default function Navbar() {
             initial={reduce ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.22 }}
           >
-            <button
-              className="st-menu-btn"
-              onClick={() => setOpen(false)}
-              aria-label="Close menu"
-              style={{ position: 'absolute', top: 24, right: '8vw' }}
-            >
-              <X size={18} />
-            </button>
-            <nav>
+            <div className="st-overlay-top">
+              <span className="st-brand" style={{ pointerEvents: 'none' }}>
+                <img src="/portfolio/title_icon.svg" alt="" width="24" height="24" />
+                PVSM Sreekar
+              </span>
+              <button className="st-menu-btn" onClick={() => setOpen(false)} aria-label="Close menu">
+                <X size={17} />
+              </button>
+            </div>
+
+            <nav aria-label="Sections">
               {ST_NAV.map((item, i) => (
                 <Motion.div
                   key={item.href}
-                  initial={reduce ? false : { opacity: 0, x: -32 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.06 * i, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  initial={reduce ? false : { opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.04 * i, duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <a
                     href={item.href}
@@ -84,20 +108,16 @@ export default function Navbar() {
                 </Motion.div>
               ))}
             </nav>
-            <Motion.div
-              initial={reduce ? false : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.35 }}
-              className="mt-10 flex flex-wrap gap-x-8 gap-y-2 text-sm"
-              style={{ color: 'rgba(255,255,255,0.7)' }}
-            >
+
+            <div className="st-overlay-foot">
               <a href={`mailto:${PERSONAL.email}`}>{PERSONAL.email}</a>
               {ST_SOCIALS.slice(0, 3).map((s) => (
                 <a key={s.label} href={s.href} target="_blank" rel="noreferrer">
                   {s.label}
                 </a>
               ))}
-            </Motion.div>
+              <span style={{ color: 'var(--st-ink-3)' }}>{ST_HERO.location}</span>
+            </div>
           </Motion.div>
         )}
       </AnimatePresence>

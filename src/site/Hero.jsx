@@ -1,64 +1,95 @@
-import { motion as Motion, useReducedMotion } from 'framer-motion'
-import { ArrowDown, Cpu, Sparkles } from 'lucide-react'
+import { Suspense, lazy, useCallback } from 'react'
+import { Link } from 'react-router-dom'
+import { ArrowDown, ArrowUpRight } from 'lucide-react'
 import { ST_HERO } from './data'
+import { BuildFrame, ImageFrame } from './build/BuildFrame'
+import { useJobs } from './build/JobContext'
 
-const ease = [0.16, 1, 0.3, 1]
+const HeroScene = lazy(() => import('./build/HeroScene'))
+
+const FACTS = [
+  { value: '5', label: 'years in production ML' },
+  { value: '10+', label: 'projects shipped' },
+  { value: 'arXiv', label: '2025, speculative decoding' },
+  { value: 'Bengaluru', label: 'India, remote-friendly' },
+]
 
 export default function Hero() {
-  const reduce = useReducedMotion()
-  const rise = (delay) => ({
-    initial: reduce ? false : { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.9, delay, ease },
-  })
+  const { heroEl } = useJobs()
+
+  const factPoints = useCallback(
+    (el) =>
+      Array.from(el ? el.querySelectorAll('[data-fact]') : document.querySelectorAll('[data-fact]')).map((node) => {
+        const r = node.getBoundingClientRect()
+        return [r.left + r.width / 2, r.top + r.height / 2]
+      }),
+    []
+  )
 
   return (
-    <header className="st-wrap pt-36 md:pt-48 pb-10 relative" id="top">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <div className="lg:col-span-4 order-2 lg:order-1">
-          <Motion.div {...rise(0.35)} className="relative mx-auto" style={{ maxWidth: 340 }}>
-            <div className="st-photo-card aspect-[3/4]">
-              <img src={ST_HERO.photo} alt={ST_HERO.photoAlt} loading="eager" />
-            </div>
-            <div className="st-float-btn" style={{ left: -28, bottom: 64 }} aria-hidden="true">
-              <Sparkles size={28} />
-            </div>
-            <div
-              className="st-float-btn"
-              style={{ right: -24, top: 48, animationDelay: '1.2s', width: 64, height: 64 }}
-              aria-hidden="true"
-            >
-              <Cpu size={24} />
-            </div>
-          </Motion.div>
+    <header className="st-hero" id="top" ref={heroEl}>
+      <Suspense fallback={null}>
+        <HeroScene />
+      </Suspense>
+      <div className="st-wrap" style={{ position: 'relative', zIndex: 1 }}>
+        <div className="st-hero-grid">
+          <div>
+            <BuildFrame kind="frame" label="hero copy" style={{ borderRadius: 12 }}>
+              <p className="st-readout" style={{ marginBottom: 20 }}>
+                <b>{ST_HERO.name}</b>
+                <span>{ST_HERO.role}</span>
+              </p>
+              <h1 className="st-hero-title" style={{ marginTop: 0 }}>
+                {ST_HERO.line1}
+                <br />
+                {ST_HERO.line2}
+              </h1>
+              <p className="st-hero-sub">{ST_HERO.sub}</p>
+              <div className="st-hero-actions">
+                <a
+                  href="#contact"
+                  className="st-btn"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                  }}
+                >
+                  Start a conversation <ArrowDown size={16} />
+                </a>
+                <Link to="/blogs" className="st-btn-ghost">
+                  Read the field notes <ArrowUpRight size={16} />
+                </Link>
+              </div>
+            </BuildFrame>
+          </div>
+
+          <div>
+            <ImageFrame
+              src={ST_HERO.photo}
+              alt={ST_HERO.photoAlt}
+              label="portrait"
+              eager
+              className="st-photo"
+              imgClassName="h-full w-full"
+              style={{ aspectRatio: '4 / 5', maxWidth: 420, marginLeft: 'auto' }}
+            />
+          </div>
         </div>
 
-        <div className="lg:col-span-8 order-1 lg:order-2">
-          <Motion.p {...rise(0)} className="text-lg mb-4 mt-2">
-            {ST_HERO.greeting}, I&rsquo;m {ST_HERO.name}
-          </Motion.p>
-          <Motion.h1 {...rise(0.1)} className="st-display st-hero-title">
-            <span className="block">{ST_HERO.line1}</span>
-            <span className="block">{ST_HERO.line2}</span>
-          </Motion.h1>
-          <div className="flex flex-wrap items-end gap-6">
-            <Motion.p {...rise(0.3)} className="st-lede mt-6 lg:mt-0 lg:pb-3" style={{ maxWidth: '22rem' }}>
-              {ST_HERO.sub}
-            </Motion.p>
-          </div>
-          <Motion.div {...rise(0.4)} className="mt-8">
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault()
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-              }}
-              className="st-btn"
-            >
-              Let&rsquo;s talk <ArrowDown size={16} />
-            </a>
-          </Motion.div>
-        </div>
+        <BuildFrame
+          kind="ticks"
+          label="verifying facts"
+          getPoints={factPoints}
+          className="st-hero-facts"
+          contentClassName="flex flex-wrap gap-x-6 gap-y-2"
+          style={{ marginTop: 48 }}
+        >
+          {FACTS.map((f) => (
+            <span key={f.label} className="st-hero-fact" data-fact="">
+              <b>{f.value}</b> {f.label}
+            </span>
+          ))}
+        </BuildFrame>
       </div>
     </header>
   )

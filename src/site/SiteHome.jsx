@@ -12,7 +12,7 @@ import Footer from './Footer'
 
 export default function SiteHome() {
   return (
-    <div className="st-page">
+    <div className="st-page st-route">
       <Navbar />
       <main>
         <Hero />

@@ -43,8 +43,8 @@ export const LOCAL_BLOG_POSTS = [
   },
   {
     id: 'ornith-broken-agent-blog',
-    title: 'Ornith Under the Microscope: 30 Rewrites, 504,000 Tokens, and Code That Still Does Not Run',
-    subtitle: 'Instrumenting Ornith, an open-source agentic coding assistant run locally through Ollama, by auditing the deliverable code instead of the reasoning trace.',
+    title: 'Ornith under the Microscope: 30 Rewrites, 504,000 Tokens, and Code That Still Does Not Run',
+    subtitle: 'Auditing the deliverable code of Ornith, a locally run open-source coding assistant, instead of the reasoning trace that produced it.',
     date: '2026-07-26',
     tags: ['Agentic Coding', 'Ollama', 'Local Models', 'Debugging', 'Evaluation'],
     coverImage: `${BASE}blog/Ornith/ornith.png`,
@@ -53,7 +53,7 @@ export const LOCAL_BLOG_POSTS = [
   },
   {
     id: 'qwen-vs-nemotron',
-    title: 'Qwen3.6:35B-A3B-MTP vs Nemotron-3-Nano:30B-A3B, A Detailed Local Inference Comparison',
+    title: 'Qwen3.6:35B-A3B-MTP vs Nemotron-3-Nano:30B-A3B, a Detailed Local Inference Comparison',
     subtitle: 'A field report from someone who runs these models to actually ship code, not just to run a benchmark suite.',
     date: '2026-07-20',
     tags: ['Local LLM', 'Ollama', 'Qwen', 'Nemotron', 'Inference'],

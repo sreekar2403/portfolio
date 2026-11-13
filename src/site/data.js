@@ -1,23 +1,24 @@
 import { PERSONAL } from '../data/constants'
 
 export const ST_HERO = {
-  greeting: 'Hi',
   name: 'PVSM Sreekar',
-  line1: 'Machine',
-  line2: 'Learning',
-  sub: 'Bengaluru-based Lead ML Engineer at Freshworks building AI systems that survive production.',
+  role: 'Lead ML Engineer, Bengaluru',
+  line1: 'AI systems that',
+  line2: 'survive production',
+  sub: 'Five years building triage, replies, evaluation, and inference for support software that runs every day, currently as Lead ML Engineer at Freshworks.',
   photo: '/portfolio/figurine.png',
   photoAlt: 'Portrait of PVSM Sreekar',
+  location: 'Bengaluru, India',
 }
 
 export const ST_SERVICES = [
   {
     title: 'MLOps and LLM Systems',
     points: [
-      'Fine-tuning open-source LLMs for real tasks',
-      'Eval pipelines and speculative decoding setups',
-      'Scalable inference services for SaaS products',
-      'Monitoring models that run every day',
+      'Fine-tuned open-source LLMs for support tasks',
+      'Built eval pipelines and speculative decoding',
+      'Run scalable inference services for SaaS',
+      'Monitor models that run every day',
     ],
   },
   {
@@ -34,31 +35,31 @@ export const ST_SERVICES = [
     points: [
       'Sentiment and escalation prediction',
       'Auto-triage and smart reply systems',
-      'Q and A backends for zero-touch resolution',
+      'Q&A backends for zero-touch resolution',
       'Predictive ticket routing at scale',
     ],
   },
   {
     title: 'Leadership and Delivery',
     points: [
-      'Mentoring engineers on distributed AI systems',
-      'Shared microservice templates for fast shipping',
-      'Moving research ideas into production',
-      'Reviews, roadmaps, and honest timelines',
+      'Mentor engineers on distributed AI systems',
+      'Share microservice templates for fast shipping',
+      'Move research ideas into production',
+      'Run reviews, roadmaps, and honest timelines',
     ],
   },
 ]
 
 export const ST_STATS = [
-  { value: 5, suffix: '', label: 'Years of Experience' },
-  { value: 10, suffix: '', label: 'Projects Shipped' },
-  { value: 1, suffix: 'M+', label: 'Users Served' },
+  { value: 5, suffix: '+', label: 'Years building production ML', note: 'Freshworks, since 2020' },
+  { value: 10, suffix: '+', label: 'Projects shipped', note: 'Open source and internal' },
+  { value: 1, suffix: 'M+', label: 'Users served', note: 'Across Freshworks support products' },
 ]
 
 export const ST_FAQS = [
   {
     q: 'What services do you offer?',
-    a: 'End-to-end ML systems: data pipelines, model training and fine-tuning, evaluation, inference infrastructure, and MLOps automation. Mostly for support software and SaaS products.',
+    a: 'End-to-end ML systems: data pipelines, model training and fine-tuning, evaluation, inference infrastructure, and MLOps automation, mostly for support software and SaaS products.',
   },
   {
     q: 'How does the process work?',
@@ -85,14 +86,14 @@ export const ST_FAQS = [
 export const ST_TESTIMONIALS = [
   {
     quote:
-      "Sreekar's deep understanding of ML systems architecture transformed our approach to production inference. His work on our LLM pipeline reduced latency by 40 percent while maintaining accuracy.",
+      "Sreekar's deep understanding of ML systems architecture changed how we approach production inference. His work on our LLM pipeline cut latency by 40 percent without losing accuracy.",
     author: 'Engineering Lead',
     role: 'Freshworks',
     initials: 'EL',
   },
   {
     quote:
-      'An exceptional engineer who bridges the gap between research and production. Sreekar can fine-tune and deploy models at scale, and he documents everything along the way.',
+      'An exceptional engineer who bridges research and production. Sreekar can fine-tune and deploy models at scale, and he documents everything along the way.',
     author: 'Senior ML Engineer',
     role: 'Colleague',
     initials: 'SM',
@@ -114,9 +115,9 @@ export const ST_SOCIALS = [
 ]
 
 export const ST_NAV = [
-  { index: '01', label: 'About', href: '#about' },
-  { index: '02', label: 'Services', href: '#services' },
-  { index: '03', label: 'Projects', href: '#projects' },
-  { index: '04', label: 'Insights', href: '#insights' },
-  { index: '05', label: 'Contact', href: '#contact' },
+  { label: 'About', href: '#about' },
+  { label: 'Services', href: '#services' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Insights', href: '#insights' },
+  { label: 'Contact', href: '#contact' },
 ]
