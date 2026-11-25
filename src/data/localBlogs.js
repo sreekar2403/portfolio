@@ -9,7 +9,7 @@ export const LOCAL_BLOG_POSTS = [
     tags: ['Local LLM', 'Inkling-2-Mini', 'LLM Evaluation', 'AI Coding', 'Software Engineering'],
     coverImage: `${BASE}blog/inkling_2_mini/cover.png`,
     coverImageAlt: 'Illustration for the Inkling-2-Mini evaluation: a small model marked up against seven test categories covering reasoning, code, UI, and business analysis',
-    readTime: '15 min',
+    readTime: '17 min',
     category: 'Local AI evaluation',
   },
   {
@@ -107,6 +107,10 @@ export const BLOG_IMAGES = {
   bonsai: `${BASE}blog/bonsai_27b/bonsai.png`,
 
   inkling2mini_cover: `${BASE}blog/inkling_2_mini/cover.png`,
+  inkling2mini_nexus_desktop: `${BASE}blog/inkling_2_mini/nexus-desktop.png`,
+  inkling2mini_nexus_dark: `${BASE}blog/inkling_2_mini/nexus-desktop-dark.png`,
+  inkling2mini_nexus_mobile: `${BASE}blog/inkling_2_mini/nexus-mobile.png`,
+  inkling2mini_nexus_mobile_nav: `${BASE}blog/inkling_2_mini/nexus-mobile-nav.png`,
 
   qwen38_cover: `${BASE}blog/qwen38_27b/cover.png`,
   qwen38_hardware: `${BASE}blog/qwen38_27b/hardware.png`,

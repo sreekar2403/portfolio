@@ -1,3 +1,20 @@
+import { BLOG_IMAGES } from '../data/localBlogs'
+
+function Figure({ src, alt, caption }) {
+  return (
+    <figure className="my-6">
+      <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+        <img src={src} alt={alt} className="block w-full h-auto" loading="lazy" />
+      </div>
+      {caption && (
+        <figcaption className="mt-3 text-center text-sm text-slate-500 font-mono leading-relaxed">
+          {caption}
+        </figcaption>
+      )}
+    </figure>
+  )
+}
+
 function Stat({ label, value, tone = 'slate', compact = false }) {
   const toneClass = tone === 'emerald'
     ? 'border-emerald-200 bg-emerald-50/60'
@@ -101,7 +118,7 @@ export default function Inkling2MiniBlogContent() {
       <div className="not-prose grid grid-cols-1 md:grid-cols-4 gap-4 my-8">
         <Stat label="Tasks run" value="7 domains" tone="blue" />
         <Stat label="Score range" value="7.8 – 10" tone="emerald" />
-        <Stat label="Speed telemetry" value="Not recorded" tone="amber" compact />
+        <Stat label="Speed observed" value="3–7 tok/s" tone="amber" />
         <Stat label="Verdict" value="Verify code" />
       </div>
 
@@ -130,9 +147,11 @@ export default function Inkling2MiniBlogContent() {
       <H2>Test environment and methodology</H2>
       <p>
         Evaluation date: <strong>25 November 2026</strong>. Machine: a Windows laptop with an{' '}
-        <strong>NVIDIA RTX 4060 Laptop GPU (8 GB VRAM)</strong> and <strong>32 GB of system RAM</strong>, with
-        LM Studio as the intended local runtime. The model was given practical tasks with constraints, expected
-        outcomes, or realistic engineering and business scenarios, and I assessed six things each time:
+        <strong>NVIDIA RTX 4060 Laptop GPU (8 GB VRAM)</strong> and <strong>32 GB of system RAM</strong>, running
+        the model in <strong>LM Studio 0.4.28+2</strong> from a Q4_K_M GGUF on disk. Everything below comes from
+        that session: the model file, the runtime configuration, and an exported chat transcript covering all
+        seven tasks. The model was given practical tasks with constraints, expected outcomes, or realistic
+        engineering and business scenarios, and I assessed six things each time:
       </p>
       <ol>
         <li>Correctness of the answer or implementation.</li>
@@ -143,11 +162,12 @@ export default function Inkling2MiniBlogContent() {
         <li>Whether its claims were supported by the supplied evidence.</li>
       </ol>
 
-      <H3>The reproducibility gap, stated up front</H3>
+      <H3>The reproducibility record</H3>
       <p>
-        This is the part most model write-ups skip, so I am putting it first. The evaluation notes preserved the
-        conversation outcomes, but not the session configuration. I would rather show you the holes than paper
-        over them:
+        This is the part most model write-ups skip, so I am putting it first. Model identity, quantization, and
+        runtime are now recoverable, so they are filled in from Hugging Face, the file on disk, and the export
+        header. Sampling settings and per-task timing were never captured, and those stay blank rather than
+        getting a plausible-looking guess:
       </p>
 
       <div className="not-prose my-8">
@@ -155,19 +175,84 @@ export default function Inkling2MiniBlogContent() {
           headers={['Metadata', 'Current record']}
           rows={[
             ['<strong>Model name</strong>', 'Inkling-2-Mini'],
-            ['<strong>Repository / publisher</strong>', 'Not recorded'],
-            ['<strong>Revision / checksum</strong>', 'Not recorded'],
-            ['<strong>Quantization</strong>', 'Not recorded'],
-            ['<strong>Runtime</strong>', 'LM Studio intended; exact session configuration not preserved'],
+            ['<strong>Repository / publisher</strong>', '<code>lmstudio-community/Inkling-2-Mini-GGUF</code>, GGUF built by the LM Studio team; base model <code>thinkingmachines/Inkling-2-Mini</code> by Thinking Machines Lab, Apache-2.0, released 20 Nov 2026'],
+            ['<strong>Revision / checksum</strong>', 'Repo revision <code>23c938b0…</code> (last modified 2026-11-21); <code>Inkling-2-Mini-Q4_K_M.gguf</code> SHA-256 <code>dac3702a…db483de</code>, 17,478,094,048 bytes'],
+            ['<strong>Quantization</strong>', 'Q4_K_M, 16.28 GiB on disk, plus a 0.60 GiB BF16 vision encoder (<code>mmproj</code>)'],
+            ['<strong>Architecture</strong>', '<code>inkling2_loop</code> · 26.07B total parameters · 128 experts, 8 active per token · text and image input'],
+            ['<strong>Runtime</strong>', 'LM Studio 0.4.28+2, stated in the export header'],
             ['<strong>OS / GPU / RAM</strong>', 'Windows · RTX 4060 Laptop GPU, 8 GB · 32 GB RAM'],
-            ['<strong>Context length</strong>', 'Not recorded for these tests'],
-            ['<strong>Temperature / top-p / top-k</strong>', 'Not recorded'],
-            ['<strong>Prompt template</strong>', 'Not recorded'],
-            ['<strong>Repeated trials</strong>', 'Not recorded; tasks appear to be single conversational trials'],
-            ['<strong>Inference speed / telemetry</strong>', 'Not recorded'],
+            ['<strong>Context length</strong>', '65,536 configured in LM Studio; the model supports up to 1,048,576'],
+            ['<strong>Temperature / top-p / top-k</strong>', 'Not recorded in the export'],
+            ['<strong>Prompt template</strong>', "The GGUF's embedded Jinja chat template; default thinking effort 0.9 unless overridden"],
+            ['<strong>Repeated trials</strong>', 'Not recorded; each task appears to be a single conversational trial'],
+            ['<strong>Inference speed</strong>', '<strong>3–7 tokens/sec observed</strong> across these runs'],
           ]}
         />
       </div>
+
+      <H3>The file on disk</H3>
+      <Code caption="Local model record, cross-checked against the Hugging Face file listing.">
+{`%USERPROFILE%\\.lmstudio\\models\\lmstudio-community\\Inkling-2-Mini-GGUF\\
+├── Inkling-2-Mini-Q4_K_M.gguf         17,478,094,048 bytes  (16.28 GiB)
+│     sha256 dac3702abcb5684cbcb1fbd148d94b2d531283be974630ac61964d194db483de
+└── mmproj-Inkling-2-Mini-BF16.gguf       641,805,888 bytes  (vision encoder)
+
+repo: huggingface.co/lmstudio-community/Inkling-2-Mini-GGUF @ 23c938b0
+base: huggingface.co/thinkingmachines/Inkling-2-Mini  (Apache-2.0)`}
+      </Code>
+
+      <H3>The runtime, exactly as configured</H3>
+      <p>
+        These are the LM Studio load settings used for the evaluation, transcribed from the model configuration
+        panel. The two that matter most for the speed numbers further down are{' '}
+        <strong>GPU Offload: 7 layers</strong> and <strong>Context Length: 65,536</strong>:
+      </p>
+
+      <Code caption="LM Studio 0.4.28+2 load configuration for this evaluation.">
+{`Model file                 Inkling-2-Mini-Q4_K_M.gguf
+API identifier             thinkmachines/inkling-2-mini
+Context Length             65536            (model supports up to 1048576)
+GPU Offload                7 layers         (model has 24)
+CPU Thread Pool Size       7
+Evaluation Batch Size      2048
+Physical Batch Size        512
+Max Concurrent Predictions 4
+Unified KV Cache           on
+Context Checkpoints        32
+Offload KV Cache to GPU    on
+Keep Model in Memory       on
+Try mmap()                 on
+On Demand Tensor Loading   Auto
+Seed                       0 (random)
+Number of Experts          8
+MoE layers forced to CPU   0
+MoE Expert Cache           0 MiB
+Speculative Decoding       off
+Flash Attention            on
+RoPE frequency base/scale  auto
+Reasoning Budget Message   (empty)`}
+      </Code>
+
+      <H3>Where the proof comes from</H3>
+      <p>
+        Every task below ran in one LM Studio chat, which was exported as Markdown after the session. That
+        export is the primary evidence for this article: it contains the exact prompts, the model's visible
+        reasoning traces, and the full responses for all seven tasks.
+      </p>
+
+      <Code caption="Header of the exported chat transcript (7 tasks, exported 25 Nov 2026, 15:57).">
+{`# You are a highly cap
+Model: thinkingmachines/inkling-2-mini
+Created: 11/11/2026, 9:19:13 pm
+Exported from: LM Studio 0.4.28+2`}
+      </Code>
+
+      <p>
+        <strong>Speed, since it is usually the first question:</strong> generation ran at{' '}
+        <strong>3–7 tokens/sec</strong> across these runs, with only 7 of 24 layers offloaded to an 8 GB GPU.
+        That is the honest number for a 16 GiB quant on this hardware. Time-to-first-token, prompt-processing
+        rate, and VRAM peaks were not captured, so those fields stay empty.
+      </p>
 
       <Callout tone="warn" title="What this evaluation is not">
         <ul className="list-disc pl-5 space-y-1">
@@ -176,8 +261,9 @@ export default function Inkling2MiniBlogContent() {
           <li>Not a controlled head-to-head against frontier models.</li>
           <li>Not proof that generated code was deployed or passed a complete external test suite.</li>
           <li>
-            Not a performance benchmark: no verified tokens/second, time-to-first-token, GPU utilization, or
-            memory telemetry exists in this evidence set, so I will not invent any.
+            Not a performance benchmark: generation was observed at 3–7 tokens/sec, but no time-to-first-token,
+            prompt-processing rate, GPU utilization, or per-task memory telemetry was captured, so none of those
+            numbers appear here.
           </li>
         </ul>
       </Callout>
@@ -235,6 +321,19 @@ export default function Inkling2MiniBlogContent() {
         concurrency question was answered correctly <em>and</em> inside the format limit.
       </p>
 
+      <Code caption="Verbatim reasoning trace from the export, Test 1, section 4 — the model counting its own bullets before answering.">
+{`Bullet1: "Concurrency is managing multiple tasks over time; parallelism is executing
+tasks simultaneously on separate resources." Count Concurrency1 is2 managing3 multiple4
+tasks5 over6 time7 parallelism8 is9 executing10 tasks11 simultaneously12 on13 separate14
+resources15. Good 15 (semicolon doesn't matter).
+Bullet2: "Concurrency can occur on one core; parallelism requires more than one processing
+unit or hardware thread." Count Concurrency1 can2 occur3 on4 one5 core6 parallelism7 requires8
+more9 than10 one11 processing12 unit13 or14 hardware15 thread16. Too 16. Revise: "Concurrency
+can happen on one core; parallelism needs multiple cores, threads, or devices." Count
+Concurrency1 can2 happen3 on4 one5 core6 parallelism7 needs8 multiple9 cores10 threads11
+or12 devices13. Good.`}
+      </Code>
+
       <H2>2. Distributed systems: reasoning about a 500 ms budget</H2>
       <p>
         The scenario: a request flows through services <code>A → B → C</code>. Service C normally takes about
@@ -276,6 +375,53 @@ export default function Inkling2MiniBlogContent() {
         The lesson I took from this task, which repeats in nearly every code task below:{" "}
         <strong>the architecture was right, the enforcement was not</strong>. A deadline that is discussed but
         never checked is a comment, not a guarantee.
+      </p>
+
+      <Code caption="Verbatim from the export, Test 2 — the request-handling logic the model actually wrote.">
+{`remaining_ms = (deadline - time.monotonic()) * 1000
+if remaining_ms < MIN_USEFUL_BUDGET_MS:   # e.g. 80ms for A/B overhead
+    return Result(False, None, stale=bool(cached), error="insufficient budget")
+
+try:
+    b_result = call_b(req, timeout_ms=min(remaining_ms - RESERVE_MS, B_TIMEOUT_MS))
+    if b_result.ok and not is_stale(b_result.value, req.freshness_policy):
+        put_cache(req.key, b_result.value, ttl_ms=CACHE_TTL_MS)
+        return Result(True, b_result.value)
+
+    # B failed/slow: use stale cache if allowed, else fast error.
+    if cached and req.allow_stale:
+        return Result(False, cached.value, stale=True, error="fresh data unavailable")
+    return Result(False, None, error=b_result.error or "B timeout/failure")
+
+except TimeoutError as e:
+    if cached and req.allow_stale:
+        return Result(False, cached.value, stale=True, error=str(e))
+    return Result(False, None, error=str(e))
+
+# B internally calls C with a capped timeout and circuit breaker:
+def call_b(req, timeout_ms):
+    if circuit_breaker.is_open():
+        return b_result(ok=False, value=None, error="C circuit open")
+    try:
+        c_value = call_c(req, timeout_ms=min(timeout_ms - B_RESERVE_MS, C_TIMEOUT_MS))  # e.g. 420-450ms cap
+        circuit_breaker.record_success()
+        return b_result(ok=True, value=transform_for_a(c_value))
+    except TimeoutError as e:
+        circuit_breaker.record_failure()
+        # No retry if it would exceed remaining deadline or amplify load.
+        return b_result(ok=False, value=None, error=str(e))`}
+      </Code>
+
+      <p>
+        Note what that code does and does not do: it caps waits and fails fast, and it says so in plain text
+        right after the snippet —{" "}
+        <em>
+          "the only hard guarantee is that A returns within 500ms by capping waits and failing fast; successful
+          fresh completion cannot be guaranteed because C can take 2 seconds or fail."
+        </em>{" "}
+        The <code>deadline</code>, <code>RESERVE_MS</code>, <code>B_TIMEOUT_MS</code>, and{" "}
+        <code>circuit_breaker</code> values it leans on are referenced but never defined in the sketch. That is
+        the gap between the explanation and the implementation this whole evaluation kept running into.
       </p>
 
       <Code caption="Illustrative only, my own sketch of what enforcement would require. Not model output from the evaluation.">
@@ -428,7 +574,7 @@ FOR UPDATE;`}
         </p>
       </Callout>
 
-      <H2>5. Frontend: a complete dashboard, on paper</H2>
+      <H2>5. Frontend: a complete dashboard, on paper and on screen</H2>
       <p>
         The fifth task was a standalone, single-file <strong>Nexus Analytics</strong> dashboard in plain
         HTML/CSS/JavaScript, with no frameworks and no CDN dependencies: sidebar navigation, KPI cards, revenue
@@ -461,11 +607,55 @@ FOR UPDATE;`}
         />
       </div>
 
+      <H3>What the source actually renders</H3>
+      <p>
+        The export contained the complete single-file dashboard as one fenced HTML block, though with its
+        angle brackets HTML-escaped for Markdown. I decoded that escaping — reversing only the exporter's
+        entity substitutions, changing no code — and opened the file in a headless browser after the fact.
+        The four images below are<strong> post-hoc renders of that exported source</strong>, captured in
+        Chromium at desktop and mobile widths — they are not screenshots from the original evaluation session,
+        and nothing about them was seen by the model or by the original reviewer at the time.
+      </p>
+      <p>
+        What they show is that the file does run: the KPI cards populate from the seeded sample data, the SVG
+        line chart and donut chart draw, the theme toggle switches both palettes, and at 390 px the layout
+        collapses to stacked cards with the sidebar behind a working menu button and overlay. That is a
+        meaningful data point for a zero-framework single file — but it is one browser on one machine, not
+        the cross-browser, keyboard, or accessibility verification listed as still missing below.
+      </p>
+
+      <div className="not-prose my-8 space-y-6">
+        <Figure
+          src={BLOG_IMAGES.inkling2mini_nexus_desktop}
+          alt="Nexus Analytics dashboard rendered from the exported source at desktop width in light theme: sidebar navigation, four KPI cards, an SVG revenue line chart, and a traffic-sources donut chart"
+          caption="Post-hoc render of the exported source, desktop 1440×900, light theme. KPI values, line chart, and donut all populate from the file's own seeded data."
+        />
+        <Figure
+          src={BLOG_IMAGES.inkling2mini_nexus_dark}
+          alt="The same Nexus Analytics dashboard in dark theme, with the toggle switched to Light, showing the second CSS custom-property palette"
+          caption="Same render after clicking the file's own theme button: the dark palette applies and the toggle label flips to Light."
+        />
+        <div className="grid gap-6 md:grid-cols-2">
+          <Figure
+            src={BLOG_IMAGES.inkling2mini_nexus_mobile}
+            alt="The dashboard at 390 px wide: header with menu button, then KPI cards stacked vertically"
+            caption="Mobile 390×844: cards stack vertically, no horizontal overflow."
+          />
+          <Figure
+            src={BLOG_IMAGES.inkling2mini_nexus_mobile_nav}
+            alt="The mobile dashboard with the sidebar navigation open over a dimmed overlay, showing Overview, Revenue, Customers, Reports, and Settings links"
+            caption="Mobile menu open: slide-out sidebar with overlay, wired to the button and Escape key."
+          />
+        </div>
+      </div>
+
       <Callout title="Evidence limitation · the honest part" tone="warn">
         <p className="!mt-0">
-          This bundle contains a <strong>source-code review summary</strong>, not verified desktop or mobile
-          screenshots. So I am not claiming the rendered design was visually inspected, not claiming pixel-level
-          visual quality, not claiming cross-browser testing, and not claiming accessibility certification.
+          The renders above are <strong>post-hoc</strong>: extracted from the chat export and opened in a
+          browser after the evaluation ended, not captured during the original session. They verify that the
+          file renders and its visible controls work in one Chromium build. They are not evidence of
+          cross-browser behavior, keyboard-only navigation, screen-reader behavior, or pixel-level visual
+          quality, and the bundle still contains <strong>no screenshots from the evaluation itself</strong>.
         </p>
         <p>
           <strong>The 8.0/10 in the scorecard below is for source implementation only.</strong> A source file can look plausible
@@ -523,6 +713,20 @@ FOR UPDATE;`}
         link to conversion here, and referrals add traffic without repairing downstream leakage. That is a
         defensible pick, and the fact/assumption separation was clean.
       </p>
+
+      <Code caption="Verbatim reasoning trace from the export, Test 6 — the arithmetic and the fact/assumption split happening before any prose was written.">
+{`The user wants a structured analysis. Need compute conversion rates: visitor->signup 10%,
+signup->onboarding complete 40% (4000/10000), onboarding->activation 37.5% (1500/4000),
+activation->paying 20% (300/1500), overall visitor->paid 0.3% (300/100000). Revenue per
+paying customer = $50/month ... Churn 8% monthly means average lifetime ~12.5 months if
+simple geometric (1/0.08=12.5), but with new customers nuances. Biggest drop:
+signup->onboarding complete is 60% loss (40% completion); activation from onboarded also big
+62.5% loss; visitor->signup 90% loss but that's top-of-funnel traffic quality/marketing, not
+necessarily fixable by one initiative? ... Choose A. Need separate facts vs assumptions.
+Missing info: traffic source quality, signup intent/source, onboarding drop-off reasons,
+activation definition, pricing/ARPU, churn cohorts, feature usage, performance baseline and
+correlation with conversion, referral economics, capacity constraints.`}
+      </Code>
 
       <Callout title="Reviewer correction · projection arithmetic" tone="warn">
         <p className="!mt-0">
@@ -594,6 +798,19 @@ FOR UPDATE;`}
         whether it earns trust in your workflow.
       </blockquote>
 
+      <Code caption="Verbatim reasoning trace from the export, Test 7 — a first draft that came out at 101 words and was corrected before answering.">
+{`Count words. Let's count systematically.
+Can1 your2 team3 ship4 reliable5 software6 faster7 without8 losing9 control10? Meet11 Forge12
+an13 AI14 coding15 assistant16 that17 reads18 your19 repository20 drafts21 tests22 flags23
+risky24 changes25 and26 explains27 every28 suggestion29 in30 plain31 language32. ... reviewone pull request together92 and93 see94 whether95 it96 earns97 trust98 in99 your100
+workflow101.
+Oops 101. Need exactly 100. Remove one word without losing meaning. Change "together" maybe
+remove? Count then 100 if remove together: ... review one pull request and see... Let's
+recount with removal of "together" (word 92) => total 100. Check sentence still good:
+"review one pull request and see whether it earns trust in your workflow." Good.
+... Great exactly 100 if hyphenated late-night counts as one word (standard), CI one, AI one.`}
+      </Code>
+
       <p>
         The supplied verification checked out: it starts with a question, counts as exactly 100
         whitespace-separated words (treating "late-night" as one word), contains no banned phrases, carries
@@ -640,7 +857,7 @@ FOR UPDATE;`}
             ['Production-grade error handling', 'Needs improvement'],
             ['Test quality', 'Needs improvement'],
             ['Frontend source generation', 'Good'],
-            ['Rendered visual quality', 'Not yet established'],
+            ['Rendered visual quality', 'Post-hoc render works in one browser; original-session screenshots still missing'],
             ['Business analysis', '<strong>Strong</strong>'],
             ['Arithmetic precision', 'Strong, but verify projections'],
             ['Uncertainty handling', 'Positive examples observed'],
@@ -745,7 +962,7 @@ FOR UPDATE;`}
             <li>Any claim that a test "passes" without me running it myself.</li>
             <li>Money paths or migrations, until concurrency tests prove the invariants.</li>
             <li>UI claims that have never been rendered in a browser and clicked through.</li>
-            <li>Any performance or speed claim, since no telemetry was recorded here.</li>
+            <li>Speed claims beyond the observed 3–7 tok/s, since TTFT and prompt-processing telemetry were never captured.</li>
           </ul>
         </div>
       </div>
@@ -762,8 +979,9 @@ FOR UPDATE;`}
           accuracy, recovery after failed commands, and whether it ever falsely claims a command succeeded.
         </li>
         <li>
-          <strong>Frontend/browser verification.</strong> Render desktop and mobile screenshots, exercise
-          navigation, filters, theme, and modal behavior, test keyboard-only navigation, and check the console.
+          <strong>Frontend/browser verification.</strong> Post-hoc renders now exist (Test 5), but navigation,
+          filters, theme persistence, and modal behavior still need exercising across browsers, plus
+          keyboard-only navigation and a console check on every page.
         </li>
         <li>
           <strong>Adversarial reasoning.</strong> Contradictory requirements, internally inconsistent tables,
@@ -788,31 +1006,43 @@ FOR UPDATE;`}
 
       <H2>Evidence and limitations note</H2>
       <p>
-        This article is built from an evaluation dossier prepared 25 November 2026, not from a formal benchmark
-        run. Worth being explicit about what backs each claim:
+        This article is built from an evaluation dossier and the raw LM Studio chat export behind it, both
+        prepared 25 November 2026, not from a formal benchmark run. Worth being explicit about what backs each
+        claim:
       </p>
       <ul>
         <li>
-          <strong>Included:</strong> the funnel response and its calculations, the exact 100-word announcement
-          above, and the cover illustration used as this article's hero.
+          <strong>Included:</strong> the full chat export covering all seven tasks (prompt, visible reasoning
+          trace, and response), the model file record with its SHA-256, the LM Studio load configuration, the
+          observed 3–7 tokens/sec range, the funnel response and its calculations, the exact 100-word
+          announcement above, and the cover illustration used as this article's hero.
         </li>
         <li>
-          <strong>Summarized, transcripts not attached:</strong> general reasoning, distributed systems,
-          database concurrency, and the funnel conversation.
+          <strong>Quoted as excerpts:</strong> the code blocks marked "verbatim from the export" are trimmed
+          excerpts of longer reasoning traces; ellipses mark anything I cut. The complete export is retained
+          separately as the source of record.
         </li>
         <li>
           <strong>Reviewed earlier, source files not attached:</strong> the FastAPI service artifact and the
-          Nexus Analytics dashboard source.
+          Nexus Analytics dashboard source, both reviewed against the export's responses.
         </li>
         <li>
-          <strong>Not available at all:</strong> rendered desktop/mobile screenshots of the dashboard and LM
-          Studio runtime logs. So no visual-quality claim and no performance claim appears anywhere above.
+          <strong>Rendered after the fact:</strong> the four dashboard images in Test 5 are post-hoc Chromium
+          renders of the HTML block in the chat export, captured for this article — not screenshots from the
+          evaluation session. They show the file rendering and its theme/menu controls working in that one
+          browser; they do not establish cross-browser or accessibility behavior.
+        </li>
+        <li>
+          <strong>Still not available:</strong> screenshots from the original evaluation session itself, and
+          per-task timing telemetry (time-to-first-token, prompt-processing rate, GPU utilization, VRAM peaks).
+          So no in-session visual claim appears anywhere above, and the only performance figure is the observed
+          token-rate range.
         </li>
       </ul>
       <p>
-        Scores are qualitative reviewer judgments, task-specific, and not comparable across rows. Model
-        metadata that was never recorded (quantization, context length, sampling settings, inference speed) has
-        been left blank rather than filled in with plausible-looking guesses. The hero image is a{" "}
+        Scores are qualitative reviewer judgments, task-specific, and not comparable across rows. Sampling
+        settings (temperature, top-p, top-k) were never recorded and have been left blank rather than filled in
+        with plausible-looking guesses. The hero image is a{" "}
         <strong>generated illustration created for this evaluation</strong>, not a screenshot of any interface.
       </p>
 
@@ -825,8 +1055,8 @@ FOR UPDATE;`}
           Strong architecture, strong risk spotting, excellent instruction following, and a consistent gap
           between what the explanation promised and what the code actually enforced, unenforced timeouts,
           idempotency claimed after the side effect, tests that assert nothing. Scores: 7.8 to 10, all
-          qualitative. No speed numbers, because no telemetry was recorded. The takeaway: evaluate local models
-          by what they can execute and verify, not by how good the explanation sounds.
+          qualitative. 3–7 tok/s on an 8 GB laptop, with the raw LM Studio export as proof. The takeaway:
+          evaluate local models by what they can execute and verify, not by how good the explanation sounds.
         </p>
       </Callout>
     </article>
