@@ -11,6 +11,7 @@ import OrnithBlogContent from './OrnithBlogContent'
 import NemotronBlogContent from './NemotronBlogContent'
 import Ornith15BlogContent from './Ornith15BlogContent'
 import Qwen38BlogContent from './Qwen38BlogContent'
+import Inkling2MiniBlogContent from './Inkling2MiniBlogContent'
 
 /* ─── Lightbox ─── */
 function Lightbox({ images, currentIndex, onClose, onPrev, onNext }) {
@@ -618,6 +619,7 @@ export default function BlogPostPage() {
   const isNemotronPost = resolvedSlug === 'nemotron-3.5-lightning'
   const isOrnith15Post = resolvedSlug === 'ornith-1.5-local-audit'
   const isQwen38Post = resolvedSlug === 'qwen38-27b-local'
+  const isInkling2MiniPost = resolvedSlug === 'inkling-2-mini-real-world-evaluation'
 
   // All clickable images for lightbox
   const allImages = useMemo(() => [
@@ -696,7 +698,7 @@ export default function BlogPostPage() {
           {post.coverImage && (
             <ImageFrame
               src={post.coverImage}
-              alt=""
+              alt={post.coverImageAlt || ''}
               label="cover"
               imgClassName="w-full"
               style={{ aspectRatio: '16 / 9', borderRadius: 12, marginTop: 32 }}
@@ -716,6 +718,8 @@ export default function BlogPostPage() {
           <NemotronBlogContent />
         ) : isQwen38Post ? (
           <Qwen38BlogContent />
+        ) : isInkling2MiniPost ? (
+          <Inkling2MiniBlogContent />
         ) : (
           <QwenVsNemotronContent onImageClick={openLightbox} />
         )}

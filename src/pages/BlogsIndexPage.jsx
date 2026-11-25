@@ -147,7 +147,7 @@ export default function BlogsIndexPage() {
                     {post.coverImage ? (
                       <ImageFrame
                         src={post.coverImage}
-                        alt=""
+                        alt={post.coverImageAlt || ''}
                         label="cover"
                         imgClassName="w-full"
                         style={{ aspectRatio: '16 / 9', borderRadius: 8 }}
