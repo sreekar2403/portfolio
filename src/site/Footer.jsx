@@ -42,7 +42,6 @@ export default function Footer() {
 
         <div className="st-footer-bottom">
           <span>© {new Date().getFullYear()} PVSM Sreekar. All rights reserved.</span>
-          <span className="st-mono">constructed by ten agents</span>
         </div>
       </div>
     </footer>

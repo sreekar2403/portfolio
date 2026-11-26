@@ -2,6 +2,17 @@ const BASE = import.meta.env.BASE_URL || '/'
 
 export const LOCAL_BLOG_POSTS = [
   {
+    id: 'inkling-2-mini-real-world-evaluation',
+    title: 'I Put Inkling-2-Mini Through Real-World Tests: Coding, Reasoning, UI, and Business Analysis',
+    subtitle: 'A qualitative, evidence-led evaluation of Inkling-2-Mini across seven tasks, from transaction safety and latency budgets to a 100-word constraint, with the gaps and corrections left in plain sight.',
+    date: '2026-11-25',
+    tags: ['Local LLM', 'Inkling-2-Mini', 'LLM Evaluation', 'AI Coding', 'Software Engineering'],
+    coverImage: `${BASE}blog/inkling_2_mini/cover.png`,
+    coverImageAlt: 'Illustration for the Inkling-2-Mini evaluation: a small model marked up against seven test categories covering reasoning, code, UI, and business analysis',
+    readTime: '17 min',
+    category: 'Local AI evaluation',
+  },
+  {
     id: 'qwen38-27b-local',
     title: 'Qwen3-27B on an 8 GB Laptop: Strong Scaffolder, 1.5 tok/s Local Tax',
     subtitle: 'Four artifacts on-device with a 27B quantized model, proactive toolchain bootstrapping, production-grade scaffolds, and why agentic loops stall on 8 GB VRAM.',
@@ -94,6 +105,12 @@ export const BLOG_IMAGES = {
   bonsai_lmstudio_config: `${BASE}blog/bonsai_27b/lmstudio_config.png`,
   bonsai_benchmark_infographic: `${BASE}blog/bonsai_27b/Local_LLM_Laptop_Performance_Report.png`,
   bonsai: `${BASE}blog/bonsai_27b/bonsai.png`,
+
+  inkling2mini_cover: `${BASE}blog/inkling_2_mini/cover.png`,
+  inkling2mini_nexus_desktop: `${BASE}blog/inkling_2_mini/nexus-desktop.png`,
+  inkling2mini_nexus_dark: `${BASE}blog/inkling_2_mini/nexus-desktop-dark.png`,
+  inkling2mini_nexus_mobile: `${BASE}blog/inkling_2_mini/nexus-mobile.png`,
+  inkling2mini_nexus_mobile_nav: `${BASE}blog/inkling_2_mini/nexus-mobile-nav.png`,
 
   qwen38_cover: `${BASE}blog/qwen38_27b/cover.png`,
   qwen38_hardware: `${BASE}blog/qwen38_27b/hardware.png`,
